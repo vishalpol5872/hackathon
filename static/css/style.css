@@ -5700,3 +5700,209 @@ button:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+/* HERO CTA BUTTON */
+.hero .main-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 13px 24px;
+
+    background: #ffffff;
+    color: #1e3a8a;
+
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.hero .main-button:hover {
+    background: #f8fafc;
+    color: #172554;
+    text-decoration: none;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+/* ================================
+   CHAT MESSAGE BUBBLES
+   ================================ */
+
+.message {
+    max-width: 75%;
+    padding: 14px 18px;
+    margin: 10px 0;
+    border-radius: 18px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Sent message */
+.message.sent {
+    margin-left: auto;
+
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+
+    color: #ffffff !important;
+
+    border-bottom-right-radius: 5px;
+
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.25);
+}
+
+/* Sent message text */
+.message.sent .message-text,
+.message.sent .text,
+.message.sent p,
+.message.sent span {
+    color: #ffffff !important;
+}
+
+/* Sent message timestamp */
+.message.sent .message-time,
+.message.sent .timestamp,
+.message.sent small {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+
+/* Received message */
+.message.received {
+    margin-right: auto;
+
+    background: #ffffff;
+
+    color: #172033 !important;
+
+    border: 1px solid #e5e7eb;
+    border-bottom-left-radius: 5px;
+
+    box-shadow: 0 5px 15px rgba(15, 23, 42, 0.08);
+}
+
+/* Received message text */
+.message.received .message-text,
+.message.received .text,
+.message.received p,
+.message.received span {
+    color: #172033 !important;
+}
+
+/* Received timestamp */
+.message.received .message-time,
+.message.received .timestamp,
+.message.received small {
+    color: #64748b !important;
+}
+
+
+/* ================================
+   MESSAGE SENDER NAME
+   ================================ */
+
+.message .sender-name {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.message.sent .sender-name {
+    color: #ffffff !important;
+}
+
+.message.received .sender-name {
+    color: #111827 !important;
+}
+
+
+/* ================================
+   CHAT INPUT
+   ================================ */
+
+.chat-input input,
+.chat-input textarea,
+.message-input input,
+.message-input textarea {
+    color: #172033 !important;
+    background: #ffffff !important;
+}
+
+.chat-input input::placeholder,
+.chat-input textarea::placeholder,
+.message-input input::placeholder,
+.message-input textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+
+/* ================================
+   SEND BUTTON
+   ================================ */
+
+.chat-input button,
+.message-input button {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    font-weight: 700;
+}
+
+.chat-input button:hover,
+.message-input button:hover {
+    background: linear-gradient(135deg, #4f46e5, #4338ca);
+}
+/* =========================================
+   CHAT MESSAGE TEXT - CONTRAST FIX
+   ========================================= */
+
+/* All text inside chat bubbles */
+.message,
+.message * {
+    text-shadow: none !important;
+}
+
+/* Sent / purple message bubbles */
+.message.sent,
+.message.sent * {
+    color: #ffffff !important;
+}
+
+/* Sent message main text */
+.message.sent p,
+.message.sent span,
+.message.sent div {
+    color: #ffffff !important;
+}
+
+/* Sent message timestamp */
+.message.sent .message-time,
+.message.sent .timestamp,
+.message.sent small {
+    color: #e5e7eb !important;
+}
+
+
+/* Received / white message bubbles */
+.message.received,
+.message.received * {
+    color: #111827 !important;
+}
+
+/* Received message timestamp */
+.message.received .message-time,
+.message.received .timestamp,
+.message.received small {
+    color: #64748b !important;
+}
