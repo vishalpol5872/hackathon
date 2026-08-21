@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Manage Results</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="attendance-page">
+
+    <h1>Manage Results</h1>
+
+    <!-- SELECT STUDENT -->
+
+    <form method="GET">
+
+        <label>Student</label>
+
+        <select
+            name="student_id"
+            required
+        >
+
+            <option value="">
+                Select Student
+            </option>
+
+            {% for student in students %}
+
+                <option
+                    value="{{ student['student_id'] }}"
+
+                    {% if
+                        selected_student_id
+                        == student['student_id']
+                    %}
+                        selected
+                    {% endif %}
+                >
+
+                    {{ student["student_id"] }}
+                    -
+                    {{ student["name"] }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <label>Semester</label>
+
+        <select
+            name="semester"
+            required
+        >
+
+            <option value="">
+                Semester
+            </option>
+
+            {% for semester in range(1, 7) %}
+
+                <option
+                    value="{{ semester }}"
+
+                    {% if
+                        selected_semester|string
+                        == semester|string
+                    %}
+                        selected
+                    {% endif %}
+                >
+                    Semester {{ semester }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <label>Academic Year</label>
+
+        <input
+            type="text"
+            name="academic_year"
+            placeholder="2026-27"
+            value="{{ academic_year }}"
+            required
+        >
+
+
+        <button type="submit">
+            Load
+        </button>
+
+    </form>
+
+
+    {% if
+        selected_student_id
+        and selected_semester
+        and academic_year
+    %}
+
+        <hr>
+
+        <form method="POST">
+
+            <input
+                type="hidden"
+                name="student_id"
+                value="{{ selected_student_id }}"
+            >
+
+            <input
+                type="hidden"
+                name="semester"
+                value="{{ selected_semester }}"
+            >
+
+            <input
+                type="hidden"
+                name="academic_year"
+                value="{{ academic_year }}"
+            >
+
+
+            <table class="attendance-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                        <th>Max Marks</th>
+                        <th>Grade</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for subject in subjects %}
+
+                        {% set result =
+                            existing_results.get(
+                                subject["subject_id"]
+                            )
+                        %}
+
+                        <tr>
+
+                            <td>
+                                {{ subject["name"] }}
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
+
+                                    name="marks_{{ subject['subject_id'] }}"
+
+                                    value="{{
+                                        result['marks']
+                                        if result
+                                        else ''
+                                    }}"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    min="1"
+
+                                    name="max_{{ subject['subject_id'] }}"
+
+                                    value="{{
+                                        result['max_marks']
+                                        if result
+                                        else '100'
+                                    }}"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+
+                                    name="grade_{{ subject['subject_id'] }}"
+
+                                    value="{{
+                                        result['grade']
+                                        if result
+                                        else ''
+                                    }}"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <select
+                                    name="status_{{ subject['subject_id'] }}"
+                                >
+
+                                    <option
+                                        value="Pass"
+
+                                        {% if
+                                            result
+                                            and
+                                            result["result_status"]
+                                            == "Pass"
+                                        %}
+                                            selected
+                                        {% endif %}
+                                    >
+                                        Pass
+                                    </option>
+
+                                    <option
+                                        value="Fail"
+
+                                        {% if
+                                            result
+                                            and
+                                            result["result_status"]
+                                            == "Fail"
+                                        %}
+                                            selected
+                                        {% endif %}
+                                    >
+                                        Fail
+                                    </option>
+
+                                </select>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+
+            <button type="submit">
+                Save Results
+            </button>
+
+        </form>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="{{ url_for('admin_dashboard') }}">
+        ← Admin Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

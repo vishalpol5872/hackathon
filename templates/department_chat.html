@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ conversation["student_name"] }} - Department Chat
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=60"
+    >
+</head>
+
+
+<body class="message-page-body">
+
+<div class="chat-window">
+
+    <!-- ================================================== -->
+    <!-- HEADER -->
+    <!-- ================================================== -->
+
+    <div class="department-chat-header">
+
+        <a href="{{ url_for('department_messages') }}">
+            ←
+        </a>
+
+        <div class="department-chat-avatar">
+
+            {{ conversation["student_name"][0] }}
+
+        </div>
+
+        <div>
+
+            <h3>
+                {{ conversation["student_name"] }}
+            </h3>
+
+            <small>
+                Student ID:
+                {{ conversation["student_id"] }}
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- MESSAGES -->
+    <!-- ================================================== -->
+
+    <div
+        class="department-chat-messages"
+        id="departmentChat"
+    >
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+
+                <!-- ====================================== -->
+                <!-- STUDENT MESSAGE -->
+                <!-- ====================================== -->
+
+                {% if message["sender_type"] == "student" %}
+
+                    <div class="department-message-row department-sent">
+
+                        <div class="department-message-bubble">
+
+                            <strong>
+                                {{ conversation["student_name"] }}
+                            </strong>
+
+
+                            {% if message["message_text"] %}
+
+                                <p>
+                                    {{ message["message_text"] }}
+                                </p>
+
+                            {% endif %}
+
+
+                            {% if message["image"] %}
+
+                                <a
+                                    href="{{ url_for(
+                                        'static',
+                                        filename='uploads/messages/' + message['image']
+                                    ) }}"
+                                    target="_blank"
+                                >
+
+                                    <img
+                                        src="{{ url_for(
+                                            'static',
+                                            filename='uploads/messages/' + message['image']
+                                        ) }}"
+                                        class="chat-upload-image"
+                                        alt="Student uploaded image"
+                                    >
+
+                                </a>
+
+                            {% endif %}
+
+
+                            <small>
+                                {{ message["created_at"] | chat_time }}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                <!-- ====================================== -->
+                <!-- DEPARTMENT MESSAGE -->
+                <!-- ====================================== -->
+
+                {% else %}
+
+                    <div class="department-message-row student-sent">
+
+                        <div class="department-message-bubble">
+
+
+                            {% if message["message_text"] %}
+
+                                <p>
+                                    {{ message["message_text"] }}
+                                </p>
+
+                            {% endif %}
+
+
+                            {% if message["image"] %}
+
+                                <a
+                                    href="{{ url_for(
+                                        'static',
+                                        filename='uploads/messages/' + message['image']
+                                    ) }}"
+                                    target="_blank"
+                                >
+
+                                    <img
+                                        src="{{ url_for(
+                                            'static',
+                                            filename='uploads/messages/' + message['image']
+                                        ) }}"
+                                        class="chat-upload-image"
+                                        alt="Department uploaded image"
+                                    >
+
+                                </a>
+
+                            {% endif %}
+
+
+                            <small>
+                                {{ message["created_at"] | chat_time }}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <div class="empty-chat">
+
+                No messages yet.
+
+                <br><br>
+
+                Send a message to the student.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- IMAGE PREVIEW -->
+    <!-- ================================================== -->
+
+    <div
+        id="imagePreviewBox"
+        style="
+            display: none;
+            padding: 12px;
+            background: #f1f5f9;
+            border-top: 1px solid #ddd;
+        "
+    >
+
+        <div
+            style="
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            "
+        >
+
+            <img
+                id="imagePreview"
+                src=""
+                alt="Selected image"
+                style="
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                "
+            >
+
+
+            <div>
+
+                <div
+                    id="imageFileName"
+                    style="
+                        margin-bottom: 10px;
+                        font-size: 14px;
+                    "
+                >
+                </div>
+
+
+                <button
+                    type="button"
+                    id="removeImage"
+                    style="
+                        border: none;
+                        background: #dc2626;
+                        color: white;
+                        padding: 7px 12px;
+                        border-radius: 7px;
+                        cursor: pointer;
+                    "
+                >
+                    Remove Image
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- SEND FORM -->
+    <!-- ================================================== -->
+
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+        class="department-message-form"
+        id="messageForm"
+    >
+
+
+        <!-- IMAGE BUTTON -->
+
+        <label
+            for="chatImage"
+            class="image-upload-button"
+            title="Attach image"
+            style="cursor: pointer;"
+        >
+            📷
+        </label>
+
+
+        <!-- ACTUAL FILE INPUT -->
+
+        <input
+            type="file"
+            id="chatImage"
+            name="image"
+            accept="image/png,image/jpeg,image/webp"
+            style="display: none;"
+        >
+
+
+        <!-- MESSAGE -->
+
+        <input
+            type="text"
+            id="messageInput"
+            name="message"
+            placeholder="Reply to student..."
+            autocomplete="off"
+        >
+
+
+        <button
+            type="submit"
+            id="sendButton"
+        >
+            Send
+        </button>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    // ========================================================
+    // ELEMENTS
+    // ========================================================
+
+    const chat =
+        document.getElementById(
+            "departmentChat"
+        );
+
+    const imageInput =
+        document.getElementById(
+            "chatImage"
+        );
+
+    const previewBox =
+        document.getElementById(
+            "imagePreviewBox"
+        );
+
+    const previewImage =
+        document.getElementById(
+            "imagePreview"
+        );
+
+    const imageFileName =
+        document.getElementById(
+            "imageFileName"
+        );
+
+    const removeImageButton =
+        document.getElementById(
+            "removeImage"
+        );
+
+    const messageForm =
+        document.getElementById(
+            "messageForm"
+        );
+
+    const messageInput =
+        document.getElementById(
+            "messageInput"
+        );
+
+
+    // ========================================================
+    // SCROLL TO LATEST MESSAGE
+    // ========================================================
+
+    if (chat) {
+
+        chat.scrollTop =
+            chat.scrollHeight;
+
+    }
+
+
+    // ========================================================
+    // IMAGE SELECTED
+    // ========================================================
+
+    if (imageInput) {
+
+        imageInput.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    imageInput.files[0];
+
+
+                if (!file) {
+
+                    previewBox.style.display =
+                        "none";
+
+                    return;
+
+                }
+
+
+                if (
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ) {
+
+                    alert(
+                        "Please select an image."
+                    );
+
+                    imageInput.value = "";
+
+                    return;
+
+                }
+
+
+                if (
+                    file.size >
+                    15 * 1024 * 1024
+                ) {
+
+                    alert(
+                        "Image is too large. Maximum size is 15 MB."
+                    );
+
+                    imageInput.value = "";
+
+                    return;
+
+                }
+
+
+                const imageURL =
+                    URL.createObjectURL(
+                        file
+                    );
+
+
+                previewImage.src =
+                    imageURL;
+
+
+                imageFileName.textContent =
+                    file.name;
+
+
+                previewBox.style.display =
+                    "block";
+
+            }
+        );
+
+    }
+
+
+    // ========================================================
+    // REMOVE IMAGE
+    // ========================================================
+
+    if (removeImageButton) {
+
+        removeImageButton.addEventListener(
+            "click",
+            function () {
+
+                imageInput.value = "";
+
+                previewImage.src = "";
+
+                imageFileName.textContent = "";
+
+                previewBox.style.display =
+                    "none";
+
+            }
+        );
+
+    }
+
+
+    // ========================================================
+    // PREVENT EMPTY SEND
+    // ========================================================
+
+    if (messageForm) {
+
+        messageForm.addEventListener(
+            "submit",
+            function (event) {
+
+                const hasText =
+                    messageInput.value
+                    .trim() !== "";
+
+
+                const hasImage =
+                    imageInput.files.length > 0;
+
+
+                if (
+                    !hasText
+                    &&
+                    !hasImage
+                ) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Type a message or select an image."
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+</script>
+
+</body>
+
+</html>

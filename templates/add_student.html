@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Add Student - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=70"
+    >
+
+</head>
+
+
+<body class="message-page-body">
+
+<div class="student-form-page">
+
+
+    <div class="student-form-header">
+
+        <div>
+
+            <h1>
+                Add Student
+            </h1>
+
+            <p>
+                Create a new student account
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('manage_students') }}">
+            ← Students
+        </a>
+
+    </div>
+
+
+    {% if error %}
+
+        <div class="student-error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    <form
+        method="POST"
+        class="student-form-card"
+    >
+
+
+        <div class="student-form-grid">
+
+
+            <div>
+
+                <label>
+                    Student ID *
+                </label>
+
+                <input
+                    type="text"
+                    name="student_id"
+                    placeholder="BSC002"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Full Name *
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    name="phone"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Date of Birth
+                </label>
+
+                <input
+                    type="date"
+                    name="date_of_birth"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Year *
+                </label>
+
+                <select
+                    name="year"
+                    required
+                >
+
+                    <option value="">
+                        Select Year
+                    </option>
+
+                    <option value="1">
+                        Year 1
+                    </option>
+
+                    <option value="2">
+                        Year 2
+                    </option>
+
+                    <option value="3">
+                        Year 3
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Combination *
+                </label>
+
+                <select
+                    name="combination_id"
+                    required
+                >
+
+                    <option value="">
+                        Select Combination
+                    </option>
+
+
+                    {% for combination in combinations %}
+
+                        <option
+                            value="{{ combination['combination_id'] }}"
+                        >
+
+                            {{ combination["name"] }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Initial Password *
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="student-address-field">
+
+            <label>
+                Address
+            </label>
+
+            <textarea
+                name="address"
+                rows="4"
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="student-save-button"
+        >
+            Add Student
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

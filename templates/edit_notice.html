@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Edit Notice - {{ app_name }}</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=800"
+    >
+
+</head>
+
+
+<body class="notice-admin-body">
+
+
+<div class="notice-admin-container">
+
+
+    <!-- =============================================== -->
+    <!-- HEADER -->
+    <!-- =============================================== -->
+
+    <div class="notice-admin-header">
+
+        <div>
+
+            <h1>
+                Edit Notice
+            </h1>
+
+            <p>
+                Update the notice information below.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('manage_notices') }}"
+            class="notice-back-button"
+        >
+            ← Back to Notices
+        </a>
+
+    </div>
+
+
+    <!-- =============================================== -->
+    <!-- FORM -->
+    <!-- =============================================== -->
+
+    <section class="notice-create-card">
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            class="notice-form"
+        >
+
+
+            <!-- CATEGORY -->
+
+            <div class="notice-form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+
+                <select
+                    id="category"
+                    name="category"
+                    required
+                >
+
+                    {% for category in categories %}
+
+                        <option
+                            value="{{ category }}"
+
+                            {% if notice["category"] == category %}
+                                selected
+                            {% endif %}
+                        >
+
+                            {{ category }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- PIN -->
+
+            <div class="notice-form-group">
+
+                <label>
+                    Important Notice
+                </label>
+
+
+                <label class="notice-pin-option">
+
+                    <input
+                        type="checkbox"
+                        name="is_pinned"
+                        value="1"
+
+                        {% if notice["is_pinned"] %}
+                            checked
+                        {% endif %}
+                    >
+
+                    📌 Pin this notice
+
+                </label>
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <div class="notice-form-group notice-full-width">
+
+                <label for="title">
+                    Notice Title
+                </label>
+
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value="{{ notice['title'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="notice-form-group notice-full-width">
+
+                <label for="message">
+                    Message
+                </label>
+
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="7"
+                    required
+                >{{ notice["message"] }}</textarea>
+
+            </div>
+
+
+            <!-- ISSUED BY -->
+
+            <div class="notice-form-group">
+
+                <label>
+                    Issued By
+                </label>
+
+
+                <div class="notice-fixed-value">
+
+                    {% if role == "department_admin" %}
+
+                        {{ department_name }} Department
+
+                    {% else %}
+
+                        College Administration
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- TARGET DEPARTMENT -->
+
+            <div class="notice-form-group">
+
+                <label>
+                    Target Department
+                </label>
+
+
+                {% if role == "department_admin" %}
+
+                    <div class="notice-fixed-value">
+
+                        {{ department_name }} Department
+
+                    </div>
+
+
+                {% else %}
+
+                    <select
+                        name="target_department_id"
+                    >
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+
+                        {% for department in departments %}
+
+                            <option
+                                value="{{ department['department_id'] }}"
+
+                                {% if
+                                    notice["target_department_id"]
+                                    ==
+                                    department["department_id"]
+                                %}
+                                    selected
+                                {% endif %}
+                            >
+
+                                {{ department["name"] }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- TARGET YEAR -->
+
+            <div class="notice-form-group">
+
+                <label for="target_year">
+                    Target Year
+                </label>
+
+
+                <select
+                    id="target_year"
+                    name="target_year"
+                >
+
+                    <option
+                        value=""
+                        {% if not notice["target_year"] %}
+                            selected
+                        {% endif %}
+                    >
+                        All Years
+                    </option>
+
+
+                    <option
+                        value="1"
+                        {% if notice["target_year"] == 1 %}
+                            selected
+                        {% endif %}
+                    >
+                        Year 1
+                    </option>
+
+
+                    <option
+                        value="2"
+                        {% if notice["target_year"] == 2 %}
+                            selected
+                        {% endif %}
+                    >
+                        Year 2
+                    </option>
+
+
+                    <option
+                        value="3"
+                        {% if notice["target_year"] == 3 %}
+                            selected
+                        {% endif %}
+                    >
+                        Year 3
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- REPLACE IMAGE -->
+
+            <div class="notice-form-group">
+
+                <label for="noticeImage">
+                    Replace Image
+                </label>
+
+
+                <input
+                    type="file"
+                    id="noticeImage"
+                    name="image"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+
+
+                <small class="notice-form-help">
+                    Leave empty to keep the current image.
+                </small>
+
+            </div>
+
+
+            <!-- CURRENT IMAGE -->
+
+            {% if notice["image"] %}
+
+                <div class="notice-form-group notice-full-width">
+
+                    <label>
+                        Current Image
+                    </label>
+
+
+                    <img
+                        src="{{
+                            url_for(
+                                'static',
+                                filename=
+                                'uploads/notices/'
+                                +
+                                notice['image']
+                            )
+                        }}"
+                        class="edit-notice-current-image"
+                        alt="Current notice image"
+                    >
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- NEW IMAGE PREVIEW -->
+
+            <div
+                id="noticeImagePreview"
+                class="notice-image-preview notice-full-width"
+                style="display: none;"
+            >
+
+                <p>
+                    New Image Preview
+                </p>
+
+
+                <img
+                    id="noticePreviewImage"
+                    src=""
+                    alt="New notice image"
+                >
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="notice-form-actions notice-full-width">
+
+
+                <a
+                    href="{{ url_for('manage_notices') }}"
+                    class="notice-cancel-button"
+                >
+                    Cancel
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="notice-publish-button"
+                >
+                    Save Changes
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+    const noticeImage =
+        document.getElementById(
+            "noticeImage"
+        );
+
+
+    const previewContainer =
+        document.getElementById(
+            "noticeImagePreview"
+        );
+
+
+    const previewImage =
+        document.getElementById(
+            "noticePreviewImage"
+        );
+
+
+    noticeImage.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files[0];
+
+
+            if (!file) {
+
+                previewContainer.style.display =
+                    "none";
+
+                previewImage.src = "";
+
+                return;
+            }
+
+
+            const imageURL =
+                URL.createObjectURL(file);
+
+
+            previewImage.src =
+                imageURL;
+
+
+            previewContainer.style.display =
+                "block";
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

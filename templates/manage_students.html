@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Manage Students - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=70"
+    >
+
+</head>
+
+
+<body class="message-page-body">
+
+<div class="student-management-page">
+
+
+    <!-- HEADER -->
+
+    <div class="student-management-header">
+
+        <div>
+
+            <h1>
+                Manage Students
+            </h1>
+
+            <p>
+                Add and manage student accounts
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <a
+                href="{{ url_for('add_student_page') }}"
+                class="student-add-button"
+            >
+                + Add Student
+            </a>
+
+
+            <a
+                href="{{ url_for('admin_dashboard') }}"
+                class="student-back-link"
+            >
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <form
+        method="GET"
+        class="student-search-form"
+    >
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search_text }}"
+            placeholder="Search by ID, name or email..."
+        >
+
+
+        <button type="submit">
+            Search
+        </button>
+
+
+        {% if search_text %}
+
+            <a href="{{ url_for('manage_students') }}">
+                Clear
+            </a>
+
+        {% endif %}
+
+    </form>
+
+
+    <!-- STUDENT LIST -->
+
+    <div class="student-table-card">
+
+
+        {% if students %}
+
+            <table class="student-management-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Student ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Year
+                        </th>
+
+                        <th>
+                            Combination
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for student in students %}
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    {{ student["student_id"] }}
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+                                {{ student["name"] }}
+                            </td>
+
+
+                            <td>
+                                Year {{ student["year"] }}
+                            </td>
+
+
+                            <td>
+
+                                {{
+                                    student["combination_name"]
+                                    or "-"
+                                }}
+
+                            </td>
+
+
+                            <td>
+
+                                {{
+                                    student["email"]
+                                    or "-"
+                                }}
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    class="student-edit-button"
+                                    href="{{
+                                        url_for(
+                                            'edit_student_page',
+                                            student_id=student['student_id']
+                                        )
+                                    }}"
+                                >
+                                    Edit
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+
+        {% else %}
+
+            <div class="empty-chat">
+
+                No students found.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

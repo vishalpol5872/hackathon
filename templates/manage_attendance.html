@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Manage Attendance</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="attendance-page">
+
+        <h1>Manage Attendance</h1>
+
+        <p>
+            Attendance is entered monthly.
+        </p>
+
+
+        <!-- STUDENT + MONTH SELECTION -->
+
+        <form method="GET">
+
+            <label>
+                Student:
+            </label>
+
+            <select
+                name="student_id"
+                required
+            >
+
+                <option value="">
+                    Select Student
+                </option>
+
+                {% for student in students %}
+
+                    <option
+                        value="{{ student['student_id'] }}"
+
+                        {% if selected_student_id == student['student_id'] %}
+                            selected
+                        {% endif %}
+                    >
+
+                        {{ student["student_id"] }}
+                        -
+                        {{ student["name"] }}
+                        -
+                        {{ student["combination_name"] }}
+
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>
+                Month:
+            </label>
+
+            <input
+                type="month"
+                name="month"
+                value="{{ selected_month }}"
+                required
+            >
+
+
+            <button type="submit">
+                Load Attendance
+            </button>
+
+        </form>
+
+
+        {% if selected_student_id and selected_month %}
+
+            <hr>
+
+            <h2>
+                Attendance for {{ selected_month }}
+            </h2>
+
+
+            <form method="POST">
+
+                <input
+                    type="hidden"
+                    name="student_id"
+                    value="{{ selected_student_id }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="month"
+                    value="{{ selected_month }}"
+                >
+
+
+                <table class="attendance-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Subject</th>
+                            <th>Present</th>
+                            <th>Total</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for subject in subjects %}
+
+                            {% set record =
+                                existing_attendance.get(
+                                    subject["subject_id"]
+                                )
+                            %}
+
+                            <tr>
+
+                                <td>
+                                    {{ subject["name"] }}
+                                </td>
+
+                                <td>
+
+                                    <input
+                                        type="number"
+                                        name="present_{{ subject['subject_id'] }}"
+                                        min="0"
+
+                                        value="{{
+                                            record['present_classes']
+                                            if record
+                                            else ''
+                                        }}"
+                                    >
+
+                                </td>
+
+                                <td>
+
+                                    <input
+                                        type="number"
+                                        name="total_{{ subject['subject_id'] }}"
+                                        min="0"
+
+                                        value="{{
+                                            record['total_classes']
+                                            if record
+                                            else ''
+                                        }}"
+                                    >
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+
+                <button type="submit">
+                    Save Attendance
+                </button>
+
+            </form>
+
+        {% endif %}
+
+
+        <br>
+
+        <a href="{{ url_for('admin_dashboard') }}">
+            ← Back to Admin Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,5702 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+
+/* NAVIGATION */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 40px;
+
+    background: #1f2937;
+    color: white;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+
+/* HOME */
+
+.hero {
+    text-align: center;
+
+    padding: 100px 20px;
+
+    background: white;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.main-button {
+    display: inline-block;
+
+    padding: 12px 25px;
+
+    background: #2563eb;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+
+/* COLLEGE DETAILS */
+
+.college-details {
+    padding: 50px 40px;
+}
+
+.college-details h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+.card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+
+/* NOTICES */
+
+.notice-section {
+    padding: 40px;
+}
+
+.notice-section h2 {
+    margin-bottom: 20px;
+}
+
+.notice {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+}
+
+
+/* LOGIN */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.login-options {
+    display: flex;
+    gap: 30px;
+
+    margin: 25px;
+}
+
+.login-card {
+    width: 300px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.12);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.login-card input {
+    padding: 12px;
+
+    font-size: 15px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+}
+
+.login-card button {
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #2563eb;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* ==========================================================
+   STUDENT DASHBOARD
+   ========================================================== */
+
+.dashboard-body {
+    margin: 0;
+    background: #f4f6f8;
+}
+
+
+.dashboard-layout {
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        220px
+        minmax(0, 1fr)
+        300px;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    background: #1f2937;
+    color: white;
+
+    padding: 25px 20px;
+}
+
+.sidebar h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.sidebar-student {
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.sidebar nav a {
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px;
+
+    border-radius: 6px;
+}
+
+.sidebar nav a:hover {
+    background: #374151;
+}
+
+
+/* MAIN */
+
+.student-main {
+    padding: 30px;
+}
+
+.dashboard-header {
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    margin-bottom: 7px;
+}
+
+
+/* CARDS */
+
+.dashboard-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h3 {
+    margin-bottom: 10px;
+
+    color: #555;
+}
+
+.dashboard-card p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* SECTION */
+
+.dashboard-section {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-section h2 {
+    margin-bottom: 25px;
+}
+
+
+/* PERSONAL DETAILS */
+
+.personal-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.personal-details-grid strong {
+    color: #555;
+}
+
+.personal-details-grid p {
+    margin-top: 6px;
+}
+
+.full-detail {
+    grid-column: 1 / -1;
+}
+
+
+/* ==========================================================
+   ALWAYS VISIBLE NOTICE PANEL
+   ========================================================== */
+
+.notice-panel {
+    background: white;
+
+    padding: 25px 20px;
+
+    border-left: 1px solid #ddd;
+
+    height: 100vh;
+
+    overflow-y: auto;
+
+    position: sticky;
+
+    top: 0;
+}
+
+.notice-panel h2 {
+    margin-bottom: 20px;
+}
+
+.dashboard-notice {
+    padding: 15px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.dashboard-notice h3 {
+    margin-bottom: 5px;
+}
+
+.dashboard-notice small {
+    color: #777;
+}
+
+.dashboard-notice p {
+    margin-top: 10px;
+
+    line-height: 1.5;
+}
+
+.notice-image {
+    width: 100%;
+
+    margin-top: 10px;
+
+    border-radius: 6px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .dashboard-layout {
+        display: block;
+    }
+
+    .notice-panel {
+        height: auto;
+        position: static;
+
+        border-left: none;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .personal-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+
+/* ==========================================================
+   ATTENDANCE ADMIN PAGE
+   ========================================================== */
+
+.attendance-page {
+    max-width: 1000px;
+
+    margin: 40px auto;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 10px;
+}
+
+.attendance-page form {
+    margin: 25px 0;
+}
+
+.attendance-page select,
+.attendance-page input {
+    padding: 10px;
+
+    margin: 5px 15px 5px 5px;
+}
+
+.attendance-page button {
+    padding: 10px 18px;
+
+    border: none;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.attendance-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin: 20px 0;
+}
+
+.attendance-table th,
+.attendance-table td {
+    border: 1px solid #ddd;
+
+    padding: 12px;
+
+    text-align: center;
+}
+
+.attendance-table th {
+    background: #f1f5f9;
+}
+
+
+/* ==========================================================
+   STUDENT ATTENDANCE
+   ========================================================== */
+
+.attendance-student-page {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.back-button {
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    background: #1f2937;
+    color: white;
+
+    border-radius: 6px;
+}
+
+
+.attendance-summary-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.attendance-summary-card h2 {
+    font-size: 36px;
+
+    margin-top: 8px;
+}
+
+
+.attendance-chart-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.attendance-chart-card canvas {
+    max-height: 400px;
+
+    margin-top: 20px;
+}
+
+
+.attendance-details-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   AI ASSISTANT
+   ========================================================= */
+
+.assistant-body {
+    margin: 0;
+    background: #f4f6f9;
+    font-family: Arial, sans-serif;
+}
+
+.assistant-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* HEADER */
+
+.assistant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 25px;
+
+    background: #1f2937;
+    color: white;
+}
+
+.assistant-header h2 {
+    margin: 0;
+}
+
+.assistant-header p {
+    margin: 5px 0 0;
+    opacity: 0.8;
+}
+
+.assistant-back {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* CHAT AREA */
+
+.assistant-chat {
+    min-height: 450px;
+    max-height: 550px;
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    background: #f8fafc;
+}
+
+
+/* CHAT MESSAGE */
+
+.chat-message {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.assistant-message {
+    justify-content: flex-start;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+
+/* AI AVATAR */
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+
+    margin-right: 10px;
+}
+
+
+/* CHAT BUBBLE */
+
+.chat-bubble {
+    max-width: 70%;
+
+    padding: 14px 18px;
+
+    border-radius: 15px;
+
+    background: white;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.chat-bubble p {
+    margin: 7px 0;
+    line-height: 1.5;
+}
+
+.chat-bubble small {
+    color: #64748b;
+}
+
+
+/* USER MESSAGE */
+
+.user-message .chat-bubble {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* INPUT AREA */
+
+.assistant-input-area {
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.assistant-selects {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.assistant-selects select {
+    padding: 10px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    flex: 1;
+}
+
+
+/* QUESTION */
+
+.assistant-question-row {
+    display: flex;
+    gap: 10px;
+}
+
+.assistant-question-row input {
+    flex: 1;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+.assistant-question-row button {
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.assistant-question-row button:hover {
+    background: #1d4ed8;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .assistant-container {
+        width: 96%;
+        margin: 10px auto;
+    }
+
+    .assistant-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .assistant-selects {
+        flex-direction: column;
+    }
+
+    .chat-bubble {
+        max-width: 85%;
+    }
+}
+
+
+
+/* =========================================================
+   DEPARTMENT MESSAGING
+   ========================================================= */
+
+.message-page-body {
+    margin: 0;
+    background: #f1f5f9;
+    font-family: Arial, sans-serif;
+}
+
+.message-page {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.message-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.message-page-header h1 {
+    margin-bottom: 5px;
+}
+
+.message-page-header p {
+    color: #64748b;
+}
+
+.message-page-header a {
+    text-decoration: none;
+}
+
+
+/* START CHAT */
+
+.start-chat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+.start-chat-card form {
+    display: flex;
+    gap: 10px;
+}
+
+.start-chat-card select {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+}
+
+.start-chat-card button {
+    border: none;
+    border-radius: 9px;
+    padding: 12px 20px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* CONVERSATIONS */
+
+.conversation-list {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.conversation-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    padding: 16px;
+
+    color: inherit;
+    text-decoration: none;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.conversation-item:hover {
+    background: #f8fafc;
+}
+
+.conversation-avatar,
+.department-chat-avatar {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2563eb;
+    color: white;
+
+    font-weight: bold;
+}
+
+.conversation-info {
+    flex: 1;
+}
+
+.conversation-info p {
+    margin: 6px 0 0;
+    color: #64748b;
+}
+
+.conversation-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.unread-badge {
+    background: #2563eb;
+    color: white;
+
+    border-radius: 20px;
+
+    min-width: 20px;
+    padding: 3px 7px;
+
+    text-align: center;
+    font-size: 12px;
+}
+
+.empty-chat {
+    padding: 30px;
+    text-align: center;
+    color: #64748b;
+}
+
+
+/* CHAT WINDOW */
+
+.chat-window {
+    max-width: 850px;
+    margin: 20px auto;
+
+    background: white;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.department-chat-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    padding: 15px 20px;
+
+    background: #1f2937;
+    color: white;
+}
+
+.department-chat-header a {
+    font-size: 26px;
+    color: white;
+    text-decoration: none;
+}
+
+.department-chat-header h3 {
+    margin: 0;
+}
+
+.department-chat-messages {
+    height: 530px;
+
+    overflow-y: auto;
+
+    padding: 22px;
+
+    background: #e9edef;
+}
+
+
+/* MESSAGE ROW */
+
+.department-message-row {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.student-sent {
+    justify-content: flex-end;
+}
+
+.department-sent {
+    justify-content: flex-start;
+}
+
+.department-message-bubble {
+    max-width: 68%;
+
+    padding: 10px 13px;
+
+    border-radius: 12px;
+
+    background: white;
+}
+
+.student-sent
+.department-message-bubble {
+    background: #d9fdd3;
+}
+
+.department-message-bubble p {
+    margin: 5px 0 7px;
+    line-height: 1.45;
+}
+
+.department-message-bubble small {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    color: #64748b;
+
+    text-align: right;
+}
+
+
+/* IMAGES */
+
+.chat-upload-image {
+    display: block;
+
+    max-width: 280px;
+    max-height: 320px;
+
+    border-radius: 9px;
+
+    margin-top: 8px;
+
+    object-fit: cover;
+}
+
+
+/* MESSAGE FORM */
+
+.department-message-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    padding: 13px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.department-message-form input[type="text"] {
+    flex: 1;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 22px;
+}
+
+.department-message-form button {
+    border: none;
+
+    background: #2563eb;
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.image-upload-button {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .message-page {
+        margin: 0;
+        padding: 12px;
+    }
+
+    .start-chat-card form {
+        flex-direction: column;
+    }
+
+    .chat-window {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .department-chat-messages {
+        height: 500px;
+    }
+
+    .department-message-bubble {
+        max-width: 82%;
+    }
+
+    .chat-upload-image {
+        max-width: 220px;
+    }
+}
+
+
+/* =========================================================
+   MESSAGE IMAGE PREVIEW
+   ========================================================= */
+
+.message-image-preview {
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 12px 15px;
+
+    border-top: 1px solid #e5e7eb;
+
+    background: #f8fafc;
+}
+
+
+.message-image-preview[hidden] {
+    display: none;
+}
+
+
+.message-image-preview img {
+
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+
+.message-image-preview div {
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.message-image-preview span {
+
+    font-size: 13px;
+    color: #475569;
+}
+
+
+.message-image-preview button {
+
+    width: fit-content;
+
+    border: none;
+
+    border-radius: 6px;
+
+    padding: 6px 10px;
+
+    background: #dc2626;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   DASHBOARD UNREAD MESSAGE BADGE
+   ========================================================= */
+
+.dashboard-unread-badge {
+
+    display: inline-block;
+
+    min-width: 18px;
+
+    padding: 2px 6px;
+
+    margin-left: 6px;
+
+    border-radius: 20px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+
+
+/* =========================================================
+   TIMETABLE
+   ========================================================= */
+
+.timetable-page {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+
+.timetable-table-wrapper,
+.mini-timetable-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.timetable-table,
+.mini-timetable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+
+.timetable-table th,
+.timetable-table td,
+.mini-timetable th,
+.mini-timetable td {
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    text-align: center;
+}
+
+
+.timetable-table thead,
+.mini-timetable thead {
+    background: #1f2937;
+    color: white;
+}
+
+
+.timetable-table input {
+    width: 100%;
+    min-width: 110px;
+    box-sizing: border-box;
+
+    padding: 9px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+}
+
+
+.timetable-save-button {
+    margin-top: 20px;
+
+    border: none;
+
+    padding: 12px 24px;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.dashboard-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.dashboard-section-heading a {
+    text-decoration: none;
+}
+
+
+.mini-timetable {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+
+@media (max-width: 700px) {
+
+    .timetable-page {
+        margin: 0;
+        padding: 12px;
+    }
+
+    .dashboard-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   STUDENT MANAGEMENT
+   ========================================================= */
+
+.student-management-page,
+.student-form-page {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+
+.student-management-header,
+.student-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+
+.student-management-header h1,
+.student-form-header h1 {
+    margin-bottom: 5px;
+}
+
+
+.student-management-header p,
+.student-form-header p {
+    color: #64748b;
+}
+
+
+.student-management-header a,
+.student-form-header a {
+    text-decoration: none;
+}
+
+
+.student-add-button {
+    display: inline-block;
+
+    padding: 10px 16px;
+    margin-right: 10px;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 8px;
+}
+
+
+.student-back-link {
+    color: #334155;
+}
+
+
+/* SEARCH */
+
+.student-search-form {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.student-search-form input {
+    flex: 1;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+}
+
+
+.student-search-form button {
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #2563eb;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* TABLE */
+
+.student-table-card {
+    background: white;
+
+    border-radius: 14px;
+
+    overflow-x: auto;
+}
+
+
+.student-management-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.student-management-table th,
+.student-management-table td {
+    padding: 14px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    text-align: left;
+}
+
+
+.student-management-table th {
+    background: #f8fafc;
+}
+
+
+.student-edit-button {
+    text-decoration: none;
+
+    padding: 7px 12px;
+
+    border-radius: 7px;
+
+    background: #2563eb;
+    color: white;
+}
+
+
+/* FORMS */
+
+.student-form-card {
+    background: white;
+
+    padding: 22px;
+
+    margin-bottom: 22px;
+
+    border-radius: 14px;
+}
+
+
+.student-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+.student-form-card label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+}
+
+
+.student-form-card input,
+.student-form-card select,
+.student-form-card textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+}
+
+
+.student-address-field {
+    margin-top: 18px;
+}
+
+
+.student-save-button {
+    margin-top: 20px;
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* MESSAGES */
+
+.student-error {
+    padding: 12px 15px;
+
+    margin-bottom: 18px;
+
+    border-radius: 8px;
+
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+
+.student-success {
+    padding: 12px 15px;
+
+    margin-bottom: 18px;
+
+    border-radius: 8px;
+
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+/* DANGER */
+
+.student-danger-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 14px;
+
+    border: 1px solid #fecaca;
+}
+
+
+.student-danger-card p {
+    color: #64748b;
+}
+
+
+.student-delete-button {
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #dc2626;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+@media (max-width: 700px) {
+
+    .student-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .student-management-header,
+    .student-form-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+
+    .student-search-form {
+        flex-direction: column;
+    }
+
+}
+
+/* =========================================================
+   TIMETABLE PAGE - FINAL DESIGN
+   ========================================================= */
+
+.timetable-admin-page {
+    margin: 0;
+    min-height: 100vh;
+    background: #f4f7fb;
+    font-family: Arial, sans-serif;
+    color: #1e293b;
+}
+
+.timetable-page {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.timetable-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.timetable-header h1 {
+    margin: 0;
+    font-size: 34px;
+    color: #0f172a;
+}
+
+.timetable-header p {
+    margin-top: 6px;
+    color: #64748b;
+}
+
+.timetable-header a {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.timetable-page form {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 25px;
+}
+
+.timetable-page select {
+    padding: 11px 14px;
+    min-width: 170px;
+    margin-right: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+}
+
+.timetable-page button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.timetable-page button:hover {
+    background: #1d4ed8;
+}
+
+.timetable-page table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.timetable-page th {
+    background: #1e293b;
+    color: white;
+    padding: 13px;
+    text-align: left;
+}
+
+.timetable-page td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.timetable-page input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+}
+
+
+
+/* =========================================================
+   ADMIN DASHBOARD - FINAL
+   ========================================================= */
+
+.admin-page {
+    margin: 0;
+    min-height: 100vh;
+    background: #f4f7fb;
+    font-family: Arial, sans-serif;
+    color: #1e293b;
+}
+
+
+.admin-dashboard-container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.admin-dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.admin-dashboard-header h1 {
+    margin: 0;
+    font-size: 34px;
+    color: #0f172a;
+}
+
+
+.admin-dashboard-header h2 {
+    margin: 5px 0;
+    font-size: 22px;
+    color: #334155;
+}
+
+
+.admin-dashboard-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+
+.admin-logout-button {
+    padding: 10px 18px;
+
+    background: #fee2e2;
+    color: #dc2626;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+.admin-logout-button:hover {
+    background: #fecaca;
+}
+
+
+/* =========================================================
+   ADMIN INFO
+   ========================================================= */
+
+.admin-info-card {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 35px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+}
+
+
+.admin-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.admin-info-item span {
+    font-size: 13px;
+    color: #64748b;
+}
+
+
+.admin-info-item strong {
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.admin-section-header {
+    margin-bottom: 18px;
+}
+
+
+.admin-section-header h2 {
+    margin: 0;
+    color: #0f172a;
+}
+
+
+.admin-section-header p {
+    margin: 5px 0 0;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.admin-dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   DASHBOARD CARDS
+   ========================================================= */
+
+.admin-dashboard-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    min-height: 110px;
+
+    box-sizing: border-box;
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+
+a.admin-dashboard-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 8px 24px
+        rgba(15, 23, 42, 0.08);
+}
+
+
+.admin-card-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    font-size: 22px;
+}
+
+
+.admin-dashboard-card h3 {
+    margin: 1px 0 7px;
+
+    color: #0f172a;
+
+    font-size: 17px;
+}
+
+
+.admin-dashboard-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.admin-card-content {
+    width: 100%;
+}
+
+
+.admin-card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* =========================================================
+   UNREAD MESSAGE BADGE
+   ========================================================= */
+
+.dashboard-unread-badge {
+    min-width: 20px;
+
+    padding: 4px 7px;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   COMING SOON
+   ========================================================= */
+
+.admin-card-disabled {
+    opacity: 0.65;
+}
+
+
+.coming-soon {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 4px 8px;
+
+    background: #f1f5f9;
+
+    border-radius: 20px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .admin-dashboard-container {
+        width: auto;
+        padding: 22px 15px;
+    }
+
+
+    .admin-dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================================
+   TODAY'S TIMETABLE
+   ========================================================= */
+
+.today-timetable-card {
+    margin-top: 24px;
+    margin-bottom: 28px;
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+
+.today-timetable-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+.today-timetable-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #0f172a;
+}
+
+
+.today-timetable-header p {
+    margin: 5px 0 0;
+
+    font-size: 14px;
+
+    color: #64748b;
+}
+
+
+.view-full-timetable {
+    display: inline-block;
+
+    padding: 9px 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    border-radius: 8px;
+}
+
+
+.view-full-timetable:hover {
+    background: #dbeafe;
+}
+
+
+/* =========================================================
+   PERIOD CARDS
+   ========================================================= */
+
+.today-period-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+.today-period {
+    min-height: 70px;
+
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+.today-period span {
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+
+.today-period strong {
+    font-size: 15px;
+
+    color: #0f172a;
+}
+
+
+/* FREE PERIOD */
+
+.today-period strong {
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   NO TIMETABLE
+   ========================================================= */
+
+.no-classes-today {
+    padding: 25px;
+
+    text-align: center;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+}
+
+
+.no-classes-today h3 {
+    margin: 0 0 7px;
+
+    color: #334155;
+}
+
+
+.no-classes-today p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .today-period-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .today-timetable-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .today-period-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .today-period-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MANAGE NOTICES
+   ========================================================= */
+
+.notice-admin-body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f4f7fb;
+
+    font-family: Arial, sans-serif;
+
+    color: #1e293b;
+}
+
+
+.notice-admin-container {
+    width: 92%;
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding: 40px 20px 70px;
+}
+
+
+/* HEADER */
+
+.notice-admin-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.notice-admin-header h1 {
+    margin: 0 0 6px;
+
+    color: #0f172a;
+}
+
+
+.notice-admin-header p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+.notice-back-button {
+    padding: 10px 15px;
+
+    background: white;
+
+    border: 1px solid #dbe3ee;
+
+    border-radius: 9px;
+
+    color: #334155;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.notice-back-button:hover {
+    background: #f8fafc;
+}
+
+
+/* FLASH */
+
+.notice-flash-message {
+    margin-bottom: 20px;
+
+    padding: 13px 16px;
+
+    background: #ecfdf5;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 9px;
+
+    color: #166534;
+}
+
+
+/* CREATE NOTICE */
+
+.notice-create-card {
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+}
+
+
+.notice-section-title {
+    margin-bottom: 22px;
+}
+
+
+.notice-section-title h2 {
+    margin: 0 0 5px;
+
+    color: #0f172a;
+}
+
+
+.notice-section-title p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+/* FORM */
+
+.notice-form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.notice-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.notice-full-width {
+    grid-column: 1 / -1;
+}
+
+
+.notice-form-group label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+
+.notice-form-group input,
+.notice-form-group select,
+.notice-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #0f172a;
+
+    font: inherit;
+
+    outline: none;
+}
+
+
+.notice-form-group input:focus,
+.notice-form-group select:focus,
+.notice-form-group textarea:focus {
+    border-color: #2563eb;
+}
+
+
+.notice-form-group textarea {
+    resize: vertical;
+}
+
+
+.notice-fixed-value {
+    padding: 11px 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 9px;
+
+    color: #334155;
+}
+
+
+.notice-form-help {
+    color: #64748b;
+}
+
+
+/* IMAGE PREVIEW */
+
+.notice-image-preview {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+.notice-image-preview p {
+    margin: 0 0 10px;
+
+    font-weight: 600;
+}
+
+
+.notice-image-preview img {
+    display: block;
+
+    max-width: 350px;
+    max-height: 250px;
+
+    border-radius: 9px;
+
+    object-fit: cover;
+}
+
+
+/* PUBLISH */
+
+.notice-form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+
+.notice-publish-button {
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.notice-publish-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================================
+   PUBLISHED NOTICES
+   ========================================================= */
+
+.published-notices-section {
+    margin-top: 35px;
+}
+
+
+.published-notice-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.published-notice-card {
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+}
+
+
+.published-notice-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+.notice-category-badge {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    background: #eff6ff;
+
+    border-radius: 999px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.notice-date {
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+
+.published-notice-card h3 {
+    margin: 0 0 15px;
+
+    color: #0f172a;
+}
+
+
+.notice-meta-row {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    color: #475569;
+}
+
+
+.published-notice-message {
+    margin: 15px 0;
+
+    color: #334155;
+
+    line-height: 1.6;
+
+    white-space: pre-line;
+}
+
+
+.published-notice-image {
+    display: block;
+
+    width: 100%;
+    max-height: 300px;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+}
+
+
+.published-notice-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 18px;
+}
+
+
+.notice-delete-button {
+    padding: 8px 13px;
+
+    background: #fff1f2;
+
+    border: 1px solid #fecdd3;
+
+    border-radius: 8px;
+
+    color: #be123c;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.notice-delete-button:hover {
+    background: #ffe4e6;
+}
+
+
+/* EMPTY */
+
+.notice-empty-state {
+    padding: 35px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    text-align: center;
+}
+
+
+.notice-empty-state h3 {
+    margin: 0 0 7px;
+}
+
+
+.notice-empty-state p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+    .notice-admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .notice-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .notice-full-width {
+        grid-column: auto;
+    }
+
+
+    .published-notice-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   STUDENT DASHBOARD NOTICES
+   ========================================================= */
+
+.dashboard-notice {
+    margin-bottom: 16px;
+    padding: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+
+.student-notice-top {
+    margin-bottom: 9px;
+}
+
+
+.student-notice-category {
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    background: #eff6ff;
+
+    border-radius: 999px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.dashboard-notice h3 {
+    margin: 0 0 6px;
+
+    font-size: 16px;
+
+    color: #0f172a;
+}
+
+
+.student-notice-department {
+    margin: 0 0 5px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.student-notice-audience {
+    margin-bottom: 5px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.student-notice-date {
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+.student-notice-message {
+    margin: 12px 0;
+
+    color: #334155;
+
+    line-height: 1.5;
+
+    white-space: pre-line;
+}
+
+
+.dashboard-notice .notice-image {
+    width: 100%;
+
+    margin-top: 10px;
+
+    border-radius: 9px;
+
+    object-fit: cover;
+}
+
+/* =========================================================
+   EDIT / PIN NOTICE
+   ========================================================= */
+
+.published-notice-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.notice-edit-button {
+    padding: 8px 13px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 8px;
+
+    color: #1d4ed8;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.notice-edit-button:hover {
+    background: #dbeafe;
+}
+
+
+.notice-cancel-button {
+    padding: 11px 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 9px;
+
+    color: #475569;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.notice-pin-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+
+.notice-pin-option input {
+    width: auto;
+
+    margin: 0;
+}
+
+
+.notice-pinned-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    padding: 5px 9px;
+
+    background: #fff7ed;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.edit-notice-current-image {
+    display: block;
+
+    max-width: 350px;
+    max-height: 250px;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+}
+
+/* =========================================================
+   NOTICE CATEGORY COLORS
+   ========================================================= */
+
+
+/* DEFAULT / GENERAL */
+
+.student-notice-category {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* GENERAL */
+
+.category-general {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+
+/* ACADEMIC */
+
+.category-academic {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
+/* EXAM */
+
+.category-exam {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+/* EVENT */
+
+.category-event {
+    background: #f3e8ff;
+    color: #7e22ce;
+}
+
+
+/* URGENT */
+
+.category-urgent {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* SCHOLARSHIP */
+
+.category-scholarship {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+
+/* =========================================================
+   PINNED NOTICE
+   ========================================================= */
+
+.student-notice-pinned-card {
+    border: 2px solid #f59e0b;
+
+    background: #fffbeb;
+}
+
+
+.student-pinned-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    padding: 5px 9px;
+
+    background: #f59e0b;
+
+    color: white;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   NOTICE CARD IMPROVEMENTS
+   ========================================================= */
+
+.dashboard-notice {
+    position: relative;
+
+    margin-bottom: 16px;
+
+    padding: 16px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+}
+
+
+.student-notice-top {
+    margin-bottom: 9px;
+}
+
+
+.dashboard-notice h3 {
+    margin: 0 0 7px;
+
+    color: #0f172a;
+
+    font-size: 16px;
+}
+
+
+.student-notice-department {
+    margin: 0 0 5px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.student-notice-audience {
+    margin-bottom: 5px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.student-notice-date {
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+.student-notice-message {
+    margin: 12px 0 0;
+
+    color: #334155;
+
+    line-height: 1.5;
+
+    white-space: pre-line;
+}
+
+
+.dashboard-notice .notice-image {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    border-radius: 9px;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   GENERAL STUDENT ASSISTANT
+   ========================================================= */
+
+.assistant-source {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+.assistant-clear-form {
+    margin-top: 10px;
+}
+
+
+.assistant-clear-button {
+    padding: 8px 14px;
+
+    background: #dc2626;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+.assistant-clear-button:hover {
+    background: #b91c1c;
+}
+
+
+/* =========================================================
+   DEPARTMENTS PAGE
+   ========================================================= */
+
+.departments-page {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f4f7fb;
+
+    font-family: Arial, sans-serif;
+
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   TOP NAVIGATION
+   ========================================================= */
+
+.departments-page header {
+    background: #0f2a44;
+
+    color: white;
+
+    padding: 0 7%;
+}
+
+
+.departments-page header > div,
+.departments-page .navbar,
+.departments-page .nav-container {
+    min-height: 74px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+.departments-page header h1,
+.departments-page header h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 24px;
+}
+
+
+.departments-page header nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.departments-page header nav a {
+    color: #e2e8f0;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+
+.departments-page header nav a:hover {
+    color: white;
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+   ========================================================= */
+
+.departments-page main,
+.departments-page .departments-container,
+.departments-page .department-container {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 0 70px;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.departments-page h1,
+.departments-page .departments-title {
+    text-align: center;
+
+    margin: 0 0 35px;
+
+    color: #0f172a;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   DEPARTMENT GRID
+   ========================================================= */
+
+.departments-page .departments-grid,
+.departments-page .department-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   DEPARTMENT CARD
+   ========================================================= */
+
+.departments-page .department-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 170px;
+
+    padding: 24px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.departments-page .department-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 10px 25px
+        rgba(15, 23, 42, 0.08);
+}
+
+
+/* DEPARTMENT NAME */
+
+.departments-page .department-card h2,
+.departments-page .department-card h3 {
+
+    margin: 0 0 10px;
+
+    color: #0f172a;
+
+    font-size: 19px;
+}
+
+
+/* DESCRIPTION */
+
+.departments-page .department-card p {
+
+    margin: 0 0 22px;
+
+    color: #64748b;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+
+    flex-grow: 1;
+}
+
+
+/* VIEW DEPARTMENT BUTTON */
+
+.departments-page .department-card a {
+
+    display: inline-block;
+
+    align-self: flex-start;
+
+    padding: 9px 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.departments-page .department-card a:hover {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .departments-page .departments-grid,
+    .departments-page .department-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .departments-page main,
+    .departments-page .departments-container,
+    .departments-page .department-container {
+
+        width: 92%;
+
+        padding-top: 30px;
+    }
+
+
+    .departments-page .departments-grid,
+    .departments-page .department-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .departments-page header nav {
+
+        gap: 14px;
+    }
+
+
+    .departments-page .department-card {
+
+        min-height: auto;
+    }
+
+}
+
+
+/* =========================================================
+   DEPARTMENTS PAGE - FINAL
+   ========================================================= */
+
+.departments-page {
+    margin: 0;
+    min-height: 100vh;
+    background: #f4f7fb;
+    font-family: Arial, sans-serif;
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.departments-page .navbar {
+    min-height: 72px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #0f2a44;
+
+    box-sizing: border-box;
+}
+
+
+.departments-page .navbar h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 24px;
+}
+
+
+.departments-page .navbar nav {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.departments-page .navbar nav a {
+    color: #e2e8f0;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 500;
+}
+
+
+.departments-page .navbar nav a:hover {
+    color: white;
+}
+
+
+/* =========================================================
+   MAIN DEPARTMENT SECTION
+   ========================================================= */
+
+.departments-page .college-details {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 0 70px;
+}
+
+
+.departments-page .college-details > h2 {
+    margin: 0 0 35px;
+
+    text-align: center;
+
+    color: #0f172a;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   DEPARTMENT GRID
+   ========================================================= */
+
+.departments-page .college-details .cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   DEPARTMENT CARDS
+   ========================================================= */
+
+.departments-page .college-details .cards .card {
+    min-height: 180px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.departments-page .college-details .cards .card:hover {
+    transform: translateY(-4px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 10px 25px
+        rgba(15, 23, 42, 0.08);
+}
+
+
+/* DEPARTMENT NAME */
+
+.departments-page .college-details .cards .card h3 {
+    margin: 0 0 12px;
+
+    color: #0f172a;
+
+    font-size: 19px;
+}
+
+
+/* DESCRIPTION */
+
+.departments-page .college-details .cards .card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    flex-grow: 1;
+}
+
+
+/* REMOVE EFFECT OF <br> */
+
+.departments-page .college-details .cards .card br {
+    display: none;
+}
+
+
+/* VIEW DEPARTMENT BUTTON */
+
+.departments-page .college-details .cards .card a {
+    display: inline-block;
+
+    align-self: flex-start;
+
+    margin-top: 22px;
+
+    padding: 9px 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.departments-page .college-details .cards .card a:hover {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .departments-page .college-details .cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .departments-page .navbar {
+        padding: 16px 5%;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .departments-page .navbar nav {
+        gap: 18px;
+    }
+
+
+    .departments-page .college-details {
+        width: 92%;
+
+        padding-top: 30px;
+    }
+
+
+    .departments-page .college-details .cards {
+        grid-template-columns: 1fr;
+    }
+
+
+    .departments-page .college-details .cards .card {
+        min-height: auto;
+    }
+
+}
+
+/* =========================================================
+   PUBLIC HOMEPAGE NOTICES
+   ========================================================= */
+
+.home-general-notices {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 50px 0 70px;
+}
+
+
+.home-notice-heading {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.home-notice-heading h2 {
+    margin: 0 0 7px;
+
+    color: #0f172a;
+}
+
+
+.home-notice-heading p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+/* NOTICE GRID */
+
+.home-notices-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* NOTICE CARD */
+
+.home-notice-card {
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+}
+
+
+.home-notice-card h3 {
+    margin: 12px 0 7px;
+
+    color: #0f172a;
+}
+
+
+.home-notice-category {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.home-notice-pinned {
+    display: inline-block;
+
+    margin-right: 7px;
+    margin-bottom: 8px;
+
+    padding: 5px 9px;
+
+    background: #fff7ed;
+
+    color: #b45309;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.home-notice-source {
+    margin-bottom: 4px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.home-notice-date {
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+.home-notice-message {
+    margin: 13px 0 0;
+
+    color: #334155;
+
+    line-height: 1.5;
+
+    white-space: pre-line;
+}
+
+
+.home-notice-image {
+    display: block;
+
+    width: 100%;
+
+    max-height: 260px;
+
+    margin-top: 15px;
+
+    border-radius: 9px;
+
+    object-fit: cover;
+}
+
+
+.home-no-notices {
+    padding: 30px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+
+/* HOMEPAGE DEPARTMENT LINK */
+
+.home-card-link {
+    display: inline-block;
+
+    margin-top: 14px;
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.home-card-link:hover {
+    text-decoration: underline;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .home-notices-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .home-notices-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+
+/* =========================================================
+   COLLEGE DETAILS PAGE
+   ========================================================= */
+
+.college-details-page {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f4f7fb;
+
+    font-family: Arial, sans-serif;
+
+    color: #1e293b;
+}
+
+
+/* PAGE INTRO */
+
+.college-details-hero {
+    padding: 55px 20px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+.college-details-hero h1 {
+    margin: 0 0 10px;
+
+    color: #0f172a;
+
+    font-size: 34px;
+}
+
+
+.college-details-hero p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+/* CONTENT */
+
+.college-details-content {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 40px 0 70px;
+}
+
+
+/* INFORMATION SECTIONS */
+
+.college-info-section {
+    margin-bottom: 22px;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+}
+
+
+.college-info-section h2 {
+    margin: 0 0 14px;
+
+    color: #0f172a;
+}
+
+
+.college-info-section p {
+    margin: 0;
+
+    color: #475569;
+
+    line-height: 1.7;
+}
+
+
+/* VISION + MISSION */
+
+.college-info-two-column {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* COURSES */
+
+.college-course-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.college-course-list div {
+    padding: 9px 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+}
+
+
+/* FACILITIES */
+
+.college-facilities-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.college-facility-card {
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+.college-facility-card h3 {
+    margin: 0 0 9px;
+
+    color: #0f172a;
+}
+
+
+/* CONTACT */
+
+.college-contact-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.college-contact-grid > div {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border-radius: 9px;
+}
+
+
+.college-contact-grid strong {
+    color: #0f172a;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .college-info-two-column,
+    .college-facilities-grid,
+    .college-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .college-details-hero h1 {
+        font-size: 27px;
+    }
+
+}
+
+/* =========================================================
+   HOMEPAGE SECTION SCROLL FIX
+   ========================================================= */
+
+#college-details {
+    scroll-margin-top: 90px;
+    min-height: 70vh;
+    box-sizing: border-box;
+}
+
+
+#notices {
+    scroll-margin-top: 90px;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* =========================================================
+   HOMEPAGE COLLEGE INFORMATION
+   ========================================================= */
+
+.home-college-info {
+    max-width: 1050px;
+
+    margin: 0 auto 35px;
+
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+}
+
+
+.home-college-about h3 {
+    margin: 0 0 10px;
+
+    font-size: 22px;
+
+    color: #0f172a;
+}
+
+
+.home-college-about h4 {
+    margin: 22px 0 8px;
+
+    color: #334155;
+}
+
+
+.home-college-about p {
+    color: #475569;
+
+    line-height: 1.6;
+}
+
+
+.home-college-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.home-college-details-grid > div {
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border-radius: 9px;
+}
+
+
+.home-college-details-grid strong {
+    color: #334155;
+}
+
+
+.home-college-details-grid p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+}
+
+
+.home-college-full-detail {
+    grid-column: 1 / -1;
+}
+
+
+@media (max-width: 650px) {
+
+    .home-college-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-college-full-detail {
+        grid-column: auto;
+    }
+
+}
+
+/* =========================================================
+   COLLEGE DETAILS PAGE
+   ========================================================= */
+
+.college-details-page {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f4f7fb;
+
+    font-family: Arial, sans-serif;
+
+    color: #1e293b;
+}
+
+
+/* HERO */
+
+.college-details-hero {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    background: #eef4fa;
+}
+
+
+.college-details-hero h1 {
+    margin: 0 0 10px;
+
+    font-size: 34px;
+
+    color: #0f172a;
+}
+
+
+.college-details-hero p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+
+/* MAIN */
+
+.college-details-content {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 40px 0 70px;
+}
+
+
+/* SECTIONS */
+
+.college-info-section {
+    margin-bottom: 24px;
+
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+}
+
+
+.college-info-section h2 {
+    margin: 0 0 15px;
+
+    color: #0f172a;
+}
+
+
+.college-info-section p {
+    color: #475569;
+
+    line-height: 1.6;
+}
+
+
+/* TWO COLUMN */
+
+.college-info-two-column {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* QUICK INFO */
+
+.college-contact-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.college-contact-grid > div {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+}
+
+
+.college-contact-grid strong {
+    color: #334155;
+}
+
+
+.college-contact-grid p {
+    margin: 6px 0 0;
+}
+
+
+/* COURSE / DEPARTMENT PILLS */
+
+.college-course-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 12px;
+}
+
+
+.college-course-list > div {
+    padding: 13px 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 9px;
+}
+
+
+/* FACILITIES */
+
+.college-facilities-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+.college-facility-card {
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+}
+
+
+.college-facility-card h3 {
+    margin: 0 0 8px;
+}
+
+
+/* BUTTON */
+
+.college-details-button {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 15px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.college-details-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .college-info-two-column,
+    .college-contact-grid,
+    .college-facilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .college-details-hero h1 {
+        font-size: 27px;
+    }
+
+}
+
+/* =========================================================
+   MODERN RLSI DESIGN SYSTEM
+   These styles are intentionally placed at the end so they
+   safely override older styles without affecting functionality.
+   ========================================================= */
+
+:root {
+    --primary: #173f5f;
+    --primary-dark: #102f47;
+    --blue: #2563eb;
+    --blue-dark: #1d4ed8;
+    --accent: #f4a261;
+    --text: #243447;
+    --muted: #64748b;
+    --background: #f4f7fb;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(15, 42, 68, 0.08);
+}
+
+/* A softer, more readable default across the application. */
+body {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Smooth but subtle interactions make the interface feel alive. */
+a,
+button,
+.card,
+.dashboard-card,
+.admin-dashboard-card,
+.college-facility-card,
+.college-contact-grid > div {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navbar {
+    min-height: 74px;
+    padding: 15px clamp(20px, 6vw, 90px);
+    background: linear-gradient(135deg, var(--primary), #205b78);
+    box-shadow: 0 4px 18px rgba(16, 47, 71, 0.18);
+}
+
+.navbar h2 {
+    color: #ffffff;
+    letter-spacing: 0.02em;
+}
+
+.navbar nav {
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: #e8f1f8;
+    font-weight: 600;
+}
+
+.navbar a:hover,
+.navbar a:focus-visible {
+    color: var(--primary);
+    background: #ffffff;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   COMMON CARDS AND BUTTONS
+   ========================================================= */
+
+.card,
+.notice,
+.dashboard-card,
+.dashboard-section,
+.attendance-summary-card,
+.attendance-chart-card,
+.attendance-details-card,
+.login-card,
+.student-form-card,
+.student-table-card,
+.notice-create-card,
+.published-notice-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.card:hover,
+.dashboard-card:hover,
+.published-notice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 35px rgba(15, 42, 68, 0.12);
+}
+
+.main-button,
+.login-card button,
+.attendance-page button,
+.timetable-page button,
+.timetable-save-button,
+.student-save-button,
+.student-search-form button,
+.notice-publish-button,
+.assistant-question-row button,
+.start-chat-card button {
+    background: var(--blue);
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.main-button:hover,
+.login-card button:hover,
+.attendance-page button:hover,
+.timetable-page button:hover,
+.timetable-save-button:hover,
+.student-save-button:hover,
+.student-search-form button:hover,
+.notice-publish-button:hover,
+.assistant-question-row button:hover,
+.start-chat-card button:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
+}
+
+/* Consistent focus styling helps keyboard users. */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(244, 162, 97, 0.55);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   COLLEGE DETAILS PAGE
+   ========================================================= */
+
+.college-details-page {
+    background: linear-gradient(180deg, #eef5fb 0, var(--background) 380px);
+}
+
+.college-details-page .college-details-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 24px 105px;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--primary), #205b78);
+}
+
+.college-details-page .college-details-hero h1 {
+    max-width: 850px;
+    margin: 0 auto 12px;
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+}
+
+.college-details-page .college-details-hero p {
+    color: #dcebf5;
+}
+
+.college-details-page .college-details-content {
+    position: relative;
+    width: min(1120px, calc(100% - 40px));
+    margin: -44px auto 70px;
+}
+
+.college-details-page .college-info-section {
+    padding: clamp(24px, 4vw, 38px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.college-details-page .college-info-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--primary);
+}
+
+.college-details-page .college-info-section h2::before {
+    width: 5px;
+    height: 28px;
+    content: "";
+    border-radius: 8px;
+    background: var(--accent);
+}
+
+.college-details-page .college-info-section p {
+    color: var(--muted);
+}
+
+.college-details-page .college-contact-grid > div,
+.college-details-page .college-facility-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.college-details-page .college-contact-grid > div:hover,
+.college-details-page .college-facility-card:hover {
+    border-color: #b8d0e1;
+    box-shadow: 0 8px 20px rgba(23, 63, 95, 0.08);
+    transform: translateY(-3px);
+}
+
+.college-details-page .college-contact-grid strong,
+.college-details-page .college-facility-card h3 {
+    color: var(--primary);
+}
+
+.college-details-page .college-course-list > div {
+    background: #fff3e8;
+    border: 1px solid #f9d4b2;
+    border-radius: 12px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.college-details-page .college-course-list > div:hover {
+    color: #ffffff;
+    background: var(--primary);
+    transform: translateY(-3px);
+}
+
+.college-details-page .college-details-button {
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(23, 63, 95, 0.2);
+}
+
+/* Fixes the student chat bubble selector. */
+.student-sent .department-message-bubble {
+    background: #d9fdd3;
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.attendance-table,
+.timetable-table,
+.mini-timetable,
+.student-management-table {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.attendance-table th,
+.timetable-table th,
+.mini-timetable th,
+.student-management-table th {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.attendance-table tr:hover td,
+.timetable-table tr:hover td,
+.student-management-table tr:hover td {
+    background: #f8fafc;
+}
+
+/* =========================================================
+   MOBILE POLISH
+   ========================================================= */
+
+@media (max-width: 700px) {
+    .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+    }
+
+    .college-details-page .college-details-hero {
+        padding: 68px 20px 80px;
+    }
+
+    .college-details-page .college-details-content {
+        width: calc(100% - 24px);
+        margin-top: -28px;
+    }
+
+    .college-details-page .college-details-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Respect visitors who prefer less animation. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================================
+   FINAL MODERN FRONTEND THEME
+   ========================================================= */
+
+:root {
+    --navy: #102a43;
+    --navy-light: #1f4e79;
+    --blue: #2563eb;
+    --blue-dark: #1d4ed8;
+    --orange: #f59e0b;
+    --text: #172b4d;
+    --muted: #64748b;
+    --page-bg: #eef4f9;
+    --card-bg: #ffffff;
+    --border: #dbe5ef;
+    --radius: 16px;
+    --shadow: 0 12px 30px rgba(16, 42, 67, 0.10);
+}
+
+/* Clean, soft background for every page. */
+body {
+    background:
+        radial-gradient(circle at top left, #dceeff 0, transparent 30%),
+        linear-gradient(135deg, #f7fbff, var(--page-bg));
+    color: var(--text);
+}
+
+/* Modern dark-blue navigation. */
+.navbar {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    box-shadow: 0 6px 20px rgba(16, 42, 67, 0.20);
+}
+
+.navbar h2 {
+    color: #ffffff;
+}
+
+.navbar nav a {
+    border-radius: 999px;
+    color: #e5eef7;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.navbar nav a:hover,
+.navbar nav a:focus-visible {
+    color: var(--navy);
+    background: #ffffff;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Give all main panels a consistent modern appearance. */
+.card,
+.notice,
+.login-card,
+.dashboard-card,
+.dashboard-section,
+.attendance-page,
+.attendance-summary-card,
+.attendance-chart-card,
+.attendance-details-card,
+.assistant-container,
+.start-chat-card,
+.conversation-list,
+.chat-window,
+.student-form-card,
+.student-table-card,
+.admin-info-card,
+.admin-dashboard-card,
+.notice-create-card,
+.published-notice-card,
+.college-info-section,
+.home-college-info {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Attractive blue buttons with a small lift on hover. */
+.main-button,
+.login-card button,
+.attendance-page button,
+.timetable-page button,
+.timetable-save-button,
+.student-save-button,
+.student-search-form button,
+.notice-publish-button,
+.assistant-question-row button,
+.start-chat-card button,
+.department-message-form button,
+.college-details-button,
+.student-add-button,
+.student-edit-button {
+    display: inline-block;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--blue), #4f46e5);
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.22);
+    transition: all 0.2s ease;
+}
+
+.main-button:hover,
+.login-card button:hover,
+.attendance-page button:hover,
+.timetable-page button:hover,
+.timetable-save-button:hover,
+.student-save-button:hover,
+.student-search-form button:hover,
+.notice-publish-button:hover,
+.assistant-question-row button:hover,
+.start-chat-card button:hover,
+.department-message-form button:hover,
+.college-details-button:hover,
+.student-add-button:hover,
+.student-edit-button:hover {
+    background: linear-gradient(135deg, var(--blue-dark), #3730a3);
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.30);
+}
+
+/* Warm highlight for important headings. */
+h1,
+h2,
+h3 {
+    color: var(--text);
+}
+
+.college-info-section h2::before {
+    background: linear-gradient(var(--orange), #f97316);
+}
+
+/* Refined form controls. */
+input,
+select,
+textarea {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--text);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--blue);
+    outline: 3px solid rgba(37, 99, 235, 0.15);
+}
+
+/* Modern hero areas. */
+.hero,
+.college-details-hero {
+    background:
+        linear-gradient(135deg, rgba(16, 42, 67, 0.98), rgba(31, 78, 121, 0.90)),
+        radial-gradient(circle at top right, #60a5fa, transparent 45%);
+    color: #ffffff;
+}
+
+.hero h1,
+.college-details-hero h1 {
+    color: #ffffff;
+}
+
+/* Tables use a strong academic navy header. */
+.attendance-table th,
+.timetable-table th,
+.mini-timetable th,
+.student-management-table th {
+    background: var(--navy);
+    color: #ffffff;
+}
+
+.attendance-table tr:hover td,
+.timetable-table tr:hover td,
+.student-management-table tr:hover td {
+    background: #f0f7ff;
+}
+
+/* Correct student chat message selector. */
+.student-sent .department-message-bubble {
+    background: #dcfce7;
+}
+
+/* Improve mobile spacing. */
+@media (max-width: 700px) {
+    .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+    }
+
+    .hero,
+    .college-details-hero {
+        padding: 65px 20px 80px;
+    }
+
+    .main-button,
+    .college-details-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Modern college action button. */
+.college-details-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-width: 190px;
+    margin-top: 22px;
+    padding: 13px 22px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+    transition: all 0.25s ease;
+}
+
+/* Add a simple arrow without changing the HTML. */
+.college-details-button::after {
+    content: "→";
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+.college-details-button:hover,
+.college-details-button:focus-visible {
+    background: linear-gradient(135deg, #1d4ed8, #3730a3);
+    color: #ffffff;
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+    transform: translateY(-3px);
+}
+
+.college-details-button:hover::after {
+    transform: translateX(5px);
+}
+
+/* Better appearance on small screens. */
+@media (max-width: 600px) {
+    .college-details-button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   STUDENT ASSISTANT — MODERN UI REFRESH
+   Final override layer: keeps every existing page working.
+   ========================================================= */
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --primary-light: #eef2ff;
+    --accent: #06b6d4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --surface: rgba(255, 255, 255, 0.94);
+    --surface-soft: #f8fafc;
+    --page: #f1f5f9;
+    --sidebar: #111827;
+    --radius-sm: 10px;
+    --radius: 16px;
+    --radius-lg: 24px;
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow: 0 12px 30px rgba(15, 23, 42, 0.09);
+    --shadow-hover: 0 20px 45px rgba(15, 23, 42, 0.14);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+.dashboard-body,
+.admin-body {
+    min-height: 100vh;
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.08), transparent 28rem),
+        radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.07), transparent 26rem),
+        var(--page);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    color: #fff;
+    background: var(--primary);
+}
+
+h1, h2, h3, h4 {
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+p {
+    color: var(--muted);
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    transition: border-color 180ms ease, box-shadow 180ms ease,
+        background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+/* Navigation */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: 72px;
+    padding: 14px clamp(20px, 5vw, 72px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(15, 23, 42, 0.88);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.navbar h1,
+.navbar h2,
+.navbar .logo {
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.navbar nav {
+    align-items: center;
+    gap: 6px;
+}
+
+.navbar a {
+    position: relative;
+    padding: 9px 13px;
+    border-radius: 10px;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar a:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+/* Hero */
+.hero,
+.college-details-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(84px, 12vw, 150px) 20px;
+    background:
+        radial-gradient(circle at 78% 20%, rgba(34, 211, 238, 0.38), transparent 24rem),
+        radial-gradient(circle at 18% 80%, rgba(129, 140, 248, 0.34), transparent 22rem),
+        linear-gradient(135deg, #0f172a 0%, #312e81 58%, #155e75 100%);
+}
+
+.hero::before,
+.college-details-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.32;
+    background-image: linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.hero h1,
+.college-details-hero h1 {
+    max-width: 900px;
+    margin: 0 auto 18px;
+    color: #fff;
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 850;
+    letter-spacing: -0.055em;
+}
+
+.hero p,
+.college-details-hero p {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    color: #dbeafe;
+    font-size: clamp(16px, 2vw, 20px);
+}
+
+/* Buttons */
+.main-button,
+.college-details-button,
+.view-button,
+.primary-button,
+button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 12px;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #4338ca);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.main-button:hover,
+.college-details-button:hover,
+.view-button:hover,
+.primary-button:hover,
+button[type="submit"]:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #4f46e5, #312e81);
+    box-shadow: 0 12px 28px rgba(79, 70, 229, 0.34);
+    transform: translateY(-2px);
+}
+
+.main-button:active,
+.college-details-button:active,
+.view-button:active,
+.primary-button:active,
+button[type="submit"]:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.college-details-button {
+    min-width: 0;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+/* Sections and cards */
+.college-details,
+.notice-section,
+.student-main,
+.admin-main,
+.page-content {
+    padding: clamp(28px, 5vw, 64px);
+}
+
+.college-details,
+.notice-section {
+    max-width: 1280px;
+    margin-inline: auto;
+}
+
+.college-details h2,
+.notice-section h2,
+.section-title {
+    margin-bottom: 12px;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+}
+
+.cards,
+.notice-grid,
+.department-grid,
+.dashboard-cards {
+    gap: 24px;
+}
+
+.card,
+.notice,
+.notice-card,
+.department-card,
+.dashboard-card,
+.section-box,
+.content-section,
+.personal-details-card,
+.login-card,
+.chat-container,
+.timetable-container,
+.attendance-container {
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.card,
+.notice-card,
+.department-card,
+.dashboard-card {
+    position: relative;
+    overflow: hidden;
+    padding: 26px;
+}
+
+.card::before,
+.department-card::before,
+.dashboard-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+.card:hover,
+.notice-card:hover,
+.department-card:hover,
+.dashboard-card:hover {
+    border-color: #c7d2fe;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+}
+
+.card:hover::before,
+.department-card:hover::before,
+.dashboard-card:hover::before {
+    opacity: 1;
+}
+
+.card h3,
+.notice-card h3,
+.department-card h3,
+.dashboard-card h3 {
+    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: 760;
+}
+
+/* Login */
+.login-page {
+    position: relative;
+    padding: 40px 20px;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(99,102,241,.16), transparent 24rem),
+        radial-gradient(circle at 85% 80%, rgba(6,182,212,.13), transparent 26rem),
+        #f8fafc;
+}
+
+.login-page > h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 850;
+}
+
+.login-options {
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: min(100%, 760px);
+}
+
+.login-card {
+    width: min(100%, 350px);
+    padding: 32px;
+    box-shadow: var(--shadow);
+}
+
+.login-card:hover {
+    border-color: #c7d2fe;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+/* Form controls */
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 11px;
+    color: var(--ink);
+    background: #fff;
+    font: inherit;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #94a3b8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6366f1;
+    outline: 0;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.13);
+}
+
+/* Dashboard shell */
+.dashboard-layout {
+    grid-template-columns: 250px minmax(0, 1fr) 320px;
+    background: transparent;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 30px 20px;
+    background:
+        radial-gradient(circle at 0 0, rgba(99,102,241,.28), transparent 18rem),
+        linear-gradient(180deg, #111827, #0f172a);
+    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.10);
+}
+
+.sidebar h2 {
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 850;
+    letter-spacing: -0.04em;
+}
+
+.sidebar-student {
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: #94a3b8;
+}
+
+.sidebar nav {
+    gap: 6px;
+}
+
+.sidebar nav a {
+    padding: 11px 13px;
+    border: 1px solid transparent;
+    border-radius: 11px;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    border-color: rgba(255,255,255,.08);
+    color: #fff;
+    background: rgba(99, 102, 241, 0.20);
+    transform: translateX(3px);
+}
+
+.student-main,
+.admin-main {
+    min-width: 0;
+}
+
+/* Tables */
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    padding: 14px 16px;
+    border: 0;
+    color: #475569;
+    background: #f8fafc;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .055em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 15px 16px;
+    border: 0;
+    border-top: 1px solid var(--line);
+    color: #334155;
+    background: #fff;
+}
+
+tbody tr:hover td {
+    background: #f8faff;
+}
+
+.attendance-table th,
+.timetable-table th,
+.mini-timetable th,
+.student-management-table th {
+    color: #e2e8f0;
+    background: #1e293b;
+}
+
+/* Notices and status badges */
+.notice-card,
+.notice {
+    border-left: 4px solid var(--primary);
+}
+
+.badge,
+.status,
+.notice-type,
+.department-tag {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 999px;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.flash-message,
+.success-message,
+.error-message {
+    padding: 13px 16px;
+    border: 1px solid #a7f3d0;
+    border-radius: 12px;
+    color: #065f46;
+    background: #ecfdf5;
+    box-shadow: var(--shadow-sm);
+}
+
+.error-message {
+    border-color: #fecaca;
+    color: #991b1b;
+    background: #fef2f2;
+}
+
+/* Chat */
+.chat-container,
+.department-chat-container {
+    overflow: hidden;
+    background: rgba(255,255,255,.96);
+    box-shadow: var(--shadow);
+}
+
+.chat-header,
+.department-chat-header {
+    padding: 18px 22px;
+    color: #fff;
+    background: linear-gradient(135deg, #1e293b, #312e81);
+}
+
+.chat-header h2,
+.chat-header p,
+.department-chat-header h2,
+.department-chat-header p {
+    color: #fff;
+}
+
+.message-bubble,
+.department-message-bubble {
+    border-radius: 16px 16px 16px 5px;
+    box-shadow: 0 3px 12px rgba(15,23,42,.07);
+}
+
+.user-message .message-bubble,
+.student-sent .department-message-bubble {
+    border-radius: 16px 16px 5px 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+/* Footer */
+footer,
+.footer {
+    padding: 28px clamp(20px, 5vw, 72px);
+    border-top: 1px solid #1e293b;
+    color: #94a3b8;
+    background: #0f172a;
+    text-align: center;
+}
+
+footer p,
+.footer p {
+    color: #94a3b8;
+}
+
+/* Keyboard accessibility */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(34, 211, 238, 0.65);
+    outline-offset: 3px;
+}
+
+/* Responsive dashboard and navigation */
+@media (max-width: 1100px) {
+    .dashboard-layout {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    .dashboard-layout > :last-child:not(.student-main):not(.admin-main) {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 760px) {
+    .navbar {
+        position: relative;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px 20px;
+    }
+
+    .navbar nav {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+    }
+
+    .navbar a {
+        white-space: nowrap;
+    }
+
+    .dashboard-layout {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 18px;
+    }
+
+    .sidebar-student {
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .sidebar nav a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+        transform: translateY(-2px);
+    }
+
+    .student-main,
+    .admin-main,
+    .page-content,
+    .college-details,
+    .notice-section {
+        padding: 26px 18px;
+    }
+
+    .hero,
+    .college-details-hero {
+        padding: 76px 20px 84px;
+    }
+
+    .login-options {
+        margin: 18px 0;
+    }
+
+    .login-card {
+        padding: 25px;
+    }
+
+    .main-button,
+    .college-details-button {
+        width: 100%;
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards,
+    .notice-grid,
+    .department-grid,
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card,
+    .notice-card,
+    .department-card,
+    .dashboard-card {
+        padding: 21px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

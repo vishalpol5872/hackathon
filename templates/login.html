@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Login</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <h1>{{ app_name }}</h1>
+
+        <p>College Student Portal</p>
+
+
+        {% if error %}
+
+            <p style="color: red;">
+                {{ error }}
+            </p>
+
+        {% endif %}
+
+
+        <div class="login-options">
+
+
+            <!-- STUDENT LOGIN -->
+
+            <form
+                class="login-card"
+                method="POST"
+                action="{{ url_for('login') }}"
+            >
+
+                <h2>Student Login</h2>
+
+                <input
+                    type="hidden"
+                    name="user_type"
+                    value="student"
+                >
+
+                <input
+                    type="text"
+                    name="user_id"
+                    placeholder="Student ID"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- ADMIN LOGIN -->
+
+            <form
+                class="login-card"
+                method="POST"
+                action="{{ url_for('login') }}"
+            >
+
+                <h2>Admin Login</h2>
+
+                <input
+                    type="hidden"
+                    name="user_type"
+                    value="admin"
+                >
+
+                <input
+                    type="text"
+                    name="user_id"
+                    placeholder="Admin ID"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <a href="{{ url_for('home') }}">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</body>
+
+</html>

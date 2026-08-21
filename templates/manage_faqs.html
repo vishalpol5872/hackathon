@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Manage FAQs - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="attendance-page">
+
+
+    <h1>
+        {{ department["name"] }}
+        Knowledge Base
+    </h1>
+
+    <p>
+        Add questions and answers that students
+        can search using the assistant.
+    </p>
+
+
+    <hr>
+
+
+    <!-- ================================================== -->
+    <!-- ADD FAQ -->
+    <!-- ================================================== -->
+
+    <h2>Add FAQ</h2>
+
+
+    <form method="POST">
+
+        <input
+            type="hidden"
+            name="action"
+            value="add_faq"
+        >
+
+
+        <label>
+            Subject
+        </label>
+
+        <select name="subject_id">
+
+            <option value="">
+                General Department Question
+            </option>
+
+
+            {% for subject in subjects %}
+
+                <option
+                    value="{{ subject['subject_id'] }}"
+                >
+
+                    {{ subject["name"] }}
+
+                    {% if subject["subject_code"] %}
+
+                        -
+                        {{ subject["subject_code"] }}
+
+                    {% endif %}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <br><br>
+
+
+        <label>
+            Question
+        </label>
+
+        <input
+            type="text"
+            name="question"
+            placeholder="Example: Who is the HOD?"
+            required
+        >
+
+
+        <br><br>
+
+
+        <label>
+            Answer
+        </label>
+
+        <textarea
+            name="answer"
+            rows="5"
+            placeholder="Enter the answer..."
+            required
+            style="width: 100%;"
+        ></textarea>
+
+
+        <br><br>
+
+
+        <button type="submit">
+            Add FAQ
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <!-- ================================================== -->
+    <!-- EXISTING FAQS -->
+    <!-- ================================================== -->
+
+    <h2>Existing FAQs</h2>
+
+
+    {% if faqs %}
+
+        {% for faq in faqs %}
+
+            <div class="dashboard-section">
+
+                <h3>
+                    {{ faq["question"] }}
+                </h3>
+
+
+                <p>
+                    {{ faq["answer"] }}
+                </p>
+
+
+                <p>
+
+                    <strong>Subject:</strong>
+
+                    {{
+                        faq["subject_name"]
+                        or
+                        "General"
+                    }}
+
+                </p>
+
+
+                <form method="POST">
+
+                    <input
+                        type="hidden"
+                        name="action"
+                        value="delete_faq"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="faq_id"
+                        value="{{ faq['faq_id'] }}"
+                    >
+
+                    <button type="submit">
+                        Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+            <br>
+
+        {% endfor %}
+
+
+    {% else %}
+
+        <p>
+            No FAQs have been added yet.
+        </p>
+
+    {% endif %}
+
+
+    <br>
+
+
+    <a href="{{ url_for('admin_dashboard') }}">
+        ← Admin Dashboard
+    </a>
+
+
+</div>
+
+</body>
+
+</html>

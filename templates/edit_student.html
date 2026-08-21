@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Edit Student - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=70"
+    >
+
+</head>
+
+
+<body class="message-page-body">
+
+<div class="student-form-page">
+
+
+    <div class="student-form-header">
+
+        <div>
+
+            <h1>
+                Edit Student
+            </h1>
+
+            <p>
+                {{ student["student_id"] }}
+                -
+                {{ student["name"] }}
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('manage_students') }}">
+            ← Students
+        </a>
+
+    </div>
+
+
+    {% if error %}
+
+        <div class="student-error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    {% if success_message %}
+
+        <div class="student-success">
+            {{ success_message }}
+        </div>
+
+    {% endif %}
+
+
+    <!-- STUDENT DETAILS -->
+
+    <form
+        method="POST"
+        class="student-form-card"
+    >
+
+        <input
+            type="hidden"
+            name="action"
+            value="update_student"
+        >
+
+
+        <div class="student-form-grid">
+
+
+            <div>
+
+                <label>
+                    Student ID
+                </label>
+
+                <input
+                    type="text"
+                    value="{{ student['student_id'] }}"
+                    disabled
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Full Name *
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    value="{{ student['name'] }}"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ student['email'] or '' }}"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    value="{{ student['phone'] or '' }}"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Date of Birth
+                </label>
+
+                <input
+                    type="date"
+                    name="date_of_birth"
+                    value="{{ student['date_of_birth'] or '' }}"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Year *
+                </label>
+
+                <select
+                    name="year"
+                    required
+                >
+
+                    {% for year_number in range(1, 4) %}
+
+                        <option
+                            value="{{ year_number }}"
+
+                            {% if
+                                student["year"]
+                                == year_number
+                            %}
+                                selected
+                            {% endif %}
+                        >
+
+                            Year {{ year_number }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Combination *
+                </label>
+
+                <select
+                    name="combination_id"
+                    required
+                >
+
+                    {% for combination in combinations %}
+
+                        <option
+                            value="{{ combination['combination_id'] }}"
+
+                            {% if
+                                student["combination_id"]
+                                ==
+                                combination["combination_id"]
+                            %}
+                                selected
+                            {% endif %}
+                        >
+
+                            {{ combination["name"] }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="student-address-field">
+
+            <label>
+                Address
+            </label>
+
+            <textarea
+                name="address"
+                rows="4"
+            >{{ student["address"] or "" }}</textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="student-save-button"
+        >
+            Save Changes
+        </button>
+
+    </form>
+
+
+    <!-- RESET PASSWORD -->
+
+    <div class="student-form-card">
+
+        <h2>
+            Reset Password
+        </h2>
+
+
+        <form method="POST">
+
+            <input
+                type="hidden"
+                name="action"
+                value="reset_password"
+            >
+
+
+            <input
+                type="password"
+                name="new_password"
+                placeholder="New password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="student-save-button"
+            >
+                Reset Password
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- DELETE STUDENT -->
+
+    <div class="student-danger-card">
+
+        <h2>
+            Delete Student
+        </h2>
+
+        <p>
+            This also removes this student's
+            attendance, results and department chats.
+        </p>
+
+
+        <form
+            method="POST"
+            action="{{
+                url_for(
+                    'delete_student_route',
+                    student_id=student['student_id']
+                )
+            }}"
+            onsubmit="
+                return confirm(
+                    'Are you sure you want to delete this student?'
+                );
+            "
+        >
+
+            <button
+                type="submit"
+                class="student-delete-button"
+            >
+                Delete Student
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

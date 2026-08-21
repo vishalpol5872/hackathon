@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        My Timetable - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=60"
+    >
+
+</head>
+
+
+<body class="message-page-body">
+
+<div class="timetable-page">
+
+    <div class="message-page-header">
+
+        <div>
+
+            <h1>
+                My Timetable
+            </h1>
+
+            <p>
+
+                Year
+                {{ student["year"] }}
+
+                •
+
+                {{ student["combination_name"] }}
+
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('student_dashboard') }}">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    {% if timetable %}
+
+        <div class="timetable-table-wrapper">
+
+            <table class="timetable-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Day</th>
+
+                        <th>Period 1</th>
+
+                        <th>Period 2</th>
+
+                        <th>Period 3</th>
+
+                        <th>Period 4</th>
+
+                        <th>Period 5</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for row in timetable %}
+
+                        <tr>
+
+                            <th>
+                                {{ row["day"] }}
+                            </th>
+
+                            <td>
+                                {{ row["period1"] or "-" }}
+                            </td>
+
+                            <td>
+                                {{ row["period2"] or "-" }}
+                            </td>
+
+                            <td>
+                                {{ row["period3"] or "-" }}
+                            </td>
+
+                            <td>
+                                {{ row["period4"] or "-" }}
+                            </td>
+
+                            <td>
+                                {{ row["period5"] or "-" }}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    {% else %}
+
+        <div class="empty-chat">
+
+            Your timetable has not been
+            uploaded yet.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

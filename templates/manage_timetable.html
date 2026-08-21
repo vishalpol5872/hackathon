@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Manage Timetable - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=91"
+    >
+
+</head>
+
+<body class="timetable-admin-page">
+
+<div class="timetable-page">
+
+
+    <div class="timetable-header">
+
+        <div>
+
+            <h1>
+                Manage Timetable
+            </h1>
+
+            <p>
+                Select a year and combination,
+                then enter the weekly timetable.
+            </p>
+
+        </div>
+
+        <a href="{{ url_for('admin_dashboard') }}">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- SELECT TIMETABLE -->
+
+    <form
+        method="GET"
+        class="timetable-selector"
+    >
+
+        <select
+            name="combination_id"
+            required
+        >
+
+            <option value="">
+                Select Combination
+            </option>
+
+
+            {% for combination in combinations %}
+
+                <option
+                    value="{{ combination['combination_id'] }}"
+
+                    {% if
+                        selected_combination|string
+                        ==
+                        combination["combination_id"]|string
+                    %}
+                        selected
+                    {% endif %}
+                >
+
+                    {{ combination["name"] }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <select
+            name="year"
+            required
+        >
+
+            <option value="">
+                Select Year
+            </option>
+
+
+            {% for year_number in range(1, 4) %}
+
+                <option
+                    value="{{ year_number }}"
+
+                    {% if
+                        selected_year|string
+                        ==
+                        year_number|string
+                    %}
+                        selected
+                    {% endif %}
+                >
+
+                    Year {{ year_number }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <button type="submit">
+            Load Timetable
+        </button>
+
+    </form>
+
+
+    {% if selected_combination and selected_year %}
+
+
+        <form
+            method="POST"
+            class="timetable-editor"
+        >
+
+            <input
+                type="hidden"
+                name="combination_id"
+                value="{{ selected_combination }}"
+            >
+
+            <input
+                type="hidden"
+                name="year"
+                value="{{ selected_year }}"
+            >
+
+
+            <table class="timetable-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Day</th>
+
+                        <th>
+                            Period 1
+                        </th>
+
+                        <th>
+                            Period 2
+                        </th>
+
+                        <th>
+                            Period 3
+                        </th>
+
+                        <th>
+                            Period 4
+                        </th>
+
+                        <th>
+                            Period 5
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% set days = [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday"
+                    ] %}
+
+
+                    {% for day in days %}
+
+
+                        {% set row =
+                            timetable_data.get(day)
+                        %}
+
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    {{ day }}
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    name="{{ day }}_period1"
+                                    value="{{ row['period1'] if row else '' }}"
+                                    placeholder="Subject"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    name="{{ day }}_period2"
+                                    value="{{ row['period2'] if row else '' }}"
+                                    placeholder="Subject"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    name="{{ day }}_period3"
+                                    value="{{ row['period3'] if row else '' }}"
+                                    placeholder="Subject"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    name="{{ day }}_period4"
+                                    value="{{ row['period4'] if row else '' }}"
+                                    placeholder="Subject"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    name="{{ day }}_period5"
+                                    value="{{ row['period5'] if row else '' }}"
+                                    placeholder="Subject"
+                                >
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+
+            <button
+                type="submit"
+                class="timetable-save-button"
+            >
+                Save Timetable
+            </button>
+
+        </form>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

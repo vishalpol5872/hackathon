@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Attendance</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body class="dashboard-body">
+
+<div class="attendance-student-page">
+
+    <!-- HEADER -->
+
+    <div class="attendance-header">
+
+        <div>
+            <h1>My Attendance</h1>
+
+            <p>
+                Monthly and overall attendance record
+            </p>
+        </div>
+
+        <a
+            href="{{ url_for('student_dashboard') }}"
+            class="back-button"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- OVERALL ATTENDANCE -->
+
+    <section class="attendance-summary-card">
+
+        <h2>Overall Attendance</h2>
+
+        <div class="attendance-big-number">
+            {{ overall_percentage }}%
+        </div>
+
+    </section>
+
+
+    <br>
+
+
+    <!-- ATTENDANCE GRAPH -->
+
+    <section class="attendance-details-card">
+
+        <h2>Attendance Trend</h2>
+
+        {% if graph_months %}
+
+            <canvas id="attendanceChart"></canvas>
+
+        {% else %}
+
+            <p>
+                No attendance data available yet.
+            </p>
+
+        {% endif %}
+
+    </section>
+
+
+    <br>
+
+
+    <!-- LATEST MONTH -->
+
+    <section class="attendance-details-card">
+
+        {% if latest_month %}
+
+            <h2>
+                Latest Attendance -
+                {{ latest_month }}
+            </h2>
+
+
+            {% if latest_records %}
+
+                <table class="attendance-table">
+
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Present</th>
+                            <th>Total</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for record in latest_records %}
+
+                            <tr>
+
+                                <td>
+                                    {{ record["subject_name"] }}
+                                </td>
+
+                                <td>
+                                    {{ record["present_classes"] }}
+                                </td>
+
+                                <td>
+                                    {{ record["total_classes"] }}
+                                </td>
+
+                                <td>
+
+                                    {% if record["total_classes"] > 0 %}
+
+                                        {{
+                                            (
+                                                record["present_classes"]
+                                                /
+                                                record["total_classes"]
+                                                *
+                                                100
+                                            )
+                                            | round(1)
+                                        }}%
+
+                                    {% else %}
+
+                                        0%
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            {% endif %}
+
+
+        {% else %}
+
+            <h2>Attendance Details</h2>
+
+            <p>
+                Attendance has not been added yet.
+            </p>
+
+        {% endif %}
+
+    </section>
+
+</div>
+
+
+<!-- GRAPH DATA -->
+
+<script
+    id="attendance-months"
+    type="application/json"
+>
+    {{ graph_months | tojson }}
+</script>
+
+<script
+    id="attendance-percentages"
+    type="application/json"
+>
+    {{ graph_percentages | tojson }}
+</script>
+
+
+<script>
+
+    const months = JSON.parse(
+        document.getElementById(
+            "attendance-months"
+        ).textContent
+    );
+
+    const percentages = JSON.parse(
+        document.getElementById(
+            "attendance-percentages"
+        ).textContent
+    );
+
+
+    const chartElement =
+        document.getElementById(
+            "attendanceChart"
+        );
+
+
+    if (chartElement && months.length > 0) {
+
+        new Chart(
+            chartElement,
+            {
+                type: "line",
+
+                data: {
+                    labels: months,
+
+                    datasets: [
+                        {
+                            label: "Attendance %",
+                            data: percentages,
+                            tension: 0.3,
+                            fill: false
+                        }
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 100,
+
+                            ticks: {
+                                callback: function(value) {
+                                    return value + "%";
+                                }
+                            }
+                        }
+                    },
+
+                    plugins: {
+
+                        tooltip: {
+
+                            callbacks: {
+
+                                label: function(context) {
+
+                                    return (
+                                        context.parsed.y
+                                        + "%"
+                                    );
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        );
+    }
+
+</script>
+
+</body>
+
+</html>

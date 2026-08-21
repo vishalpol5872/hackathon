@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=301"
+    >
+
+</head>
+
+
+<body class="admin-page">
+
+<div class="admin-dashboard-container">
+
+
+    <!-- ================================================ -->
+    <!-- HEADER -->
+    <!-- ================================================ -->
+
+    <div class="admin-dashboard-header">
+
+        <div>
+
+            <h1>{{ app_name }}</h1>
+
+            <h2>Admin Dashboard</h2>
+
+            <p>
+                Welcome, {{ name }}
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="admin-logout-button"
+        >
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- ================================================ -->
+    <!-- ADMIN INFORMATION -->
+    <!-- ================================================ -->
+
+    <div class="admin-info-card">
+
+
+        <div class="admin-info-item">
+
+            <span>
+                Admin ID
+            </span>
+
+            <strong>
+                {{ admin_id }}
+            </strong>
+
+        </div>
+
+
+        <div class="admin-info-item">
+
+            <span>
+                Role
+            </span>
+
+            <strong>
+
+                {% if role == "super_admin" %}
+
+                    Super Admin
+
+                {% else %}
+
+                    Department Admin
+
+                {% endif %}
+
+            </strong>
+
+        </div>
+
+
+        {% if department_name %}
+
+            <div class="admin-info-item">
+
+                <span>
+                    Department
+                </span>
+
+                <strong>
+                    {{ department_name }}
+                </strong>
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+    <!-- ================================================ -->
+    <!-- ADMINISTRATION -->
+    <!-- ================================================ -->
+
+    <div class="admin-section-header">
+
+        <h2>
+            Administration
+        </h2>
+
+        <p>
+            Manage college academic information and services.
+        </p>
+
+    </div>
+
+
+    <div class="admin-dashboard-grid">
+
+
+        <!-- ============================================ -->
+        <!-- SUPER ADMIN ONLY -->
+        <!-- ============================================ -->
+
+        {% if role == "super_admin" %}
+
+
+            <!-- MANAGE STUDENTS -->
+
+            <a
+                href="{{ url_for('manage_students') }}"
+                class="admin-dashboard-card"
+            >
+
+                <div class="admin-card-icon">
+                    👥
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Manage Students
+                    </h3>
+
+                    <p>
+                        Add, edit and manage student accounts.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+        {% endif %}
+
+
+        <!-- ============================================ -->
+        <!-- ATTENDANCE -->
+        <!-- ============================================ -->
+
+        <a
+            href="{{ url_for('manage_attendance') }}"
+            class="admin-dashboard-card"
+        >
+
+            <div class="admin-card-icon">
+                ✓
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Manage Attendance
+                </h3>
+
+                <p>
+                    Enter and update monthly student attendance.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- ============================================ -->
+        <!-- RESULTS -->
+        <!-- ============================================ -->
+
+        <a
+            href="{{ url_for('manage_results') }}"
+            class="admin-dashboard-card"
+        >
+
+            <div class="admin-card-icon">
+                📊
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Manage Results
+                </h3>
+
+                <p>
+                    Add semester marks, grades and results.
+                </p>
+
+            </div>
+
+        </a>
+
+
+ <!-- ============================================ -->
+<!-- TIMETABLE - SUPER ADMIN ONLY -->
+<!-- ============================================ -->
+
+{% if role == "super_admin" %}
+
+    <a
+        href="{{ url_for('manage_timetable') }}"
+        class="admin-dashboard-card"
+    >
+
+        <div class="admin-card-icon">
+            🗓
+        </div>
+
+        <div>
+
+            <h3>
+                Manage Timetable
+            </h3>
+
+            <p>
+                Create timetables by year and combination.
+            </p>
+
+        </div>
+
+    </a>
+
+{% endif %}
+
+
+        <!-- ============================================ -->
+        <!-- NOTICES -->
+        <!-- AVAILABLE TO BOTH ADMIN TYPES -->
+        <!-- ============================================ -->
+
+        <a
+            href="{{ url_for('manage_notices') }}"
+            class="admin-dashboard-card"
+        >
+
+            <div class="admin-card-icon">
+                📢
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Manage Notices
+                </h3>
+
+                <p>
+                    Create and manage notices for students.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- ============================================ -->
+        <!-- DEPARTMENT ADMIN ONLY -->
+        <!-- ============================================ -->
+
+        {% if role == "department_admin" %}
+
+
+            <!-- DEPARTMENT INBOX -->
+
+            <a
+                href="{{ url_for('department_messages') }}"
+                class="admin-dashboard-card"
+            >
+
+                <div class="admin-card-icon">
+                    💬
+                </div>
+
+
+                <div class="admin-card-content">
+
+                    <div class="admin-card-title-row">
+
+                        <h3>
+                            Department Inbox
+                        </h3>
+
+
+                        {% if unread_messages > 0 %}
+
+                            <span class="dashboard-unread-badge">
+                                {{ unread_messages }}
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <p>
+                        Reply to student doubts and messages.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <!-- MANAGE DEPARTMENT -->
+
+            <a
+                href="{{ url_for('manage_department') }}"
+                class="admin-dashboard-card"
+            >
+
+                <div class="admin-card-icon">
+                    🏛
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Manage My Department
+                    </h3>
+
+                    <p>
+                        Update HOD, faculty and department information.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <!-- DEPARTMENT FAQ -->
+
+            <a
+                href="{{ url_for('manage_faqs') }}"
+                class="admin-dashboard-card"
+            >
+
+                <div class="admin-card-icon">
+                    ❓
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Department FAQs
+                    </h3>
+
+                    <p>
+                        Manage answers used by the student assistant.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html> 

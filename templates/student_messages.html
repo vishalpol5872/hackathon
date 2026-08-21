@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Department Messages - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=10"
+    >
+</head>
+
+<body class="message-page-body">
+
+<div class="message-page">
+
+    <div class="message-page-header">
+
+        <div>
+            <h1>Department Messages</h1>
+
+            <p>
+                Ask doubts or contact your department.
+            </p>
+        </div>
+
+        <a href="{{ url_for('student_dashboard') }}">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="start-chat-card">
+
+        <h2>Start a Department Chat</h2>
+
+        <form method="POST">
+
+            <select
+                name="department_id"
+                required
+            >
+
+                <option value="">
+                    Select Department
+                </option>
+
+                {% for department in departments %}
+
+                    <option
+                        value="{{ department['department_id'] }}"
+                    >
+                        {{ department["name"] }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <button type="submit">
+                Open Chat
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <h2>Your Chats</h2>
+
+
+    <div class="conversation-list">
+
+        {% if conversations %}
+
+            {% for conversation in conversations %}
+
+                <a
+                    class="conversation-item"
+                    href="{{
+                        url_for(
+                            'student_chat',
+                            conversation_id=conversation['conversation_id']
+                        )
+                    }}"
+                >
+
+                    <div class="conversation-avatar">
+                        {{ conversation["department_name"][0] }}
+                    </div>
+
+                    <div class="conversation-info">
+
+                        <div class="conversation-title">
+
+                            <strong>
+                                {{ conversation["department_name"] }}
+                            </strong>
+
+                            {% if conversation["unread_count"] > 0 %}
+
+                                <span class="unread-badge">
+                                    {{ conversation["unread_count"] }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <p>
+                            {{
+                                conversation["last_message"]
+                                or
+                                "No messages yet"
+                            }}
+                        </p>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-chat">
+
+                You don't have any department
+                conversations yet.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

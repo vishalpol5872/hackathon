@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ app_name }} - AI Assistant
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=10"
+    >
+
+</head>
+
+
+<body class="assistant-body">
+
+
+<div class="assistant-container">
+
+
+    <!-- ================================================== -->
+    <!-- HEADER -->
+    <!-- ================================================== -->
+
+    <div class="assistant-header">
+
+        <div>
+
+            <h2>
+                🎓 {{ app_name }} Assistant
+            </h2>
+
+            <p>
+                College-wide knowledge assistant
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('student_dashboard') }}"
+            class="assistant-back"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- CHAT -->
+    <!-- ================================================== -->
+
+    <div
+        class="assistant-chat"
+        id="assistantChat"
+    >
+
+
+        <!-- WELCOME MESSAGE -->
+
+        {% if not chat_history %}
+
+            <div class="chat-message assistant-message">
+
+                <div class="chat-avatar">
+                    AI
+                </div>
+
+
+                <div class="chat-bubble">
+
+                    <strong>
+                        {{ app_name }} Assistant
+                    </strong>
+
+
+                    <p>
+                        Hello! 👋
+                    </p>
+
+
+                    <p>
+                        Ask me anything about the college,
+                        departments, subjects, academics,
+                        facilities, notices and more.
+                    </p>
+
+
+                    <small>
+                        You do not need to select a department.
+                    </small>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================================================== -->
+        <!-- CHAT HISTORY -->
+        <!-- ================================================== -->
+
+        {% for message in chat_history %}
+
+
+            <!-- USER MESSAGE -->
+
+            {% if message["role"] == "user" %}
+
+                <div class="chat-message user-message">
+
+                    <div class="chat-bubble">
+
+                        <strong>
+                            You
+                        </strong>
+
+                        <p>
+                            {{ message["text"] }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            <!-- ASSISTANT MESSAGE -->
+
+            {% else %}
+
+                <div class="chat-message assistant-message">
+
+                    <div class="chat-avatar">
+                        AI
+                    </div>
+
+
+                    <div class="chat-bubble">
+
+                        <strong>
+                            {{ app_name }} Assistant
+                        </strong>
+
+
+                        <p>
+                            {{ message["text"] }}
+                        </p>
+
+
+                        {% if message.get("source") %}
+
+                            <small class="assistant-source">
+
+                                Source:
+                                {{ message["source"] }}
+
+                            </small>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- INPUT AREA -->
+    <!-- ================================================== -->
+
+    <div class="assistant-input-area">
+
+
+        <!-- QUESTION FORM -->
+
+        <form method="POST">
+
+            <input
+                type="hidden"
+                name="action"
+                value="ask"
+            >
+
+
+            <div class="assistant-question-row">
+
+                <input
+                    type="text"
+                    name="question"
+                    placeholder="Ask anything about the college..."
+                    autocomplete="off"
+                    required
+                >
+
+
+                <button type="submit">
+                    Send
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- CLEAR CHAT -->
+
+        {% if chat_history %}
+
+            <form
+                method="POST"
+                class="assistant-clear-form"
+            >
+
+                <input
+                    type="hidden"
+                    name="action"
+                    value="clear_chat"
+                >
+
+
+                <button
+                    type="submit"
+                    class="assistant-clear-button"
+                >
+                    Clear Chat
+                </button>
+
+            </form>
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ====================================================== -->
+<!-- AUTO SCROLL -->
+<!-- ====================================================== -->
+
+<script>
+
+    const chat =
+        document.getElementById(
+            "assistantChat"
+        );
+
+
+    if (chat) {
+
+        chat.scrollTop =
+            chat.scrollHeight;
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

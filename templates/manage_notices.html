@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Manage Notices - {{ app_name }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=600"
+    >
+
+</head>
+
+
+<body class="notice-admin-body">
+
+
+<div class="notice-admin-container">
+
+
+    <!-- =============================================== -->
+    <!-- HEADER -->
+    <!-- =============================================== -->
+
+    <div class="notice-admin-header">
+
+        <div>
+
+            <h1>
+                Manage Notices
+            </h1>
+
+            <p>
+                Create and manage college announcements.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}"
+            class="notice-back-button"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- =============================================== -->
+    <!-- FLASH MESSAGES -->
+    <!-- =============================================== -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="notice-flash-message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- =============================================== -->
+    <!-- CREATE NOTICE -->
+    <!-- =============================================== -->
+
+    <section class="notice-create-card">
+
+
+        <div class="notice-section-title">
+
+            <h2>
+                Create Notice
+            </h2>
+
+            <p>
+                Publish a notice to the students who need to see it.
+            </p>
+
+        </div>
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            class="notice-form"
+        >
+
+
+            <!-- ======================================= -->
+            <!-- CATEGORY -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+                <select
+                    id="category"
+                    name="category"
+                    required
+                >
+
+                    {% for category in categories %}
+
+                        <option value="{{ category }}">
+                            {{ category }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- TITLE -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group notice-full-width">
+
+                <label for="title">
+                    Notice Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Example: Internal Assessment Schedule"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- MESSAGE -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group notice-full-width">
+
+                <label for="message">
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    placeholder="Write the notice here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- ISSUED BY -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group">
+
+                <label>
+                    Issued By
+                </label>
+
+
+                {% if role == "department_admin" %}
+
+                    <div class="notice-fixed-value">
+
+                        {{ department_name }}
+                        Department
+
+                    </div>
+
+                {% else %}
+
+                    <div class="notice-fixed-value">
+
+                        College Administration
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- TARGET DEPARTMENT -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group">
+
+                <label>
+                    Target Department
+                </label>
+
+
+                {% if role == "department_admin" %}
+
+                    <div class="notice-fixed-value">
+
+                        {{ department_name }}
+                        Department
+
+                    </div>
+
+
+                {% else %}
+
+
+                    <select
+                        id="target_department_id"
+                        name="target_department_id"
+                    >
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+
+                        {% for department in departments %}
+
+                            <option
+                                value="{{ department['department_id'] }}"
+                            >
+
+                                {{ department["name"] }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- TARGET YEAR -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group">
+
+                <label for="target_year">
+                    Target Year
+                </label>
+
+                <select
+                    id="target_year"
+                    name="target_year"
+                >
+
+                    <option value="">
+                        All Years
+                    </option>
+
+                    <option value="1">
+                        Year 1
+                    </option>
+
+                    <option value="2">
+                        Year 2
+                    </option>
+
+                    <option value="3">
+                        Year 3
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- IMAGE -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-group">
+
+                <label for="noticeImage">
+                    Attach Image
+                </label>
+
+                <input
+                    type="file"
+                    id="noticeImage"
+                    name="image"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+
+                <small class="notice-form-help">
+                    Optional — JPG, PNG or WEBP
+                </small>
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- IMAGE PREVIEW -->
+            <!-- ======================================= -->
+
+            <div
+                class="notice-image-preview notice-full-width"
+                id="noticeImagePreview"
+                style="display: none;"
+            >
+
+                <p>
+                    Image Preview
+                </p>
+
+                <img
+                    id="noticePreviewImage"
+                    src=""
+                    alt="Selected notice image"
+                >
+
+            </div>
+
+
+            <!-- ======================================= -->
+            <!-- SUBMIT -->
+            <!-- ======================================= -->
+
+            <div class="notice-form-actions notice-full-width">
+
+                <button
+                    type="submit"
+                    class="notice-publish-button"
+                >
+                    Publish Notice
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </section>
+
+
+
+    <!-- =============================================== -->
+    <!-- PUBLISHED NOTICES -->
+    <!-- =============================================== -->
+
+    <section class="published-notices-section">
+
+
+        <div class="notice-section-title">
+
+            <h2>
+                Published Notices
+            </h2>
+
+            <p>
+                Notices created by your account or department.
+            </p>
+
+        </div>
+
+
+
+        {% if notices %}
+
+
+            <div class="published-notice-grid">
+
+
+                {% for notice in notices %}
+
+
+                    <article class="published-notice-card">
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="published-notice-top">
+
+                            <span class="notice-category-badge">
+
+                                {{ notice["category"] or "General" }}
+
+                            </span>
+
+
+                            <span class="notice-date">
+
+                                {{ notice["created_at"] }}
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- TITLE -->
+
+                        {% if notice["is_pinned"] %}
+
+    <div class="notice-pinned-label">
+        📌 Pinned Notice
+    </div>
+
+{% endif %}
+
+                        <h3>
+                            {{ notice["title"] }}
+                        </h3>
+
+
+                        <!-- ISSUED BY -->
+
+                        <div class="notice-meta-row">
+
+                            <strong>
+                                Issued By:
+                            </strong>
+
+
+                            {% if notice["issued_department_name"] %}
+
+                                <span>
+
+                                    {{
+                                        notice[
+                                            "issued_department_name"
+                                        ]
+                                    }}
+                                    Department
+
+                                </span>
+
+                            {% else %}
+
+                                <span>
+                                    College Administration
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- AUDIENCE -->
+
+                        <div class="notice-meta-row">
+
+                            <strong>
+                                Audience:
+                            </strong>
+
+
+                            <span>
+
+                                {% if notice["target_department_name"] %}
+
+                                    {{
+                                        notice[
+                                            "target_department_name"
+                                        ]
+                                    }}
+                                    Department
+
+                                {% else %}
+
+                                    All Departments
+
+                                {% endif %}
+
+
+                                {% if notice["target_year"] %}
+
+                                    •
+                                    Year
+                                    {{ notice["target_year"] }}
+
+                                {% else %}
+
+                                    • All Years
+
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- MESSAGE -->
+
+                        <p class="published-notice-message">
+
+                            {{ notice["message"] }}
+
+                        </p>
+
+
+                        <!-- IMAGE -->
+
+                        {% if notice["image"] %}
+
+                            <img
+                                src="{{
+                                    url_for(
+                                        'static',
+                                        filename=
+                                        'uploads/notices/'
+                                        +
+                                        notice['image']
+                                    )
+                                }}"
+                                class="published-notice-image"
+                                alt="Notice attachment"
+                            >
+
+                        {% endif %}
+
+
+                        <!-- DELETE -->
+
+                        <div class="published-notice-actions">
+
+    <a
+        href="{{
+            url_for(
+                'edit_notice',
+                notice_id=notice['notice_id']
+            )
+        }}"
+        class="notice-edit-button"
+    >
+        ✏ Edit
+    </a>
+
+    <form
+        method="POST"
+        action="{{
+            url_for(
+                'delete_admin_notice',
+                notice_id=notice['notice_id']
+            )
+        }}"
+    >
+
+        <button
+            type="submit"
+            class="notice-delete-button"
+        >
+            Delete
+        </button>
+
+    </form>
+
+</div>
+
+
+                    </article>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <div class="notice-empty-state">
+
+                <h3>
+                    No notices published yet
+                </h3>
+
+                <p>
+                    Create your first notice using the form above.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</div>
+
+
+
+<!-- =============================================== -->
+<!-- IMAGE PREVIEW -->
+<!-- =============================================== -->
+
+<script>
+
+    const noticeImage =
+        document.getElementById(
+            "noticeImage"
+        );
+
+
+    const previewContainer =
+        document.getElementById(
+            "noticeImagePreview"
+        );
+
+
+    const previewImage =
+        document.getElementById(
+            "noticePreviewImage"
+        );
+
+
+    noticeImage.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files[0];
+
+
+            if (!file) {
+
+                previewContainer.style.display =
+                    "none";
+
+                previewImage.src = "";
+
+                return;
+            }
+
+
+            const imageURL =
+                URL.createObjectURL(
+                    file
+                );
+
+
+            previewImage.src =
+                imageURL;
+
+
+            previewContainer.style.display =
+                "block";
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ app_name }} - Student Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=900"
+    >
+
+</head>
+
+
+<body class="dashboard-body">
+
+
+<div class="dashboard-layout">
+
+
+    <!-- ================================================== -->
+    <!-- SIDEBAR -->
+    <!-- ================================================== -->
+
+    <aside class="sidebar">
+
+        <h2>
+            {{ app_name }}
+        </h2>
+
+
+        <p class="sidebar-student">
+            {{ student["name"] }}
+        </p>
+
+
+        <nav>
+
+
+            <!-- DASHBOARD -->
+
+            <a href="{{ url_for('student_dashboard') }}">
+                Dashboard
+            </a>
+
+
+            <!-- TIMETABLE -->
+
+            <a href="{{ url_for('student_timetable') }}">
+                Timetable
+            </a>
+
+
+            <!-- MESSAGES -->
+
+            <a href="{{ url_for('student_messages') }}">
+
+                Messages
+
+                {% if unread_messages > 0 %}
+
+                    <span class="dashboard-unread-badge">
+                        {{ unread_messages }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+            <!-- ATTENDANCE -->
+
+            <a href="{{ url_for('student_attendance') }}">
+                Attendance
+            </a>
+
+
+            <!-- RESULTS -->
+
+            <a href="{{ url_for('student_results') }}">
+                Results
+            </a>
+
+
+            <!-- PERSONAL DETAILS -->
+
+            <a href="#personal-details">
+                Personal Details
+            </a>
+
+
+            <!-- DEPARTMENTS -->
+
+            <a href="{{ url_for('departments') }}">
+                Departments
+            </a>
+
+
+            <!-- LIBRARY -->
+
+            <a href="#">
+                Library
+            </a>
+
+
+            <!-- AI ASSISTANT -->
+
+            <a href="{{ url_for('student_assistant') }}">
+                AI Assistant
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ================================================== -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================== -->
+
+    <main class="student-main">
+
+
+        <!-- ================================================== -->
+        <!-- HEADER -->
+        <!-- ================================================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    Welcome, {{ student["name"] }}
+                </h1>
+
+
+                <p>
+
+                    BSc
+
+                    |
+
+                    Year {{ student["year"] }}
+
+                    |
+
+                    {{ student["combination_name"] }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- QUICK CARDS -->
+        <!-- ================================================== -->
+
+        <section class="dashboard-cards">
+
+
+            <!-- YEAR -->
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Year
+                </h3>
+
+                <p>
+                    {{ student["year"] }}
+                </p>
+
+            </div>
+
+
+            <!-- COMBINATION -->
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Combination
+                </h3>
+
+                <p>
+                    {{ student["combination_name"] }}
+                </p>
+
+            </div>
+
+
+            <!-- STUDENT ID -->
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Student ID
+                </h3>
+
+                <p>
+                    {{ student["student_id"] }}
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- TODAY'S TIMETABLE -->
+        <!-- ================================================== -->
+
+        <section class="today-timetable-card">
+
+
+            <div class="today-timetable-header">
+
+
+                <div>
+
+                    <h2>
+                        Today's Timetable
+                    </h2>
+
+
+                    <p>
+
+                        {{ today_name }}
+
+                        •
+
+                        Year {{ student["year"] }}
+
+                        •
+
+                        {{ student["combination_name"] }}
+
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('student_timetable') }}"
+                    class="view-full-timetable"
+                >
+                    View Full Timetable
+                </a>
+
+
+            </div>
+
+
+            <!-- ================================================== -->
+            <!-- SUNDAY -->
+            <!-- ================================================== -->
+
+            {% if today_name == "Sunday" %}
+
+
+                <div class="no-classes-today">
+
+                    <h3>
+                        No classes today 🎉
+                    </h3>
+
+                    <p>
+                        Enjoy your Sunday.
+                    </p>
+
+                </div>
+
+
+            <!-- ================================================== -->
+            <!-- TODAY'S CLASSES -->
+            <!-- ================================================== -->
+
+            {% elif today_timetable %}
+
+
+                <div class="today-period-grid">
+
+
+                    <!-- PERIOD 1 -->
+
+                    <div class="today-period">
+
+                        <span>
+                            Period 1
+                        </span>
+
+                        <strong>
+                            {{
+                                today_timetable["period1"]
+                                or
+                                "Free"
+                            }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- PERIOD 2 -->
+
+                    <div class="today-period">
+
+                        <span>
+                            Period 2
+                        </span>
+
+                        <strong>
+                            {{
+                                today_timetable["period2"]
+                                or
+                                "Free"
+                            }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- PERIOD 3 -->
+
+                    <div class="today-period">
+
+                        <span>
+                            Period 3
+                        </span>
+
+                        <strong>
+                            {{
+                                today_timetable["period3"]
+                                or
+                                "Free"
+                            }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- PERIOD 4 -->
+
+                    <div class="today-period">
+
+                        <span>
+                            Period 4
+                        </span>
+
+                        <strong>
+                            {{
+                                today_timetable["period4"]
+                                or
+                                "Free"
+                            }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- PERIOD 5 -->
+
+                    <div class="today-period">
+
+                        <span>
+                            Period 5
+                        </span>
+
+                        <strong>
+                            {{
+                                today_timetable["period5"]
+                                or
+                                "Free"
+                            }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            <!-- ================================================== -->
+            <!-- NO TIMETABLE -->
+            <!-- ================================================== -->
+
+            {% else %}
+
+
+                <div class="no-classes-today">
+
+                    <h3>
+                        No timetable available for {{ today_name }}
+                    </h3>
+
+                    <p>
+                        The timetable has not been added yet.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- PERSONAL DETAILS -->
+        <!-- ================================================== -->
+
+        <section
+            class="dashboard-section"
+            id="personal-details"
+        >
+
+
+            <h2>
+                Personal Details
+            </h2>
+
+
+            <div class="personal-details-grid">
+
+
+                <!-- STUDENT ID -->
+
+                <div>
+
+                    <strong>
+                        Student ID
+                    </strong>
+
+                    <p>
+                        {{ student["student_id"] }}
+                    </p>
+
+                </div>
+
+
+                <!-- NAME -->
+
+                <div>
+
+                    <strong>
+                        Name
+                    </strong>
+
+                    <p>
+                        {{ student["name"] }}
+                    </p>
+
+                </div>
+
+
+                <!-- COURSE -->
+
+                <div>
+
+                    <strong>
+                        Course
+                    </strong>
+
+                    <p>
+                        BSc
+                    </p>
+
+                </div>
+
+
+                <!-- YEAR -->
+
+                <div>
+
+                    <strong>
+                        Year
+                    </strong>
+
+                    <p>
+                        {{ student["year"] }}
+                    </p>
+
+                </div>
+
+
+                <!-- COMBINATION -->
+
+                <div>
+
+                    <strong>
+                        Combination
+                    </strong>
+
+                    <p>
+                        {{ student["combination_name"] }}
+                    </p>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div>
+
+                    <strong>
+                        Email
+                    </strong>
+
+                    <p>
+                        {{
+                            student["email"]
+                            or
+                            "Not added"
+                        }}
+                    </p>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div>
+
+                    <strong>
+                        Phone
+                    </strong>
+
+                    <p>
+                        {{
+                            student["phone"]
+                            or
+                            "Not added"
+                        }}
+                    </p>
+
+                </div>
+
+
+                <!-- DATE OF BIRTH -->
+
+                <div>
+
+                    <strong>
+                        Date of Birth
+                    </strong>
+
+                    <p>
+                        {{
+                            student["date_of_birth"]
+                            or
+                            "Not added"
+                        }}
+                    </p>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="full-detail">
+
+                    <strong>
+                        Address
+                    </strong>
+
+                    <p>
+                        {{
+                            student["address"]
+                            or
+                            "Not added"
+                        }}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================================================== -->
+    <!-- ALWAYS VISIBLE NOTICES -->
+    <!-- ================================================== -->
+
+    <aside class="notice-panel">
+
+
+        <h2>
+            📢 Latest Notices
+        </h2>
+
+
+        {% if notices %}
+
+
+            {% for notice in notices %}
+
+
+                <div
+    class="
+        dashboard-notice
+        {% if notice['is_pinned'] %}
+            student-notice-pinned-card
+        {% endif %}
+    "
+>
+
+    <!-- ============================================= -->
+    <!-- PINNED LABEL -->
+    <!-- ============================================= -->
+
+    {% if notice["is_pinned"] %}
+
+        <div class="student-pinned-label">
+            📌 PINNED
+        </div>
+
+    {% endif %}
+
+
+    <!-- ============================================= -->
+    <!-- CATEGORY -->
+    <!-- ============================================= -->
+
+    <div class="student-notice-top">
+
+        <span
+            class="
+                student-notice-category
+                category-{{ (notice['category'] or 'General')|lower }}
+            "
+        >
+            {{ notice["category"] or "General" }}
+        </span>
+
+    </div>
+
+
+    <!-- ============================================= -->
+    <!-- TITLE -->
+    <!-- ============================================= -->
+
+    <h3>
+        {{ notice["title"] }}
+    </h3>
+
+
+    <!-- ============================================= -->
+    <!-- ISSUED BY -->
+    <!-- ============================================= -->
+
+    <p class="student-notice-department">
+
+        {% if notice["issued_department_name"] %}
+
+            {{ notice["issued_department_name"] }}
+            Department
+
+        {% else %}
+
+            College Administration
+
+        {% endif %}
+
+    </p>
+
+
+    <!-- ============================================= -->
+    <!-- AUDIENCE -->
+    <!-- ============================================= -->
+
+    <div class="student-notice-audience">
+
+        {% if notice["target_department_name"] %}
+
+            {{ notice["target_department_name"] }}
+            Department
+
+        {% else %}
+
+            All Departments
+
+        {% endif %}
+
+
+        {% if notice["target_year"] %}
+
+            • Year {{ notice["target_year"] }}
+
+        {% else %}
+
+            • All Years
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ============================================= -->
+    <!-- DATE -->
+    <!-- ============================================= -->
+
+    <small class="student-notice-date">
+        {{ notice["created_at"] }}
+    </small>
+
+
+    <!-- ============================================= -->
+    <!-- MESSAGE -->
+    <!-- ============================================= -->
+
+    <p class="student-notice-message">
+        {{ notice["message"] }}
+    </p>
+
+
+    <!-- ============================================= -->
+    <!-- IMAGE -->
+    <!-- ============================================= -->
+
+    {% if notice["image"] %}
+
+        <img
+            src="{{
+                url_for(
+                    'static',
+                    filename=
+                    'uploads/notices/'
+                    +
+                    notice['image']
+                )
+            }}"
+            alt="Notice image"
+            class="notice-image"
+        >
+
+    {% endif %}
+
+</div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <p>
+                No notices available.
+            </p>
+
+
+        {% endif %}
+
+
+    </aside>
+
+
+</div>
+
+
+</body>
+
+</html>

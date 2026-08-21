@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Manage Department</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="attendance-page">
+
+    <h1>
+        Manage {{ department["name"] }} Department
+    </h1>
+
+
+    <!-- HOD / DEPARTMENT DETAILS -->
+
+    <h2>Department Details</h2>
+
+
+    <form method="POST">
+
+        <input
+            type="hidden"
+            name="action"
+            value="update_department"
+        >
+
+
+        <label>Description</label>
+
+        <br>
+
+        <textarea
+            name="description"
+            rows="5"
+            style="width: 100%;"
+        >{{ department["description"] or "" }}</textarea>
+
+
+        <br><br>
+
+
+        <label>HOD Name</label>
+
+        <input
+            type="text"
+            name="hod_name"
+            value="{{ department['hod_name'] or '' }}"
+        >
+
+
+        <label>HOD Email</label>
+
+        <input
+            type="email"
+            name="hod_email"
+            value="{{ department['hod_email'] or '' }}"
+        >
+
+
+        <label>HOD Phone</label>
+
+        <input
+            type="text"
+            name="hod_phone"
+            value="{{ department['hod_phone'] or '' }}"
+        >
+
+
+        <label>Department Location</label>
+
+        <input
+            type="text"
+            name="department_location"
+            value="{{
+                department['department_location']
+                or ''
+            }}"
+        >
+
+
+        <button type="submit">
+            Save Department Details
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <!-- ADD FACULTY -->
+
+    <h2>Add Faculty</h2>
+
+
+    <form method="POST">
+
+        <input
+            type="hidden"
+            name="action"
+            value="add_faculty"
+        >
+
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Faculty Name"
+            required
+        >
+
+
+        <input
+            type="text"
+            name="designation"
+            placeholder="Designation"
+        >
+
+
+        <input
+            type="text"
+            name="qualification"
+            placeholder="Qualification"
+        >
+
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Email"
+        >
+
+
+        <input
+            type="text"
+            name="phone"
+            placeholder="Phone"
+        >
+
+
+        <input
+            type="text"
+            name="office_location"
+            placeholder="Office Location"
+        >
+
+
+        <button type="submit">
+            Add Faculty
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <!-- FACULTY LIST -->
+
+    <h2>Faculty</h2>
+
+
+    {% if faculty %}
+
+        <table class="attendance-table">
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Qualification</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for member in faculty %}
+
+                    <tr>
+
+                        <td>
+                            {{ member["name"] }}
+                        </td>
+
+                        <td>
+                            {{ member["designation"] or "" }}
+                        </td>
+
+                        <td>
+                            {{ member["qualification"] or "" }}
+                        </td>
+
+                        <td>
+                            {{ member["email"] or "" }}
+                        </td>
+
+                        <td>
+
+                            <form method="POST">
+
+                                <input
+                                    type="hidden"
+                                    name="action"
+                                    value="delete_faculty"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="faculty_id"
+                                    value="{{ member['faculty_id'] }}"
+                                >
+
+                                <button type="submit">
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <p>No faculty added yet.</p>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="{{ url_for('admin_dashboard') }}">
+        ← Admin Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

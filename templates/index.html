@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+   <title>TEST NEW HOMEPAGE</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}?v=1300"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================================== -->
+    <!-- NAVBAR -->
+    <!-- ================================================== -->
+
+    <header class="navbar">
+
+        <h2>
+            {{ app_name }}
+        </h2>
+
+
+        <nav>
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+
+            <a href="{{ url_for('college_details') }}">
+                College Details
+            </a>
+
+
+            <a href="{{ url_for('departments') }}">
+                Departments
+            </a>
+
+
+            <a href="#library">
+                Library
+            </a>
+
+
+            <a href="#notices">
+                Notices
+            </a>
+
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- ================================================== -->
+        <!-- HERO -->
+        <!-- ================================================== -->
+
+        <section class="hero">
+
+            <h1>
+                Welcome to {{ app_name }}
+            </h1>
+
+
+            <p>
+                College Information and Student Knowledge Assistant
+            </p>
+
+
+            <a href="{{ url_for('college_details') }}">
+                View College Details
+            </a>
+
+        </section>
+
+
+
+        <!-- ================================================== -->
+        <!-- QUICK COLLEGE SERVICES -->
+        <!-- ================================================== -->
+
+        <section class="college-details">
+
+            <h2>
+                College Services
+            </h2>
+
+
+            <div class="cards">
+
+
+                <!-- DEPARTMENTS -->
+
+                <div class="card">
+
+                    <h3>
+                        Departments
+                    </h3>
+
+                    <p>
+                        Explore college departments and
+                        Head of Department information.
+                    </p>
+
+                    <a
+                        href="{{ url_for('departments') }}"
+                        class="home-card-link"
+                    >
+                        View Departments
+                    </a>
+
+                </div>
+
+
+
+                <!-- LIBRARY -->
+
+                <div
+                    class="card"
+                    id="library"
+                >
+
+                    <h3>
+                        Library
+                    </h3>
+
+                    <p>
+                        View library timings, facilities
+                        and other information.
+                    </p>
+
+                </div>
+
+
+
+                <!-- LABORATORIES -->
+
+                <div class="card">
+
+                    <h3>
+                        Laboratories
+                    </h3>
+
+                    <p>
+                        Learn about college laboratories
+                        and available facilities.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================== -->
+        <!-- PUBLIC GENERAL NOTICES -->
+        <!-- ================================================== -->
+
+        <section
+            class="notice-section home-general-notices"
+            id="notices"
+        >
+
+
+            <div class="home-notice-heading">
+
+                <h2>
+                    📢 Latest Notices
+                </h2>
+
+                <p>
+                    General announcements from the college.
+                </p>
+
+            </div>
+
+
+
+            {% if general_notices %}
+
+
+                <div class="home-notices-grid">
+
+
+                    {% for notice in general_notices %}
+
+
+                        <article class="home-notice-card">
+
+
+                            {% if notice["is_pinned"] %}
+
+                                <div class="home-notice-pinned">
+                                    📌 PINNED
+                                </div>
+
+                            {% endif %}
+
+
+                            <span class="home-notice-category">
+
+                                {{
+                                    notice["category"]
+                                    or
+                                    "General"
+                                }}
+
+                            </span>
+
+
+                            <h3>
+                                {{ notice["title"] }}
+                            </h3>
+
+
+                            <div class="home-notice-source">
+                                College Administration
+                            </div>
+
+
+                            <small class="home-notice-date">
+                                {{ notice["created_at"] }}
+                            </small>
+
+
+                            <p class="home-notice-message">
+                                {{ notice["message"] }}
+                            </p>
+
+
+                            {% if notice["image"] %}
+
+                                <img
+                                    src="{{
+                                        url_for(
+                                            'static',
+                                            filename=
+                                            'uploads/notices/'
+                                            +
+                                            notice['image']
+                                        )
+                                    }}"
+                                    alt="Notice attachment"
+                                    class="home-notice-image"
+                                >
+
+                            {% endif %}
+
+
+                        </article>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="home-no-notices">
+
+                    <p>
+                        No general notices are available.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

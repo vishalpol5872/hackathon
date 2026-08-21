@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ app_name }} - Departments</title>
+
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}?v=1000"
+>   
+
+</head>
+
+<body class="departments-page">
+
+    <header class="navbar">
+
+        <h2>{{ app_name }}</h2>
+
+        <nav>
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('departments') }}">
+                Departments
+            </a>
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="college-details">
+
+        <h2>
+            College Departments
+        </h2>
+
+
+        <div class="cards">
+
+            {% for department in departments %}
+
+                <div class="card">
+
+                    <h3>
+                        {{ department["name"] }}
+                    </h3>
+
+                    <p>
+                        {{
+                            department["description"]
+                            or
+                            "Department information will be added soon."
+                        }}
+                    </p>
+
+                    <br>
+
+                    <a href="{{
+                        url_for(
+                            'department_details',
+                            department_id=department['department_id']
+                        )
+                    }}">
+                        View Department
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
