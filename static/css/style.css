@@ -5906,3 +5906,15 @@ button:focus-visible {
 .message.received small {
     color: #64748b !important;
 }
+* Received / white message bubbles */
+.message.received,
+.message.received * {
+    color: #111827 !important;
+}
+
+/* Received message timestamp */
+.message.received .message-time,
+.message.received .timestamp,
+.message.received small {
+    color: #64748b !important;
+}
