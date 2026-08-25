@@ -16,7 +16,7 @@
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}?v=600"
+        href="{{ url_for('static', filename='css/manage_notices.css') }}?v=1"
     >
 
 </head>
@@ -191,8 +191,11 @@
 
                     <div class="notice-fixed-value">
 
-                        {{ department_name }}
-                        Department
+                        {% if department_name == "Library" %}
+                            Library
+                        {% else %}
+                            {{ department_name }} Department
+                        {% endif %}
 
                     </div>
 
@@ -224,8 +227,11 @@
 
                     <div class="notice-fixed-value">
 
-                        {{ department_name }}
-                        Department
+                        {% if department_name == "Library" %}
+                            All Departments
+                        {% else %}
+                            {{ department_name }} Department
+                        {% endif %}
 
                     </div>
 

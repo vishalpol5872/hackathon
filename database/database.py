@@ -725,6 +725,90 @@ def initialize_database():
 
 
     # ========================================================
+    # LIBRARY BOOK CATALOGUE
+    # ========================================================
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS books (
+
+            book_id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            title TEXT NOT NULL,
+
+            author TEXT NOT NULL,
+
+            description TEXT,
+
+            availability TEXT DEFAULT 'Available',
+
+            added_by TEXT,
+
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+
+            UNIQUE(title, author),
+
+            FOREIGN KEY (added_by)
+            REFERENCES admins(admin_id)
+        )
+    """)
+
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS book_recommendations (
+
+            recommendation_id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            book_id INTEGER NOT NULL,
+
+            department_id INTEGER NOT NULL,
+
+            recommended_by TEXT,
+
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+
+            UNIQUE(book_id, department_id),
+
+            FOREIGN KEY (book_id)
+            REFERENCES books(book_id)
+            ON DELETE CASCADE,
+
+            FOREIGN KEY (department_id)
+            REFERENCES departments(department_id),
+
+            FOREIGN KEY (recommended_by)
+            REFERENCES admins(admin_id)
+        )
+    """)
+
+
+    # ========================================================
+    # ANONYMOUS STUDENT COMPLAINTS
+    # No student identity or account reference is stored.
+    # ========================================================
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS anonymous_complaints (
+
+            complaint_id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            subject TEXT NOT NULL,
+
+            category TEXT NOT NULL,
+
+            complaint_text TEXT NOT NULL,
+
+            status TEXT DEFAULT 'New',
+
+            admin_note TEXT,
+
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+
+            reviewed_at TEXT
+        )
+    """)
+
+
+    # ========================================================
     # COLLEGE INFORMATION
     # ========================================================
 
@@ -793,7 +877,8 @@ def initialize_database():
         ("Statistics",),
         ("Chemistry",),
         ("Zoology",),
-        ("Botany",)
+        ("Botany",),
+        ("Library",)
 
     ]
 
@@ -1169,7 +1254,7 @@ def initialize_database():
 
             "admin@bsc.app",
 
-            hash_password("admin123"),
+            hash_password("786"),
 
             "super_admin",
 
@@ -1230,6 +1315,13 @@ def initialize_database():
             "Botany Admin",
             "Botany",
             "bot123"
+        ),
+
+        (
+            "LIB001",
+            "Library Admin",
+            "Library",
+            "library123"
         )
 
     ]
@@ -2202,9 +2294,6 @@ def delete_faq(
     connection.close()
 
 
-# ============================================================
-# SEARCH FAQ KNOWLEDGE BASE
-# ============================================================
 
 # ============================================================
 # SEARCH ALL FAQ KNOWLEDGE
@@ -2833,7 +2922,7 @@ def mark_messages_read(
     connection.commit()
     connection.close()
 
-    # ============================================================
+# ============================================================
 # GET STUDENTS CONNECTED TO A DEPARTMENT
 # ============================================================
 
@@ -2952,7 +3041,7 @@ def initialize_messaging_tables():
     connection.commit()
     connection.close()
 
-    # ============================================================
+# ============================================================
 # SAVE / UPDATE TIMETABLE
 # ============================================================
 
@@ -4203,3 +4292,350 @@ def get_college_info():
     connection.close()
 
     return college
+
+
+# ============================================================
+# LIBRARY BOOKS
+# ============================================================
+
+def get_library_books(search_text=""):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    search_pattern = (
+        f"%{search_text.strip().lower()}%"
+    )
+
+    cursor.execute("""
+        SELECT
+            books.*,
+
+            GROUP_CONCAT(
+                DISTINCT departments.name
+            ) AS recommended_departments
+
+        FROM books
+
+        LEFT JOIN book_recommendations
+        ON books.book_id =
+           book_recommendations.book_id
+
+        LEFT JOIN departments
+        ON book_recommendations.department_id =
+           departments.department_id
+
+        WHERE
+            LOWER(books.title) LIKE ?
+            OR LOWER(books.author) LIKE ?
+
+        GROUP BY books.book_id
+
+        ORDER BY
+            books.title COLLATE NOCASE ASC,
+            books.author COLLATE NOCASE ASC
+    """, (
+        search_pattern,
+        search_pattern
+    ))
+
+    books = cursor.fetchall()
+
+    connection.close()
+
+    return books
+
+
+def add_library_book(
+    title,
+    author,
+    description,
+    availability,
+    added_by,
+    recommended_department_id=None
+):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    try:
+
+        cursor.execute("""
+            INSERT INTO books (
+                title,
+                author,
+                description,
+                availability,
+                added_by
+            )
+
+            VALUES (?, ?, ?, ?, ?)
+        """, (
+            title,
+            author,
+            description,
+            availability,
+            added_by
+        ))
+
+        book_id = cursor.lastrowid
+
+
+        if recommended_department_id:
+
+            cursor.execute("""
+                INSERT OR IGNORE INTO
+                book_recommendations (
+                    book_id,
+                    department_id,
+                    recommended_by
+                )
+
+                VALUES (?, ?, ?)
+            """, (
+                book_id,
+                recommended_department_id,
+                added_by
+            ))
+
+
+        connection.commit()
+        connection.close()
+
+        return True, "Book added successfully."
+
+
+    except sqlite3.IntegrityError:
+
+        connection.rollback()
+        connection.close()
+
+        return (
+            False,
+            "A book with this title and author already exists."
+        )
+
+
+def recommend_library_book(
+    book_id,
+    department_id,
+    recommended_by
+):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    try:
+
+        cursor.execute("""
+            INSERT OR IGNORE INTO
+            book_recommendations (
+                book_id,
+                department_id,
+                recommended_by
+            )
+
+            VALUES (?, ?, ?)
+        """, (
+            book_id,
+            department_id,
+            recommended_by
+        ))
+
+        added = cursor.rowcount > 0
+
+        connection.commit()
+        connection.close()
+
+        if added:
+            return True, "Book recommended successfully."
+
+        return False, "This department already recommends the book."
+
+
+    except sqlite3.IntegrityError:
+
+        connection.rollback()
+        connection.close()
+
+        return False, "The book or department was not found."
+
+
+def remove_library_recommendation(
+    book_id,
+    department_id
+):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM book_recommendations
+
+        WHERE book_id = ?
+        AND department_id = ?
+    """, (
+        book_id,
+        department_id
+    ))
+
+    removed = cursor.rowcount > 0
+
+    connection.commit()
+    connection.close()
+
+    return removed
+
+
+def delete_library_book(book_id):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM books
+        WHERE book_id = ?
+    """, (
+        book_id,
+    ))
+
+    deleted = cursor.rowcount > 0
+
+    connection.commit()
+    connection.close()
+
+    return deleted
+
+
+# ============================================================
+# ANONYMOUS STUDENT COMPLAINTS
+# ============================================================
+
+def create_anonymous_complaint(
+    subject,
+    category,
+    complaint_text
+):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO anonymous_complaints (
+            subject,
+            category,
+            complaint_text
+        )
+
+        VALUES (?, ?, ?)
+    """, (
+        subject,
+        category,
+        complaint_text
+    ))
+
+    complaint_id = cursor.lastrowid
+
+    connection.commit()
+    connection.close()
+
+    return complaint_id
+
+
+def get_anonymous_complaints(status_filter=""):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    if status_filter:
+
+        cursor.execute("""
+            SELECT *
+            FROM anonymous_complaints
+            WHERE status = ?
+            ORDER BY
+                CASE status
+                    WHEN 'New' THEN 1
+                    WHEN 'Reviewing' THEN 2
+                    WHEN 'Resolved' THEN 3
+                    ELSE 4
+                END,
+                created_at DESC,
+                complaint_id DESC
+        """, (
+            status_filter,
+        ))
+
+    else:
+
+        cursor.execute("""
+            SELECT *
+            FROM anonymous_complaints
+            ORDER BY
+                CASE status
+                    WHEN 'New' THEN 1
+                    WHEN 'Reviewing' THEN 2
+                    WHEN 'Resolved' THEN 3
+                    ELSE 4
+                END,
+                created_at DESC,
+                complaint_id DESC
+        """)
+
+    complaints = cursor.fetchall()
+
+    connection.close()
+
+    return complaints
+
+
+def update_anonymous_complaint(
+    complaint_id,
+    status,
+    admin_note
+):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE anonymous_complaints
+
+        SET
+            status = ?,
+            admin_note = ?,
+            reviewed_at = CURRENT_TIMESTAMP
+
+        WHERE complaint_id = ?
+    """, (
+        status,
+        admin_note,
+        complaint_id
+    ))
+
+    updated = cursor.rowcount > 0
+
+    connection.commit()
+    connection.close()
+
+    return updated
+
+
+def delete_anonymous_complaint(complaint_id):
+
+    connection = connect_database()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM anonymous_complaints
+        WHERE complaint_id = ?
+    """, (
+        complaint_id,
+    ))
+
+    deleted = cursor.rowcount > 0
+
+    connection.commit()
+    connection.close()
+
+    return deleted

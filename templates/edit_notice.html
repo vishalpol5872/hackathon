@@ -14,7 +14,7 @@
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}?v=800"
+        href="{{ url_for('static', filename='css/edit_notice.css') }}?v=1"
     >
 
 </head>
@@ -185,7 +185,11 @@
 
                     {% if role == "department_admin" %}
 
-                        {{ department_name }} Department
+                        {% if department_name == "Library" %}
+                            Library
+                        {% else %}
+                            {{ department_name }} Department
+                        {% endif %}
 
                     {% else %}
 
@@ -211,7 +215,11 @@
 
                     <div class="notice-fixed-value">
 
-                        {{ department_name }} Department
+                        {% if department_name == "Library" %}
+                            All Departments
+                        {% else %}
+                            {{ department_name }} Department
+                        {% endif %}
 
                     </div>
 

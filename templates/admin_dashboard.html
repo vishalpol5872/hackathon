@@ -14,7 +14,7 @@
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}?v=301"
+        href="{{ url_for('static', filename='css/admin_dashboard.css') }}?v=1"
     >
 
 </head>
@@ -171,6 +171,32 @@
             </a>
 
 
+            <!-- ANONYMOUS COMPLAINTS -->
+
+            <a
+                href="{{ url_for('manage_complaints') }}"
+                class="admin-dashboard-card"
+            >
+
+                <div class="admin-card-icon">
+                    🗳
+                </div>
+
+                <div>
+
+                    <h3>
+                        Anonymous Complaints
+                    </h3>
+
+                    <p>
+                        Review concerns submitted without student identities.
+                    </p>
+
+                </div>
+
+            </a>
+
+
         {% endif %}
 
 
@@ -287,6 +313,35 @@
 
                 <p>
                     Create and manage notices for students.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- ============================================ -->
+        <!-- LIBRARY -->
+        <!-- ALL ADMINS CAN VIEW OR RECOMMEND BOOKS -->
+        <!-- ============================================ -->
+
+        <a
+            href="{{ url_for('manage_library') }}"
+            class="admin-dashboard-card"
+        >
+
+            <div class="admin-card-icon">
+                📚
+            </div>
+
+            <div>
+
+                <h3>
+                    Manage Library
+                </h3>
+
+                <p>
+                    Add books or recommend books from your department.
                 </p>
 
             </div>

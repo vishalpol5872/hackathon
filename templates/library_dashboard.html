@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Dashboard - {{ app_name }}</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/library_dashboard.css') }}?v=1"
+    >
+</head>
+
+<body class="admin-page">
+
+    <main class="admin-dashboard-container">
+
+        <header class="admin-dashboard-header">
+            <div>
+                <h1>{{ app_name }}</h1>
+                <h2>Library Dashboard</h2>
+                <p>Welcome, {{ name }}</p>
+            </div>
+
+            <a href="{{ url_for('logout') }}" class="admin-logout-button">
+                Logout
+            </a>
+        </header>
+
+        <section class="admin-info-card">
+            <div class="admin-info-item">
+                <span>Admin ID</span>
+                <strong>{{ admin_id }}</strong>
+            </div>
+            <div class="admin-info-item">
+                <span>Department</span>
+                <strong>Library</strong>
+            </div>
+        </section>
+
+        <div class="admin-section-header">
+            <h2>Library Administration</h2>
+            <p>Manage the book catalogue and send Library notices.</p>
+        </div>
+
+        <section class="admin-dashboard-grid library-dashboard-grid">
+
+            <a href="{{ url_for('manage_library') }}" class="admin-dashboard-card">
+                <div class="admin-card-icon">📚</div>
+                <div>
+                    <h3>Manage Library</h3>
+                    <p>Add, remove, search, and recommend books.</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('manage_notices') }}" class="admin-dashboard-card">
+                <div class="admin-card-icon">📢</div>
+                <div>
+                    <h3>Manage Notices</h3>
+                    <p>Send notices labelled as Library to all students.</p>
+                </div>
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

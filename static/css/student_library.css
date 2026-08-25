@@ -1,0 +1,959 @@
+/* ==========================================================
+   Student Library Page Styles
+
+   This file controls only this page.
+   Read the comment above each setting to understand its job.
+   You can edit this file without changing another dashboard.
+   ========================================================== */
+
+/* Stores reusable colours, sizes, and design values for this page. */
+:root {
+    /* Stores the reusable primary value for this page. */
+    --primary: #0f766e;
+    /* Stores the reusable primary dark value for this page. */
+    --primary-dark: #115e59;
+    /* Stores the reusable primary soft value for this page. */
+    --primary-soft: #ccfbf1;
+    /* Stores the reusable accent value for this page. */
+    --accent: #f59e0b;
+    /* Stores the reusable ink value for this page. */
+    --ink: #172033;
+    /* Stores the reusable muted value for this page. */
+    --muted: #64748b;
+    /* Stores the reusable page value for this page. */
+    --page: #f5f7fa;
+    /* Stores the reusable surface value for this page. */
+    --surface: #fff;
+    /* Stores the reusable line value for this page. */
+    --line: #dfe6ee;
+    /* Stores the reusable danger value for this page. */
+    --danger: #dc2626;
+    /* Stores the reusable success value for this page. */
+    --success: #15803d;
+    /* Stores the reusable radius value for this page. */
+    --radius: 12px;
+    /* Stores the reusable shadow value for this page. */
+    --shadow: 0 7px 20px rgba(15, 23, 42, .08);
+}
+
+/* Applies the same basic sizing reset to every page element. */
+*, *::before, *::after {
+    /* Makes width and height calculations include padding and borders. */
+    box-sizing: border-box;
+    /* Adds space outside the element. */
+    margin: 0;
+    /* Adds space inside the element. */
+    padding: 0;
+}
+
+/* Styles the page element selected by `html`. */
+html {
+    /* Controls whether page scrolling is smooth or immediate. */
+    scroll-behavior: smooth;
+}
+
+/* Styles the page element selected by `body`. */
+body {
+    /* Sets the minimum height of the element. */
+    min-height: 100vh;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: var(--page);
+    /* Chooses the text font. */
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.55;
+}
+
+/* Applies the following styles to all these elements: `h1, h2, h3, h4`. */
+h1, h2, h3, h4 {
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.2;
+}
+
+/* Styles the page element selected by `p`. */
+p {
+    /* Sets the text colour. */
+    color: var(--muted);
+}
+
+/* Styles the page element selected by `img`. */
+img {
+    /* Limits how wide the element can become. */
+    max-width: 100%;
+}
+
+/* Styles the page element selected by `.navbar`. */
+.navbar {
+    /* Chooses how the element is positioned on the page. */
+    position: sticky;
+    /* Sets the distance from the top for a positioned element. */
+    top: 0;
+    /* Controls which positioned element appears on top. */
+    z-index: 50;
+    /* Sets the minimum height of the element. */
+    min-height: 62px;
+    /* Adds space inside the element. */
+    padding: 11px clamp(18px, 5vw, 64px);
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 20px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: #0f172a;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 4px 16px rgba(15,23,42,.18);
+}
+
+/* Applies the following styles to all these elements: `.navbar h1, .navbar h2`. */
+.navbar h1, .navbar h2 {
+    /* Sets the text colour. */
+    color: #fff;
+}
+
+/* Styles the page element selected by `.navbar nav`. */
+.navbar nav {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+}
+
+/* Styles the page element selected by `.navbar a`. */
+.navbar a {
+    /* Adds space inside the element. */
+    padding: 7px 11px;
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Sets the text colour. */
+    color: #cbd5e1;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 650;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Changes `.navbar a:hover` while the mouse pointer is over it. */
+.navbar a:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: rgba(255,255,255,.1);
+}
+
+/* Applies the following styles to all these elements: `a, button`. */
+a, button {
+    /* Makes style changes happen smoothly. */
+    transition: 160ms ease;
+}
+
+/* Applies the following styles to all these elements: `button, .main-button, .primary-button, .back-button`. */
+button, .main-button, .primary-button, .back-button {
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 10px 17px;
+    /* Chooses how the element and its children are arranged. */
+    display: inline-flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: center;
+    /* Adds or changes the border around the element. */
+    border: 0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary);
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+    /* Changes the mouse pointer shown over the element. */
+    cursor: pointer;
+}
+
+/* Changes `button:hover, .main-button:hover, .primary-button:hover` while the mouse pointer is over it. */
+button:hover, .main-button:hover, .primary-button:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary-dark);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-1px);
+}
+
+/* Applies the following styles to all these elements: `input, select, textarea`. */
+input, select, textarea {
+    /* Sets the element width. */
+    width: 100%;
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 9px 12px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #cbd5e1;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+}
+
+/* Styles the page element selected by `textarea`. */
+textarea {
+    /* Sets the minimum height of the element. */
+    min-height: 100px;
+    /* Controls whether the user can resize the element. */
+    resize: vertical;
+}
+
+/* Changes `input:focus, select:focus, textarea:focus` while the user is typing or selecting it. */
+input:focus, select:focus, textarea:focus {
+    /* Changes the border colour. */
+    border-color: var(--primary);
+    /* Adds or removes the focus outline around an element. */
+    outline: 0;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 0 0 3px rgba(15,118,110,.13);
+}
+
+/* Applies the following styles to all these elements: `.card, .dashboard-section`. */
+.card, .dashboard-section {
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Styles the page element selected by `.empty-chat`. */
+.empty-chat {
+    /* Adds space inside the element. */
+    padding: 24px;
+    /* Sets the text colour. */
+    color: var(--muted);
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Applies the following styles to all these elements: `.unread-badge, .dashboard-unread-badge`. */
+.unread-badge, .dashboard-unread-badge {
+    /* Sets the minimum width of the element. */
+    min-width: 18px;
+    /* Adds space inside the element. */
+    padding: 2px 6px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--danger);
+    /* Changes the text size. */
+    font-size: 10px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.table-wrapper`. */
+.table-wrapper {
+    /* Controls horizontal overflow and scrolling. */
+    overflow-x: auto;
+}
+
+/* Styles the page element selected by `table`. */
+table {
+    /* Sets the element width. */
+    width: 100%;
+    /* Joins touching table borders together. */
+    border-collapse: collapse;
+}
+
+/* Applies the following styles to all these elements: `th, td`. */
+th, td {
+    /* Adds space inside the element. */
+    padding: 11px 13px;
+    /* Aligns the text horizontally. */
+    text-align: left;
+}
+
+/* Styles the page element selected by `th`. */
+th {
+    /* Sets the text colour. */
+    color: #dbeafe;
+    /* Sets the background colour or background effect. */
+    background: #1e293b;
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes the space between letters. */
+    letter-spacing: .04em;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `td`. */
+td {
+    /* Adds or changes only the bottom border. */
+    border-bottom: 1px solid var(--line);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+}
+
+/* Changes `tbody tr:hover td` while the mouse pointer is over it. */
+tbody tr:hover td {
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Styles the page element selected by `.student-error`. */
+.student-error {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #fecaca;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #991b1b;
+    /* Sets the background colour or background effect. */
+    background: #fef2f2;
+}
+
+/* Applies the following styles to all these elements: `.student-success, .notice-flash-message`. */
+.student-success, .notice-flash-message {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #bbf7d0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #166534;
+    /* Sets the background colour or background effect. */
+    background: #f0fdf4;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 700px wide or smaller. */
+@media (max-width: 700px) {
+    /* Styles the page element selected by `.navbar`. */
+    .navbar {
+        /* Chooses how the element is positioned on the page. */
+        position: relative;
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+        /* Adds space between flex or grid items. */
+        gap: 8px;
+        /* Adds space inside the element. */
+        padding: 13px 18px;
+    }
+
+    /* Styles the page element selected by `.navbar nav`. */
+    .navbar nav {
+        /* Sets the element width. */
+        width: 100%;
+        /* Controls horizontal overflow and scrolling. */
+        overflow-x: auto;
+    }
+
+    /* Styles the page element selected by `.navbar a`. */
+    .navbar a {
+        /* Controls wrapping and spaces inside text. */
+        white-space: nowrap;
+    }
+}
+
+/* ACCESSIBILITY: Reduces animation for users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+    /* Styles the page element selected by `html`. */
+    html {
+        /* Controls whether page scrolling is smooth or immediate. */
+        scroll-behavior: auto;
+    }
+
+    /* Applies the same basic sizing reset to every page element. */
+    *, *::before, *::after {
+        /* Makes style changes happen smoothly. */
+        transition: none !important;
+    }
+}
+
+/* Styles the page element selected by `.library-page-body`. */
+.library-page-body {
+    /* Sets the background colour or background effect. */
+    background: linear-gradient(180deg, #ecfdf5 0, var(--page) 280px);
+}
+
+/* Styles the page element selected by `.library-container`. */
+.library-container {
+    /* Sets the element width. */
+    width: min(1120px, calc(100% - 32px));
+    /* Adds space outside the element. */
+    margin: auto;
+    /* Adds space inside the element. */
+    padding: 34px 0 52px;
+}
+
+/* Styles the page element selected by `.library-hero`. */
+.library-hero {
+    /* Limits how wide the element can become. */
+    max-width: 760px;
+    /* Adds space outside the element. */
+    margin: 0 auto 22px;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.library-eyebrow`. */
+.library-eyebrow {
+    /* Chooses how the element and its children are arranged. */
+    display: inline-block;
+    /* Adds space below the element. */
+    margin-bottom: 8px;
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Changes the space between letters. */
+    letter-spacing: .08em;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `.library-hero h1`. */
+.library-hero h1 {
+    /* Adds space below the element. */
+    margin-bottom: 9px;
+    /* Changes the text size. */
+    font-size: clamp(32px, 5vw, 52px);
+}
+
+/* Styles the page element selected by `.library-search-form`. */
+.library-search-form {
+    /* Adds space outside the element. */
+    margin: 0 auto 25px;
+    /* Adds space inside the element. */
+    padding: 10px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Adds space between flex or grid items. */
+    gap: 8px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Styles the page element selected by `.library-search-form input`. */
+.library-search-form input {
+    /* Controls how this item grows, shrinks, and uses available space. */
+    flex: 1;
+}
+
+/* Styles the page element selected by `.library-search-form a`. */
+.library-search-form a {
+    /* Adds space inside the element. */
+    padding: 10px 12px;
+    /* Sets the text colour. */
+    color: #475569;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Applies the following styles to all these elements: `.library-results-heading, .library-section-heading`. */
+.library-results-heading, .library-section-heading {
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: flex-end;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 12px;
+}
+
+/* Applies the following styles to all these elements: `.library-results-heading p, .library-section-heading p`. */
+.library-results-heading p, .library-section-heading p {
+    /* Adds space above the element. */
+    margin-top: 4px;
+}
+
+/* Styles the page element selected by `.book-grid`. */
+.book-grid {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* Adds space between flex or grid items. */
+    gap: 14px;
+}
+
+/* Styles the page element selected by `.book-card`. */
+.book-card {
+    /* Adds space inside the element. */
+    padding: 17px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Chooses whether flex items appear in a row or column. */
+    flex-direction: column;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Adds or changes only the top border. */
+    border-top: 3px solid var(--primary);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 3px 12px rgba(15,23,42,.06);
+}
+
+/* Changes `.book-card:hover` while the mouse pointer is over it. */
+.book-card:hover {
+    /* Changes the border colour. */
+    border-color: #99f6e4;
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-2px);
+}
+
+/* Styles the page element selected by `.book-card-top`. */
+.book-card-top {
+    /* Adds space below the element. */
+    margin-bottom: 11px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 8px;
+}
+
+/* Styles the page element selected by `.book-icon`. */
+.book-icon {
+    /* Sets the element width. */
+    width: 38px;
+    /* Sets the element height. */
+    height: 38px;
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Aligns grid items horizontally and vertically. */
+    place-items: center;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the background colour or background effect. */
+    background: var(--primary-soft);
+    /* Changes the text size. */
+    font-size: 19px;
+}
+
+/* Styles the page element selected by `.availability-badge`. */
+.availability-badge {
+    /* Adds space inside the element. */
+    padding: 4px 8px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Sets the text colour. */
+    color: #166534;
+    /* Sets the background colour or background effect. */
+    background: #dcfce7;
+    /* Changes the text size. */
+    font-size: 10px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+}
+
+/* Styles the page element selected by `.availability-reference-only`. */
+.availability-reference-only {
+    /* Sets the text colour. */
+    color: #92400e;
+    /* Sets the background colour or background effect. */
+    background: #fef3c7;
+}
+
+/* Styles the page element selected by `.availability-unavailable`. */
+.availability-unavailable {
+    /* Sets the text colour. */
+    color: #991b1b;
+    /* Sets the background colour or background effect. */
+    background: #fee2e2;
+}
+
+/* Styles the page element selected by `.book-card h3`. */
+.book-card h3 {
+    /* Adds space below the element. */
+    margin-bottom: 4px;
+    /* Changes the text size. */
+    font-size: 18px;
+}
+
+/* Styles the page element selected by `.book-author`. */
+.book-author {
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Changes the text size. */
+    font-size: 13px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+}
+
+/* Styles the page element selected by `.book-description`. */
+.book-description {
+    /* Adds space outside the element. */
+    margin: 10px 0;
+    /* Changes the text size. */
+    font-size: 13px;
+}
+
+/* Styles the page element selected by `.book-recommendation`. */
+.book-recommendation {
+    /* Adds space above the element. */
+    margin-top: auto;
+    /* Adds space inside the top of the element. */
+    padding-top: 12px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Chooses whether flex items appear in a row or column. */
+    flex-direction: column;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+    /* Adds or changes only the top border. */
+    border-top: 1px solid var(--line);
+}
+
+/* Styles the page element selected by `.book-recommendation strong`. */
+.book-recommendation strong {
+    /* Sets the text colour. */
+    color: #475569;
+    /* Changes the text size. */
+    font-size: 11px;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `.book-recommendation span`. */
+.book-recommendation span {
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Changes the text size. */
+    font-size: 13px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+}
+
+/* Styles the page element selected by `.library-empty-state`. */
+.library-empty-state {
+    /* Adds space inside the element. */
+    padding: 38px 20px;
+    /* Adds or changes the border around the element. */
+    border: 1px dashed #94a3b8;
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.library-empty-state > span`. */
+.library-empty-state > span {
+    /* Changes the text size. */
+    font-size: 35px;
+}
+
+/* Styles the page element selected by `.library-empty-state h3`. */
+.library-empty-state h3 {
+    /* Adds space outside the element. */
+    margin: 8px 0 4px;
+}
+
+/* Styles the page element selected by `.library-admin-container`. */
+.library-admin-container {
+    /* Adds space inside the top of the element. */
+    padding-top: 28px;
+}
+
+/* Styles the page element selected by `.library-admin-header`. */
+.library-admin-header {
+    /* Adds space below the element. */
+    margin-bottom: 20px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 18px;
+}
+
+/* Styles the page element selected by `.library-admin-header h1`. */
+.library-admin-header h1 {
+    /* Adds space below the element. */
+    margin-bottom: 4px;
+    /* Changes the text size. */
+    font-size: clamp(28px, 4vw, 38px);
+}
+
+/* Styles the page element selected by `.library-header-actions`. */
+.library-header-actions {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Allows flex items to move onto a new line when needed. */
+    flex-wrap: wrap;
+    /* Adds space between flex or grid items. */
+    gap: 7px;
+}
+
+/* Styles the page element selected by `.library-header-actions a`. */
+.library-header-actions a {
+    /* Adds space inside the element. */
+    padding: 8px 11px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Sets the text colour. */
+    color: #334155;
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Styles the page element selected by `.library-flash-message`. */
+.library-flash-message {
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #99f6e4;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Applies the following styles to all these elements: `.library-admin-card, .library-catalogue-section`. */
+.library-admin-card, .library-catalogue-section {
+    /* Adds space below the element. */
+    margin-bottom: 18px;
+    /* Adds space inside the element. */
+    padding: 18px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 3px 12px rgba(15,23,42,.06);
+}
+
+/* Styles the page element selected by `.library-book-form`. */
+.library-book-form {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(2, 1fr);
+    /* Adds space between flex or grid items. */
+    gap: 12px;
+}
+
+/* Styles the page element selected by `.library-form-group`. */
+.library-form-group {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Chooses whether flex items appear in a row or column. */
+    flex-direction: column;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+}
+
+/* Styles the page element selected by `.library-form-group label`. */
+.library-form-group label {
+    /* Sets the text colour. */
+    color: #334155;
+    /* Changes the text size. */
+    font-size: 13px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+}
+
+/* Styles the page element selected by `.library-full-width`. */
+.library-full-width {
+    /* Controls which grid columns the item covers. */
+    grid-column: 1 / -1;
+}
+
+/* Styles the page element selected by `.library-form-actions`. */
+.library-form-actions {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: flex-end;
+}
+
+/* Styles the page element selected by `.admin-book-grid`. */
+.admin-book-grid {
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Styles the page element selected by `.book-card-actions`. */
+.book-card-actions {
+    /* Adds space above the element. */
+    margin-top: 11px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Allows flex items to move onto a new line when needed. */
+    flex-wrap: wrap;
+    /* Adds space between flex or grid items. */
+    gap: 7px;
+}
+
+/* Applies the following styles to all these elements: `.book-card-actions button, .book-recommend-form button, .book-delete-form button`. */
+.book-card-actions button, .book-recommend-form button, .book-delete-form button {
+    /* Sets the minimum height of the element. */
+    min-height: 36px;
+    /* Adds space inside the element. */
+    padding: 7px 10px;
+    /* Changes the text size. */
+    font-size: 12px;
+}
+
+/* Styles the page element selected by `.secondary-button`. */
+.secondary-button {
+    /* Sets the text colour. */
+    color: #334155;
+    /* Sets the background colour or background effect. */
+    background: #e2e8f0;
+}
+
+/* Styles the page element selected by `.danger-button`. */
+.danger-button {
+    /* Sets the background colour or background effect. */
+    background: var(--danger);
+}
+
+/* Styles the page element selected by `.book-recommend-form`. */
+.book-recommend-form {
+    /* Adds space above the element. */
+    margin-top: 11px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Adds space between flex or grid items. */
+    gap: 7px;
+}
+
+/* Styles the page element selected by `.book-recommend-form select`. */
+.book-recommend-form select {
+    /* Controls how this item grows, shrinks, and uses available space. */
+    flex: 1;
+    /* Sets the minimum height of the element. */
+    min-height: 36px;
+}
+
+/* Styles the page element selected by `.book-delete-form`. */
+.book-delete-form {
+    /* Adds space above the element. */
+    margin-top: 8px;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 850px wide or smaller. */
+@media (max-width: 850px) {
+    /* Styles the page element selected by `.book-grid`. */
+    .book-grid {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 650px wide or smaller. */
+@media (max-width: 650px) {
+    /* Styles the page element selected by `.library-container`. */
+    .library-container {
+        /* Sets the element width. */
+        width: calc(100% - 22px);
+        /* Adds space inside the top of the element. */
+        padding-top: 22px;
+    }
+
+    /* Applies the following styles to all these elements: `.library-admin-header, .library-results-heading, .library-section-heading`. */
+    .library-admin-header, .library-results-heading, .library-section-heading {
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+    }
+
+    /* Applies the following styles to all these elements: `.library-search-form, .book-recommend-form`. */
+    .library-search-form, .book-recommend-form {
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+    }
+
+    /* Applies the following styles to all these elements: `.book-grid, .admin-book-grid, .library-book-form`. */
+    .book-grid, .admin-book-grid, .library-book-form {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: 1fr;
+    }
+
+    /* Styles the page element selected by `.library-full-width`. */
+    .library-full-width {
+        /* Controls which grid columns the item covers. */
+        grid-column: auto;
+    }
+}

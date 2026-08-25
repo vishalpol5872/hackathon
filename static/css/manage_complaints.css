@@ -1,0 +1,859 @@
+/* ==========================================================
+   Manage Complaints Page Styles
+
+   This file controls only this page.
+   Read the comment above each setting to understand its job.
+   You can edit this file without changing another dashboard.
+   ========================================================== */
+
+/* Stores reusable colours, sizes, and design values for this page. */
+:root {
+    /* Stores the reusable primary value for this page. */
+    --primary: #0f766e;
+    /* Stores the reusable primary dark value for this page. */
+    --primary-dark: #115e59;
+    /* Stores the reusable primary soft value for this page. */
+    --primary-soft: #ccfbf1;
+    /* Stores the reusable accent value for this page. */
+    --accent: #f59e0b;
+    /* Stores the reusable ink value for this page. */
+    --ink: #172033;
+    /* Stores the reusable muted value for this page. */
+    --muted: #64748b;
+    /* Stores the reusable page value for this page. */
+    --page: #f5f7fa;
+    /* Stores the reusable surface value for this page. */
+    --surface: #fff;
+    /* Stores the reusable line value for this page. */
+    --line: #dfe6ee;
+    /* Stores the reusable danger value for this page. */
+    --danger: #dc2626;
+    /* Stores the reusable success value for this page. */
+    --success: #15803d;
+    /* Stores the reusable radius value for this page. */
+    --radius: 12px;
+    /* Stores the reusable shadow value for this page. */
+    --shadow: 0 7px 20px rgba(15, 23, 42, .08);
+}
+
+/* Applies the same basic sizing reset to every page element. */
+*, *::before, *::after {
+    /* Makes width and height calculations include padding and borders. */
+    box-sizing: border-box;
+    /* Adds space outside the element. */
+    margin: 0;
+    /* Adds space inside the element. */
+    padding: 0;
+}
+
+/* Styles the page element selected by `html`. */
+html {
+    /* Controls whether page scrolling is smooth or immediate. */
+    scroll-behavior: smooth;
+}
+
+/* Styles the page element selected by `body`. */
+body {
+    /* Sets the minimum height of the element. */
+    min-height: 100vh;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: var(--page);
+    /* Chooses the text font. */
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.55;
+}
+
+/* Applies the following styles to all these elements: `h1, h2, h3, h4`. */
+h1, h2, h3, h4 {
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.2;
+}
+
+/* Styles the page element selected by `p`. */
+p {
+    /* Sets the text colour. */
+    color: var(--muted);
+}
+
+/* Styles the page element selected by `img`. */
+img {
+    /* Limits how wide the element can become. */
+    max-width: 100%;
+}
+
+/* Styles the page element selected by `.navbar`. */
+.navbar {
+    /* Chooses how the element is positioned on the page. */
+    position: sticky;
+    /* Sets the distance from the top for a positioned element. */
+    top: 0;
+    /* Controls which positioned element appears on top. */
+    z-index: 50;
+    /* Sets the minimum height of the element. */
+    min-height: 62px;
+    /* Adds space inside the element. */
+    padding: 11px clamp(18px, 5vw, 64px);
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 20px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: #0f172a;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 4px 16px rgba(15,23,42,.18);
+}
+
+/* Applies the following styles to all these elements: `.navbar h1, .navbar h2`. */
+.navbar h1, .navbar h2 {
+    /* Sets the text colour. */
+    color: #fff;
+}
+
+/* Styles the page element selected by `.navbar nav`. */
+.navbar nav {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+}
+
+/* Styles the page element selected by `.navbar a`. */
+.navbar a {
+    /* Adds space inside the element. */
+    padding: 7px 11px;
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Sets the text colour. */
+    color: #cbd5e1;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 650;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Changes `.navbar a:hover` while the mouse pointer is over it. */
+.navbar a:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: rgba(255,255,255,.1);
+}
+
+/* Applies the following styles to all these elements: `a, button`. */
+a, button {
+    /* Makes style changes happen smoothly. */
+    transition: 160ms ease;
+}
+
+/* Applies the following styles to all these elements: `button, .main-button, .primary-button, .back-button`. */
+button, .main-button, .primary-button, .back-button {
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 10px 17px;
+    /* Chooses how the element and its children are arranged. */
+    display: inline-flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: center;
+    /* Adds or changes the border around the element. */
+    border: 0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary);
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+    /* Changes the mouse pointer shown over the element. */
+    cursor: pointer;
+}
+
+/* Changes `button:hover, .main-button:hover, .primary-button:hover` while the mouse pointer is over it. */
+button:hover, .main-button:hover, .primary-button:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary-dark);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-1px);
+}
+
+/* Applies the following styles to all these elements: `input, select, textarea`. */
+input, select, textarea {
+    /* Sets the element width. */
+    width: 100%;
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 9px 12px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #cbd5e1;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+}
+
+/* Styles the page element selected by `textarea`. */
+textarea {
+    /* Sets the minimum height of the element. */
+    min-height: 100px;
+    /* Controls whether the user can resize the element. */
+    resize: vertical;
+}
+
+/* Changes `input:focus, select:focus, textarea:focus` while the user is typing or selecting it. */
+input:focus, select:focus, textarea:focus {
+    /* Changes the border colour. */
+    border-color: var(--primary);
+    /* Adds or removes the focus outline around an element. */
+    outline: 0;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 0 0 3px rgba(15,118,110,.13);
+}
+
+/* Applies the following styles to all these elements: `.card, .dashboard-section`. */
+.card, .dashboard-section {
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Styles the page element selected by `.empty-chat`. */
+.empty-chat {
+    /* Adds space inside the element. */
+    padding: 24px;
+    /* Sets the text colour. */
+    color: var(--muted);
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Applies the following styles to all these elements: `.unread-badge, .dashboard-unread-badge`. */
+.unread-badge, .dashboard-unread-badge {
+    /* Sets the minimum width of the element. */
+    min-width: 18px;
+    /* Adds space inside the element. */
+    padding: 2px 6px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--danger);
+    /* Changes the text size. */
+    font-size: 10px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.table-wrapper`. */
+.table-wrapper {
+    /* Controls horizontal overflow and scrolling. */
+    overflow-x: auto;
+}
+
+/* Styles the page element selected by `table`. */
+table {
+    /* Sets the element width. */
+    width: 100%;
+    /* Joins touching table borders together. */
+    border-collapse: collapse;
+}
+
+/* Applies the following styles to all these elements: `th, td`. */
+th, td {
+    /* Adds space inside the element. */
+    padding: 11px 13px;
+    /* Aligns the text horizontally. */
+    text-align: left;
+}
+
+/* Styles the page element selected by `th`. */
+th {
+    /* Sets the text colour. */
+    color: #dbeafe;
+    /* Sets the background colour or background effect. */
+    background: #1e293b;
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes the space between letters. */
+    letter-spacing: .04em;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `td`. */
+td {
+    /* Adds or changes only the bottom border. */
+    border-bottom: 1px solid var(--line);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+}
+
+/* Changes `tbody tr:hover td` while the mouse pointer is over it. */
+tbody tr:hover td {
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Styles the page element selected by `.student-error`. */
+.student-error {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #fecaca;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #991b1b;
+    /* Sets the background colour or background effect. */
+    background: #fef2f2;
+}
+
+/* Applies the following styles to all these elements: `.student-success, .notice-flash-message`. */
+.student-success, .notice-flash-message {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #bbf7d0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #166534;
+    /* Sets the background colour or background effect. */
+    background: #f0fdf4;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 700px wide or smaller. */
+@media (max-width: 700px) {
+    /* Styles the page element selected by `.navbar`. */
+    .navbar {
+        /* Chooses how the element is positioned on the page. */
+        position: relative;
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+        /* Adds space between flex or grid items. */
+        gap: 8px;
+        /* Adds space inside the element. */
+        padding: 13px 18px;
+    }
+
+    /* Styles the page element selected by `.navbar nav`. */
+    .navbar nav {
+        /* Sets the element width. */
+        width: 100%;
+        /* Controls horizontal overflow and scrolling. */
+        overflow-x: auto;
+    }
+
+    /* Styles the page element selected by `.navbar a`. */
+    .navbar a {
+        /* Controls wrapping and spaces inside text. */
+        white-space: nowrap;
+    }
+}
+
+/* ACCESSIBILITY: Reduces animation for users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+    /* Styles the page element selected by `html`. */
+    html {
+        /* Controls whether page scrolling is smooth or immediate. */
+        scroll-behavior: auto;
+    }
+
+    /* Applies the same basic sizing reset to every page element. */
+    *, *::before, *::after {
+        /* Makes style changes happen smoothly. */
+        transition: none !important;
+    }
+}
+
+/* Styles the page element selected by `.complaint-page`. */
+.complaint-page {
+    /* Sets the background colour or background effect. */
+    background: radial-gradient(circle at top left, rgba(15, 118, 110, .13), transparent 32%),
+        var(--page);
+}
+
+/* Styles the page element selected by `.complaint-container`. */
+.complaint-container {
+    /* Sets the element width. */
+    width: min(1020px, calc(100% - 32px));
+    /* Adds space outside the element. */
+    margin: 0 auto;
+    /* Adds space inside the element. */
+    padding: 34px 0 52px;
+}
+
+/* Styles the page element selected by `.complaint-student-layout`. */
+.complaint-student-layout {
+    /* Sets the minimum height of the element. */
+    min-height: 100vh;
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: .85fr 1.15fr;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 22px;
+}
+
+/* Applies the following styles to all these elements: `.complaint-intro-card,
+.complaint-form-card,
+.complaint-filter-card,
+.complaint-card,
+.complaint-empty-state`. */
+.complaint-intro-card,
+.complaint-form-card,
+.complaint-filter-card,
+.complaint-card,
+.complaint-empty-state {
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: 16px;
+    /* Sets the background colour or background effect. */
+    background: var(--surface);
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Applies the following styles to all these elements: `.complaint-intro-card,
+.complaint-form-card`. */
+.complaint-intro-card,
+.complaint-form-card {
+    /* Adds space inside the element. */
+    padding: clamp(22px, 4vw, 34px);
+}
+
+/* Styles the page element selected by `.complaint-eyebrow`. */
+.complaint-eyebrow {
+    /* Chooses how the element and its children are arranged. */
+    display: inline-block;
+    /* Adds space below the element. */
+    margin-bottom: 9px;
+    /* Sets the text colour. */
+    color: var(--primary);
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Changes the space between letters. */
+    letter-spacing: .08em;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Applies the following styles to all these elements: `.complaint-intro-card h1,
+.complaint-admin-header h1`. */
+.complaint-intro-card h1,
+.complaint-admin-header h1 {
+    /* Adds space below the element. */
+    margin-bottom: 10px;
+    /* Changes the text size. */
+    font-size: clamp(28px, 5vw, 42px);
+}
+
+/* Styles the page element selected by `.privacy-points`. */
+.privacy-points {
+    /* Adds space outside the element. */
+    margin: 24px 0;
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Adds space between flex or grid items. */
+    gap: 10px;
+}
+
+/* Styles the page element selected by `.privacy-points div`. */
+.privacy-points div {
+    /* Adds space inside the element. */
+    padding: 13px;
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Adds space between flex or grid items. */
+    gap: 3px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #99f6e4;
+    /* Rounds the corners. */
+    border-radius: 10px;
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Applies the following styles to all these elements: `.privacy-points span,
+.complaint-field small`. */
+.privacy-points span,
+.complaint-field small {
+    /* Sets the text colour. */
+    color: var(--muted);
+    /* Changes the text size. */
+    font-size: 12px;
+}
+
+/* Styles the page element selected by `.complaint-back-link`. */
+.complaint-back-link {
+    /* Chooses how the element and its children are arranged. */
+    display: inline-flex;
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Changes how bold the text is. */
+    font-weight: 750;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Changes `.complaint-back-link:hover` while the mouse pointer is over it. */
+.complaint-back-link:hover {
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: underline;
+}
+
+/* Styles the page element selected by `.complaint-section-heading`. */
+.complaint-section-heading {
+    /* Adds space below the element. */
+    margin-bottom: 20px;
+}
+
+/* Styles the page element selected by `.complaint-section-heading h2`. */
+.complaint-section-heading h2 {
+    /* Adds space below the element. */
+    margin-bottom: 5px;
+}
+
+/* Applies the following styles to all these elements: `.complaint-form,
+.complaint-review-form`. */
+.complaint-form,
+.complaint-review-form {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Adds space between flex or grid items. */
+    gap: 15px;
+}
+
+/* Styles the page element selected by `.complaint-field`. */
+.complaint-field {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Adds space between flex or grid items. */
+    gap: 6px;
+}
+
+/* Applies the following styles to all these elements: `.complaint-field label,
+.complaint-filter-form label`. */
+.complaint-field label,
+.complaint-filter-form label {
+    /* Changes the text size. */
+    font-size: 13px;
+    /* Changes how bold the text is. */
+    font-weight: 750;
+}
+
+/* Styles the page element selected by `.complaint-form textarea`. */
+.complaint-form textarea {
+    /* Sets the minimum height of the element. */
+    min-height: 190px;
+}
+
+/* Styles the page element selected by `.complaint-submit-button`. */
+.complaint-submit-button {
+    /* Sets the element width. */
+    width: 100%;
+}
+
+/* Styles the page element selected by `.complaint-flash`. */
+.complaint-flash {
+    /* Adds space below the element. */
+    margin-bottom: 16px;
+    /* Adds space inside the element. */
+    padding: 12px 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #99f6e4;
+    /* Rounds the corners. */
+    border-radius: 10px;
+    /* Sets the text colour. */
+    color: #115e59;
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+    /* Changes how bold the text is. */
+    font-weight: 650;
+}
+
+/* Styles the page element selected by `.complaint-admin-header`. */
+.complaint-admin-header {
+    /* Adds space below the element. */
+    margin-bottom: 20px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: flex-end;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 20px;
+}
+
+/* Styles the page element selected by `.complaint-filter-card`. */
+.complaint-filter-card {
+    /* Adds space below the element. */
+    margin-bottom: 18px;
+    /* Adds space inside the element. */
+    padding: 15px;
+}
+
+/* Styles the page element selected by `.complaint-filter-form`. */
+.complaint-filter-form {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: auto minmax(180px, 260px) auto;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 10px;
+}
+
+/* Styles the page element selected by `.complaint-list`. */
+.complaint-list {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Adds space between flex or grid items. */
+    gap: 14px;
+}
+
+/* Styles the page element selected by `.complaint-card`. */
+.complaint-card {
+    /* Adds space inside the element. */
+    padding: 20px;
+}
+
+/* Styles the page element selected by `.complaint-card-header`. */
+.complaint-card-header {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: flex-start;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 16px;
+}
+
+/* Styles the page element selected by `.complaint-meta`. */
+.complaint-meta {
+    /* Adds space below the element. */
+    margin-bottom: 7px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Allows flex items to move onto a new line when needed. */
+    flex-wrap: wrap;
+    /* Adds space between flex or grid items. */
+    gap: 6px;
+}
+
+/* Styles the page element selected by `.complaint-meta span`. */
+.complaint-meta span {
+    /* Adds space inside the element. */
+    padding: 3px 8px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Sets the text colour. */
+    color: #475569;
+    /* Sets the background colour or background effect. */
+    background: #f1f5f9;
+    /* Changes the text size. */
+    font-size: 11px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+}
+
+/* Styles the page element selected by `.complaint-status`. */
+.complaint-status {
+    /* Adds space inside the element. */
+    padding: 5px 9px;
+    /* Controls how this item grows, shrinks, and uses available space. */
+    flex: 0 0 auto;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Changes the text size. */
+    font-size: 11px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+}
+
+/* Styles the page element selected by `.status-new`. */
+.status-new {
+    /* Sets the text colour. */
+    color: #9a3412;
+    /* Sets the background colour or background effect. */
+    background: #ffedd5;
+}
+
+/* Styles the page element selected by `.status-reviewing`. */
+.status-reviewing {
+    /* Sets the text colour. */
+    color: #1d4ed8;
+    /* Sets the background colour or background effect. */
+    background: #dbeafe;
+}
+
+/* Styles the page element selected by `.status-resolved`. */
+.status-resolved {
+    /* Sets the text colour. */
+    color: #166534;
+    /* Sets the background colour or background effect. */
+    background: #dcfce7;
+}
+
+/* Styles the page element selected by `.status-dismissed`. */
+.status-dismissed {
+    /* Sets the text colour. */
+    color: #475569;
+    /* Sets the background colour or background effect. */
+    background: #e2e8f0;
+}
+
+/* Styles the page element selected by `.complaint-message`. */
+.complaint-message {
+    /* Adds space outside the element. */
+    margin: 16px 0;
+    /* Adds space inside the element. */
+    padding: 14px;
+    /* Adds or changes only the left border. */
+    border-left: 4px solid var(--primary);
+    /* Rounds the corners. */
+    border-radius: 0 9px 9px 0;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: #f8fafc;
+    /* Controls wrapping and spaces inside text. */
+    white-space: pre-wrap;
+}
+
+/* Styles the page element selected by `.complaint-review-form`. */
+.complaint-review-form {
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: 180px 1fr auto;
+    /* Controls how items line up across the row or column. */
+    align-items: end;
+}
+
+/* Styles the page element selected by `.complaint-note-field textarea`. */
+.complaint-note-field textarea {
+    /* Sets the minimum height of the element. */
+    min-height: 78px;
+}
+
+/* Styles the page element selected by `.complaint-delete-form`. */
+.complaint-delete-form {
+    /* Adds space above the element. */
+    margin-top: 10px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: flex-end;
+}
+
+/* Styles the page element selected by `.complaint-delete-form button`. */
+.complaint-delete-form button {
+    /* Sets the minimum height of the element. */
+    min-height: 36px;
+    /* Adds space inside the element. */
+    padding: 7px 11px;
+    /* Sets the text colour. */
+    color: #b91c1c;
+    /* Sets the background colour or background effect. */
+    background: #fee2e2;
+}
+
+/* Changes `.complaint-delete-form button:hover` while the mouse pointer is over it. */
+.complaint-delete-form button:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--danger);
+}
+
+/* Styles the page element selected by `.complaint-empty-state`. */
+.complaint-empty-state {
+    /* Adds space inside the element. */
+    padding: 42px 20px;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.complaint-empty-state h2`. */
+.complaint-empty-state h2 {
+    /* Adds space below the element. */
+    margin-bottom: 5px;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 780px wide or smaller. */
+@media (max-width: 780px) {
+    /* Styles the page element selected by `.complaint-student-layout`. */
+    .complaint-student-layout {
+        /* Adds space inside the top of the element. */
+        padding-top: 22px;
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: 1fr;
+    }
+
+    /* Styles the page element selected by `.complaint-admin-header`. */
+    .complaint-admin-header {
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+    }
+
+    /* Applies the following styles to all these elements: `.complaint-filter-form,
+    .complaint-review-form`. */
+    .complaint-filter-form,
+    .complaint-review-form {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: 1fr;
+    }
+}

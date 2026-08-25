@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Complaint Box - {{ app_name }}</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/student_complaint.css') }}?v=1"
+    >
+</head>
+
+<body class="complaint-page">
+
+    <main class="complaint-container complaint-student-layout">
+
+        <section class="complaint-intro-card">
+            <span class="complaint-eyebrow">Student Support</span>
+            <h1>Anonymous Complaint Box</h1>
+            <p>
+                Send a concern directly to the Super Admin. Your student ID,
+                name, email, department, and account are not saved with the complaint.
+            </p>
+
+            <div class="privacy-points">
+                <div>
+                    <strong>No identity stored</strong>
+                    <span>The complaint table contains no student account field.</span>
+                </div>
+                <div>
+                    <strong>Super Admin only</strong>
+                    <span>Department and Library admins cannot open complaints.</span>
+                </div>
+            </div>
+
+            <a href="{{ url_for('student_dashboard') }}" class="complaint-back-link">
+                Back to Student Dashboard
+            </a>
+        </section>
+
+
+        <section class="complaint-form-card">
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="complaint-flash">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="complaint-section-heading">
+                <h2>Write your complaint</h2>
+                <p>Do not include your name or student ID in the message.</p>
+            </div>
+
+            <form method="POST" class="complaint-form">
+
+                <div class="complaint-field">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="complaint-field">
+                    <label for="subject">Subject</label>
+                    <input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        maxlength="120"
+                        placeholder="Short summary of the problem"
+                        required
+                    >
+                </div>
+
+                <div class="complaint-field">
+                    <label for="complaint_text">Complaint details</label>
+                    <textarea
+                        id="complaint_text"
+                        name="complaint_text"
+                        minlength="10"
+                        maxlength="3000"
+                        rows="9"
+                        placeholder="Explain what happened and what should be improved..."
+                        required
+                    ></textarea>
+                    <small>10–3000 characters</small>
+                </div>
+
+                <button type="submit" class="complaint-submit-button">
+                    Submit Anonymously
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

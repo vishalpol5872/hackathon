@@ -16,7 +16,7 @@
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}?v=900"
+        href="{{ url_for('static', filename='css/student_dashboard.css') }}?v=1"
     >
 
 </head>
@@ -108,8 +108,15 @@
 
             <!-- LIBRARY -->
 
-            <a href="#">
+            <a href="{{ url_for('student_library') }}">
                 Library
+            </a>
+
+
+            <!-- ANONYMOUS COMPLAINT BOX -->
+
+            <a href="{{ url_for('student_complaint') }}">
+                Anonymous Complaint Box
             </a>
 
 

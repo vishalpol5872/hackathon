@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Library - {{ app_name }}</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/manage_library.css') }}?v=1"
+    >
+</head>
+
+<body class="library-page-body">
+
+    <main class="library-container library-admin-container">
+
+        <header class="library-admin-header">
+            <div>
+                <span class="library-eyebrow">Library Department</span>
+                <h1>Manage Library</h1>
+                <p>
+                    Add books and manage department recommendations.
+                </p>
+            </div>
+
+            <div class="library-header-actions">
+                <a href="{{ url_for('student_library') }}">
+                    View Catalogue
+                </a>
+
+                {% if is_library_admin %}
+                    <a href="{{ url_for('manage_notices') }}">
+                        Send Library Notice
+                    </a>
+                {% endif %}
+
+                <a href="{{ url_for('admin_dashboard') }}">
+                    Dashboard
+                </a>
+            </div>
+        </header>
+
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="library-flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        {% if can_manage_books %}
+
+            <section class="library-admin-card">
+                <div class="library-section-heading">
+                    <h2>Add a new book</h2>
+                    <p>Only the Library admin and Super Admin can add books.</p>
+                </div>
+
+                <form method="POST" class="library-book-form">
+                    <input type="hidden" name="action" value="add_book">
+
+                    <div class="library-form-group">
+                        <label for="title">Book name</label>
+                        <input id="title" name="title" type="text" required>
+                    </div>
+
+                    <div class="library-form-group">
+                        <label for="author">Author</label>
+                        <input id="author" name="author" type="text" required>
+                    </div>
+
+                    <div class="library-form-group">
+                        <label for="availability">Availability</label>
+                        <select id="availability" name="availability">
+                            <option value="Available">Available</option>
+                            <option value="Reference Only">Reference Only</option>
+                            <option value="Unavailable">Unavailable</option>
+                        </select>
+                    </div>
+
+                    <div class="library-form-group">
+                        <label for="recommended_department_id">
+                            Recommended department
+                        </label>
+
+                        <select
+                            id="recommended_department_id"
+                            name="recommended_department_id"
+                        >
+                            <option value="">No department yet</option>
+
+                            {% for department in departments %}
+                                <option value="{{ department['department_id'] }}">
+                                    {{ department["name"] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="library-form-group library-full-width">
+                        <label for="description">Short description</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="3"
+                        ></textarea>
+                    </div>
+
+                    <div class="library-form-actions library-full-width">
+                        <button type="submit">Add Book</button>
+                    </div>
+                </form>
+            </section>
+
+        {% endif %}
+
+
+        <section class="library-catalogue-section">
+
+            <div class="library-section-heading">
+                <h2>Book catalogue</h2>
+                <p>
+                    {% if role == "department_admin" and not is_library_admin %}
+                        Recommend useful books for the {{ department_name }} Department.
+                    {% else %}
+                        Search and maintain the Library collection.
+                    {% endif %}
+                </p>
+            </div>
+
+            <form
+                method="GET"
+                action="{{ url_for('manage_library') }}"
+                class="library-search-form"
+            >
+                <input
+                    type="search"
+                    name="search"
+                    value="{{ search_text }}"
+                    placeholder="Search by book name or author..."
+                >
+                <button type="submit">Search</button>
+            </form>
+
+
+            {% if books %}
+
+                <div class="book-grid admin-book-grid">
+
+                    {% for book in books %}
+
+                        <article class="book-card">
+                            <div class="book-card-top">
+                                <span class="book-icon">📘</span>
+                                <span class="availability-badge">
+                                    {{ book["availability"] }}
+                                </span>
+                            </div>
+
+                            <h3>{{ book["title"] }}</h3>
+                            <p class="book-author">by {{ book["author"] }}</p>
+
+                            {% if book["description"] %}
+                                <p class="book-description">
+                                    {{ book["description"] }}
+                                </p>
+                            {% endif %}
+
+                            <div class="book-recommendation">
+                                <strong>Recommended by</strong>
+                                <span>
+                                    {{
+                                        book["recommended_departments"]
+                                        or "No department yet"
+                                    }}
+                                </span>
+                            </div>
+
+
+                            {% if role == "department_admin" %}
+
+                                <div class="book-card-actions">
+                                    <form method="POST">
+                                        <input type="hidden" name="action" value="recommend_book">
+                                        <input type="hidden" name="book_id" value="{{ book['book_id'] }}">
+                                        <button type="submit">Recommend</button>
+                                    </form>
+
+                                    <form method="POST">
+                                        <input type="hidden" name="action" value="remove_recommendation">
+                                        <input type="hidden" name="book_id" value="{{ book['book_id'] }}">
+                                        <button type="submit" class="secondary-button">
+                                            Remove Recommendation
+                                        </button>
+                                    </form>
+                                </div>
+
+                            {% elif role == "super_admin" %}
+
+                                <form method="POST" class="book-recommend-form">
+                                    <input type="hidden" name="action" value="recommend_book">
+                                    <input type="hidden" name="book_id" value="{{ book['book_id'] }}">
+
+                                    <select name="department_id" required>
+                                        <option value="">Choose department</option>
+                                        {% for department in departments %}
+                                            <option value="{{ department['department_id'] }}">
+                                                {{ department["name"] }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <button type="submit">Recommend</button>
+                                </form>
+
+                            {% endif %}
+
+
+                            {% if can_manage_books %}
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('delete_library_book_route', book_id=book['book_id']) }}"
+                                    class="book-delete-form"
+                                    onsubmit="return confirm('Remove this book?');"
+                                >
+                                    <button type="submit" class="danger-button">
+                                        Delete Book
+                                    </button>
+                                </form>
+                            {% endif %}
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+                <div class="library-empty-state">
+                    <span>📚</span>
+                    <h3>No books found</h3>
+                    <p>Add the first book or try another search.</p>
+                </div>
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</body>
+</html>
+    

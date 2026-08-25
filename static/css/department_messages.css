@@ -1,0 +1,574 @@
+/* ==========================================================
+   Department Messages Page Styles
+
+   This file controls only this page.
+   Read the comment above each setting to understand its job.
+   You can edit this file without changing another dashboard.
+   ========================================================== */
+
+/* Stores reusable colours, sizes, and design values for this page. */
+:root {
+    /* Stores the reusable primary value for this page. */
+    --primary: #0f766e;
+    /* Stores the reusable primary dark value for this page. */
+    --primary-dark: #115e59;
+    /* Stores the reusable primary soft value for this page. */
+    --primary-soft: #ccfbf1;
+    /* Stores the reusable accent value for this page. */
+    --accent: #f59e0b;
+    /* Stores the reusable ink value for this page. */
+    --ink: #172033;
+    /* Stores the reusable muted value for this page. */
+    --muted: #64748b;
+    /* Stores the reusable page value for this page. */
+    --page: #f5f7fa;
+    /* Stores the reusable surface value for this page. */
+    --surface: #fff;
+    /* Stores the reusable line value for this page. */
+    --line: #dfe6ee;
+    /* Stores the reusable danger value for this page. */
+    --danger: #dc2626;
+    /* Stores the reusable success value for this page. */
+    --success: #15803d;
+    /* Stores the reusable radius value for this page. */
+    --radius: 12px;
+    /* Stores the reusable shadow value for this page. */
+    --shadow: 0 7px 20px rgba(15, 23, 42, .08);
+}
+
+/* Applies the same basic sizing reset to every page element. */
+*, *::before, *::after {
+    /* Makes width and height calculations include padding and borders. */
+    box-sizing: border-box;
+    /* Adds space outside the element. */
+    margin: 0;
+    /* Adds space inside the element. */
+    padding: 0;
+}
+
+/* Styles the page element selected by `html`. */
+html {
+    /* Controls whether page scrolling is smooth or immediate. */
+    scroll-behavior: smooth;
+}
+
+/* Styles the page element selected by `body`. */
+body {
+    /* Sets the minimum height of the element. */
+    min-height: 100vh;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: var(--page);
+    /* Chooses the text font. */
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.55;
+}
+
+/* Applies the following styles to all these elements: `h1, h2, h3, h4`. */
+h1, h2, h3, h4 {
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.2;
+}
+
+/* Styles the page element selected by `p`. */
+p {
+    /* Sets the text colour. */
+    color: var(--muted);
+}
+
+/* Styles the page element selected by `img`. */
+img {
+    /* Limits how wide the element can become. */
+    max-width: 100%;
+}
+
+/* Styles the page element selected by `.navbar`. */
+.navbar {
+    /* Chooses how the element is positioned on the page. */
+    position: sticky;
+    /* Sets the distance from the top for a positioned element. */
+    top: 0;
+    /* Controls which positioned element appears on top. */
+    z-index: 50;
+    /* Sets the minimum height of the element. */
+    min-height: 62px;
+    /* Adds space inside the element. */
+    padding: 11px clamp(18px, 5vw, 64px);
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 20px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: #0f172a;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 4px 16px rgba(15,23,42,.18);
+}
+
+/* Applies the following styles to all these elements: `.navbar h1, .navbar h2`. */
+.navbar h1, .navbar h2 {
+    /* Sets the text colour. */
+    color: #fff;
+}
+
+/* Styles the page element selected by `.navbar nav`. */
+.navbar nav {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+}
+
+/* Styles the page element selected by `.navbar a`. */
+.navbar a {
+    /* Adds space inside the element. */
+    padding: 7px 11px;
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Sets the text colour. */
+    color: #cbd5e1;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 650;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Changes `.navbar a:hover` while the mouse pointer is over it. */
+.navbar a:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: rgba(255,255,255,.1);
+}
+
+/* Applies the following styles to all these elements: `a, button`. */
+a, button {
+    /* Makes style changes happen smoothly. */
+    transition: 160ms ease;
+}
+
+/* Applies the following styles to all these elements: `button, .main-button, .primary-button, .back-button`. */
+button, .main-button, .primary-button, .back-button {
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 10px 17px;
+    /* Chooses how the element and its children are arranged. */
+    display: inline-flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: center;
+    /* Adds or changes the border around the element. */
+    border: 0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary);
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+    /* Changes the mouse pointer shown over the element. */
+    cursor: pointer;
+}
+
+/* Changes `button:hover, .main-button:hover, .primary-button:hover` while the mouse pointer is over it. */
+button:hover, .main-button:hover, .primary-button:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary-dark);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-1px);
+}
+
+/* Applies the following styles to all these elements: `input, select, textarea`. */
+input, select, textarea {
+    /* Sets the element width. */
+    width: 100%;
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 9px 12px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #cbd5e1;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+}
+
+/* Styles the page element selected by `textarea`. */
+textarea {
+    /* Sets the minimum height of the element. */
+    min-height: 100px;
+    /* Controls whether the user can resize the element. */
+    resize: vertical;
+}
+
+/* Changes `input:focus, select:focus, textarea:focus` while the user is typing or selecting it. */
+input:focus, select:focus, textarea:focus {
+    /* Changes the border colour. */
+    border-color: var(--primary);
+    /* Adds or removes the focus outline around an element. */
+    outline: 0;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 0 0 3px rgba(15,118,110,.13);
+}
+
+/* Applies the following styles to all these elements: `.card, .dashboard-section`. */
+.card, .dashboard-section {
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Styles the page element selected by `.empty-chat`. */
+.empty-chat {
+    /* Adds space inside the element. */
+    padding: 24px;
+    /* Sets the text colour. */
+    color: var(--muted);
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Applies the following styles to all these elements: `.unread-badge, .dashboard-unread-badge`. */
+.unread-badge, .dashboard-unread-badge {
+    /* Sets the minimum width of the element. */
+    min-width: 18px;
+    /* Adds space inside the element. */
+    padding: 2px 6px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--danger);
+    /* Changes the text size. */
+    font-size: 10px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.table-wrapper`. */
+.table-wrapper {
+    /* Controls horizontal overflow and scrolling. */
+    overflow-x: auto;
+}
+
+/* Styles the page element selected by `table`. */
+table {
+    /* Sets the element width. */
+    width: 100%;
+    /* Joins touching table borders together. */
+    border-collapse: collapse;
+}
+
+/* Applies the following styles to all these elements: `th, td`. */
+th, td {
+    /* Adds space inside the element. */
+    padding: 11px 13px;
+    /* Aligns the text horizontally. */
+    text-align: left;
+}
+
+/* Styles the page element selected by `th`. */
+th {
+    /* Sets the text colour. */
+    color: #dbeafe;
+    /* Sets the background colour or background effect. */
+    background: #1e293b;
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes the space between letters. */
+    letter-spacing: .04em;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `td`. */
+td {
+    /* Adds or changes only the bottom border. */
+    border-bottom: 1px solid var(--line);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+}
+
+/* Changes `tbody tr:hover td` while the mouse pointer is over it. */
+tbody tr:hover td {
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Styles the page element selected by `.student-error`. */
+.student-error {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #fecaca;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #991b1b;
+    /* Sets the background colour or background effect. */
+    background: #fef2f2;
+}
+
+/* Applies the following styles to all these elements: `.student-success, .notice-flash-message`. */
+.student-success, .notice-flash-message {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #bbf7d0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #166534;
+    /* Sets the background colour or background effect. */
+    background: #f0fdf4;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 700px wide or smaller. */
+@media (max-width: 700px) {
+    /* Styles the page element selected by `.navbar`. */
+    .navbar {
+        /* Chooses how the element is positioned on the page. */
+        position: relative;
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+        /* Adds space between flex or grid items. */
+        gap: 8px;
+        /* Adds space inside the element. */
+        padding: 13px 18px;
+    }
+
+    /* Styles the page element selected by `.navbar nav`. */
+    .navbar nav {
+        /* Sets the element width. */
+        width: 100%;
+        /* Controls horizontal overflow and scrolling. */
+        overflow-x: auto;
+    }
+
+    /* Styles the page element selected by `.navbar a`. */
+    .navbar a {
+        /* Controls wrapping and spaces inside text. */
+        white-space: nowrap;
+    }
+}
+
+/* ACCESSIBILITY: Reduces animation for users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+    /* Styles the page element selected by `html`. */
+    html {
+        /* Controls whether page scrolling is smooth or immediate. */
+        scroll-behavior: auto;
+    }
+
+    /* Applies the same basic sizing reset to every page element. */
+    *, *::before, *::after {
+        /* Makes style changes happen smoothly. */
+        transition: none !important;
+    }
+}
+
+/* Styles the page element selected by `.message-page`. */
+.message-page {
+    /* Sets the element width. */
+    width: min(850px, calc(100% - 28px));
+    /* Adds space outside the element. */
+    margin: 22px auto;
+}
+
+/* Styles the page element selected by `.message-page-header`. */
+.message-page-header {
+    /* Adds space below the element. */
+    margin-bottom: 16px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 12px;
+}
+
+/* Styles the page element selected by `.message-page-header h1`. */
+.message-page-header h1 {
+    /* Adds space below the element. */
+    margin-bottom: 3px;
+}
+
+/* Styles the page element selected by `.message-page-header a`. */
+.message-page-header a {
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Styles the page element selected by `.start-chat-card`. */
+.start-chat-card {
+    /* Adds space below the element. */
+    margin-bottom: 18px;
+    /* Adds space inside the element. */
+    padding: 15px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+}
+
+/* Styles the page element selected by `.start-chat-card form`. */
+.start-chat-card form {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Adds space between flex or grid items. */
+    gap: 8px;
+}
+
+/* Styles the page element selected by `.start-chat-card select`. */
+.start-chat-card select {
+    /* Controls how this item grows, shrinks, and uses available space. */
+    flex: 1;
+}
+
+/* Styles the page element selected by `.conversation-list`. */
+.conversation-list {
+    /* Controls what happens when content is larger than its box. */
+    overflow: hidden;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 3px 12px rgba(15,23,42,.06);
+}
+
+/* Styles the page element selected by `.conversation-item`. */
+.conversation-item {
+    /* Adds space inside the element. */
+    padding: 12px 13px;
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 10px;
+    /* Adds or changes only the bottom border. */
+    border-bottom: 1px solid var(--line);
+    /* Sets the text colour. */
+    color: inherit;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Changes `.conversation-item:hover` while the mouse pointer is over it. */
+.conversation-item:hover {
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Styles the page element selected by `.conversation-avatar`. */
+.conversation-avatar {
+    /* Sets the element width. */
+    width: 39px;
+    /* Sets the element height. */
+    height: 39px;
+    /* Controls how this item grows, shrinks, and uses available space. */
+    flex: 0 0 auto;
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Aligns grid items horizontally and vertically. */
+    place-items: center;
+    /* Rounds the corners. */
+    border-radius: 50%;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary);
+    /* Changes how bold the text is. */
+    font-weight: 800;
+}
+
+/* Styles the page element selected by `.conversation-info`. */
+.conversation-info {
+    /* Controls how this item grows, shrinks, and uses available space. */
+    flex: 1;
+}
+
+/* Styles the page element selected by `.conversation-info p`. */
+.conversation-info p {
+    /* Adds space above the element. */
+    margin-top: 3px;
+    /* Changes the text size. */
+    font-size: 12px;
+}
+
+/* Styles the page element selected by `.conversation-title`. */
+.conversation-title {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 8px;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 600px wide or smaller. */
+@media (max-width: 600px) {
+    /* Styles the page element selected by `.message-page-header`. */
+    .message-page-header {
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+    }
+
+    /* Styles the page element selected by `.start-chat-card form`. */
+    .start-chat-card form {
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+    }
+}

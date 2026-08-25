@@ -1,6 +1,11 @@
 import os
 import uuid
+from openai import OpenAI
 
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY")
+)
 from datetime import datetime
 
 from flask import (
@@ -79,7 +84,18 @@ from database.database import (
     update_notice,
     get_public_general_notices,
     get_college_info,
-    get_filtered_notices_for_student
+    get_filtered_notices_for_student,
+
+    get_library_books,
+    add_library_book,
+    recommend_library_book,
+    remove_library_recommendation,
+    delete_library_book,
+
+    create_anonymous_complaint,
+    get_anonymous_complaints,
+    update_anonymous_complaint,
+    delete_anonymous_complaint
 )
 
 
@@ -628,6 +644,16 @@ def admin_dashboard():
         )
 
 
+    if (
+        session.get("role") == "department_admin"
+        and session.get("department_name") == "Library"
+    ):
+
+        return redirect(
+            url_for("library_dashboard")
+        )
+
+
     # ========================================================
     # UNREAD DEPARTMENT MESSAGES
     # ========================================================
@@ -689,6 +715,31 @@ def admin_dashboard():
         unread_messages=(
             unread_messages
         )
+    )
+
+
+# ============================================================
+# LIBRARY ADMIN DASHBOARD
+# ============================================================
+
+@app.route("/library/dashboard")
+def library_dashboard():
+
+    if (
+        session.get("user_type") != "admin"
+        or session.get("role") != "department_admin"
+        or session.get("department_name") != "Library"
+    ):
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+
+    return render_template(
+        "library_dashboard.html",
+        name=session.get("name"),
+        admin_id=session.get("admin_id")
     )
 
 # ============================================================
@@ -2081,7 +2132,8 @@ def manage_notices():
         "Exam",
         "Event",
         "Urgent",
-        "Scholarship"
+        "Scholarship",
+        "Library"
     ]
 
 
@@ -2153,12 +2205,18 @@ def manage_notices():
                 department_id
             )
 
-            # Department admins can only send
-            # notices to their own department.
+            # Library announcements are useful to every
+            # student, so they target all departments.
 
-            target_department_id = (
-                department_id
-            )
+            if department_name == "Library":
+
+                target_department_id = None
+
+            else:
+
+                target_department_id = (
+                    department_id
+                )
 
 
         else:
@@ -2400,6 +2458,7 @@ def edit_notice(
 
     role = session.get("role")
     department_id = session.get("department_id")
+    department_name = session.get("department_name")
 
     notice = get_notice(notice_id)
 
@@ -2428,7 +2487,8 @@ def edit_notice(
         "Exam",
         "Event",
         "Urgent",
-        "Scholarship"
+        "Scholarship",
+        "Library"
     ]
 
 
@@ -2496,7 +2556,13 @@ def edit_notice(
 
         if role == "department_admin":
 
-            target_department_id = department_id
+            if department_name == "Library":
+
+                target_department_id = None
+
+            else:
+
+                target_department_id = department_id
 
         else:
 
@@ -2629,8 +2695,48 @@ def edit_notice(
 
 
 # ============================================================
-# STUDENT KNOWLEDGE ASSISTANT
+# FREE OPENROUTER AI
 # ============================================================
+
+def ask_ai(question, chat_history=None):
+    try:
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a helpful college student assistant. "
+                    "Answer clearly and simply. Do not invent "
+                    "college-specific facts."
+                )
+            }
+        ]
+
+        if chat_history:
+            for message in chat_history[-6:]:
+                role = message.get("role")
+                content = message.get("text", "")
+                if role in ("user", "assistant") and content:
+                    messages.append({
+                        "role": role,
+                        "content": content
+                    })
+
+        messages.append({
+            "role": "user",
+            "content": question
+        })
+
+        response = client.chat.completions.create(
+            model="openrouter/free",
+            messages=messages
+        )
+
+        return response.choices[0].message.content.strip()
+
+    except Exception as e:
+        print("AI Error:", e)
+        return None
+
 
 @app.route(
     "/student/assistant",
@@ -2650,20 +2756,10 @@ def student_assistant():
             url_for("login")
         )
 
-
-    # ========================================================
-    # CHAT HISTORY
-    # ========================================================
-
     chat_history = session.get(
         "assistant_chat",
         []
     )
-
-
-    # ========================================================
-    # POST
-    # ========================================================
 
     if request.method == "POST":
 
@@ -2671,11 +2767,6 @@ def student_assistant():
             "action",
             "ask"
         )
-
-
-        # ====================================================
-        # CLEAR CHAT
-        # ====================================================
 
         if action == "clear_chat":
 
@@ -2685,17 +2776,11 @@ def student_assistant():
 
             session.modified = True
 
-
             return redirect(
                 url_for(
                     "student_assistant"
                 )
             )
-
-
-        # ====================================================
-        # STUDENT QUESTION
-        # ====================================================
 
         question = (
             request.form.get(
@@ -2705,38 +2790,22 @@ def student_assistant():
             .strip()
         )
 
-
         if question:
-
-            # ------------------------------------------------
-            # ADD STUDENT MESSAGE
-            # ------------------------------------------------
 
             chat_history.append({
                 "role": "user",
                 "text": question
             })
 
-
-            # ------------------------------------------------
-            # SEARCH ALL DEPARTMENTS
-            # ------------------------------------------------
-
             answers = search_faqs(
                 question
             )
-
-
-            # ------------------------------------------------
-            # ANSWER FOUND
-            # ------------------------------------------------
 
             if answers:
 
                 best_answer = (
                     answers[0]
                 )
-
 
                 department_name = (
                     best_answer[
@@ -2745,7 +2814,6 @@ def student_assistant():
                     or ""
                 )
 
-
                 subject_name = (
                     best_answer[
                         "subject_name"
@@ -2753,75 +2821,62 @@ def student_assistant():
                     or ""
                 )
 
-
                 source = (
                     department_name
                 )
 
-
                 if subject_name:
 
                     if source:
-
                         source += " • "
 
                     source += subject_name
 
-
                 chat_history.append({
-
                     "role": "assistant",
-
                     "text": (
                         best_answer[
                             "answer"
                         ]
                     ),
-
                     "source": source
-
                 })
-
-
-            # ------------------------------------------------
-            # NO VERIFIED ANSWER
-            # ------------------------------------------------
 
             else:
 
+                ai_answer = ask_ai(
+                    question,
+                    chat_history
+                )
+
                 chat_history.append({
-
                     "role": "assistant",
-
                     "text": (
+                        ai_answer
+                        or
                         "I couldn't find a verified answer "
                         "for that question in the college "
                         "knowledge base. Try asking it in "
                         "another way, or contact the relevant "
                         "department through Department Chat."
                     ),
-
                     "source": (
+                        "OpenRouter AI"
+                        if ai_answer
+                        else
                         "Student Assistant"
                     )
-
                 })
-
-
-            # Keep recent conversation only
 
             chat_history = (
                 chat_history[-12:]
             )
 
-
             session[
                 "assistant_chat"
             ] = chat_history
 
-
             session.modified = True
-
 
             return redirect(
                 url_for(
@@ -2829,14 +2884,8 @@ def student_assistant():
                 )
             )
 
-
-    # ========================================================
-    # PAGE
-    # ========================================================
-
     return render_template(
         "student_assistant.html",
-
         chat_history=chat_history
     )
 
@@ -4118,6 +4167,530 @@ def manage_timetable():
         timetable_data=(
             timetable_data
         )
+    )
+
+
+# ============================================================
+# LIBRARY CATALOGUE
+# ============================================================
+
+@app.route("/library")
+def student_library():
+
+    search_text = request.args.get(
+        "search",
+        ""
+    ).strip()
+
+    books = get_library_books(
+        search_text
+    )
+
+    return render_template(
+        "student_library.html",
+        books=books,
+        search_text=search_text,
+        user_type=session.get("user_type")
+    )
+
+
+# ============================================================
+# ADMIN LIBRARY MANAGEMENT
+# ============================================================
+
+@app.route(
+    "/admin/library",
+    methods=["GET", "POST"]
+)
+def manage_library():
+
+    if session.get("user_type") != "admin":
+
+        return redirect(
+            url_for("login")
+        )
+
+
+    role = session.get("role")
+    department_id = session.get("department_id")
+    department_name = session.get("department_name")
+    admin_id = session.get("admin_id")
+
+    is_library_admin = (
+        role == "department_admin"
+        and department_name == "Library"
+    )
+
+    can_manage_books = (
+        role == "super_admin"
+        or is_library_admin
+    )
+
+
+    if request.method == "POST":
+
+        action = request.form.get(
+            "action",
+            ""
+        )
+
+
+        # ----------------------------------------------------
+        # LIBRARY ADMIN / SUPER ADMIN ADDS A BOOK
+        # ----------------------------------------------------
+
+        if action == "add_book":
+
+            if not can_manage_books:
+
+                flash(
+                    "Only the Library admin or Super Admin can add books."
+                )
+
+                return redirect(
+                    url_for("manage_library")
+                )
+
+
+            title = request.form.get(
+                "title",
+                ""
+            ).strip()
+
+            author = request.form.get(
+                "author",
+                ""
+            ).strip()
+
+            description = request.form.get(
+                "description",
+                ""
+            ).strip()
+
+            availability = request.form.get(
+                "availability",
+                "Available"
+            ).strip()
+
+            allowed_availability = {
+                "Available",
+                "Reference Only",
+                "Unavailable"
+            }
+
+            if availability not in allowed_availability:
+                availability = "Available"
+
+
+            recommendation_value = request.form.get(
+                "recommended_department_id",
+                ""
+            ).strip()
+
+            recommended_department_id = None
+
+            if recommendation_value.isdigit():
+
+                recommended_department_id = int(
+                    recommendation_value
+                )
+
+
+            if not title or not author:
+
+                flash(
+                    "Book name and author are required."
+                )
+
+            else:
+
+                success, message = add_library_book(
+                    title=title,
+                    author=author,
+                    description=description,
+                    availability=availability,
+                    added_by=admin_id,
+                    recommended_department_id=(
+                        recommended_department_id
+                    )
+                )
+
+                flash(message)
+
+
+        # ----------------------------------------------------
+        # DEPARTMENT ADMIN RECOMMENDS AN EXISTING BOOK
+        # ----------------------------------------------------
+
+        elif action == "recommend_book":
+
+            book_value = request.form.get(
+                "book_id",
+                ""
+            ).strip()
+
+            recommendation_department_id = None
+
+
+            if role == "department_admin":
+
+                recommendation_department_id = department_id
+
+
+            elif role == "super_admin":
+
+                selected_department = request.form.get(
+                    "department_id",
+                    ""
+                ).strip()
+
+                if selected_department.isdigit():
+
+                    recommendation_department_id = int(
+                        selected_department
+                    )
+
+
+            if (
+                book_value.isdigit()
+                and recommendation_department_id
+            ):
+
+                success, message = recommend_library_book(
+                    book_id=int(book_value),
+                    department_id=(
+                        recommendation_department_id
+                    ),
+                    recommended_by=admin_id
+                )
+
+                flash(message)
+
+            else:
+
+                flash(
+                    "Choose a valid book and department."
+                )
+
+
+        # ----------------------------------------------------
+        # DEPARTMENT ADMIN REMOVES ITS RECOMMENDATION
+        # ----------------------------------------------------
+
+        elif action == "remove_recommendation":
+
+            book_value = request.form.get(
+                "book_id",
+                ""
+            ).strip()
+
+            if (
+                role == "department_admin"
+                and department_id
+                and book_value.isdigit()
+            ):
+
+                removed = remove_library_recommendation(
+                    int(book_value),
+                    department_id
+                )
+
+                if removed:
+                    flash("Recommendation removed.")
+                else:
+                    flash("No recommendation was found.")
+
+
+        return redirect(
+            url_for("manage_library")
+        )
+
+
+    search_text = request.args.get(
+        "search",
+        ""
+    ).strip()
+
+    books = get_library_books(
+        search_text
+    )
+
+    departments = get_all_departments()
+
+    return render_template(
+        "manage_library.html",
+        books=books,
+        departments=departments,
+        search_text=search_text,
+        role=role,
+        department_id=department_id,
+        department_name=department_name,
+        is_library_admin=is_library_admin,
+        can_manage_books=can_manage_books
+    )
+
+
+@app.route(
+    "/admin/library/books/<int:book_id>/delete",
+    methods=["POST"]
+)
+def delete_library_book_route(book_id):
+
+    if session.get("user_type") != "admin":
+
+        return redirect(
+            url_for("login")
+        )
+
+
+    can_manage_books = (
+        session.get("role") == "super_admin"
+        or session.get("department_name") == "Library"
+    )
+
+
+    if not can_manage_books:
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+
+    if delete_library_book(book_id):
+        flash("Book removed from the Library catalogue.")
+    else:
+        flash("Book not found.")
+
+
+    return redirect(
+        url_for("manage_library")
+    )
+
+
+# ============================================================
+# ANONYMOUS STUDENT COMPLAINT BOX
+# ============================================================
+
+@app.route(
+    "/student/complaint",
+    methods=["GET", "POST"]
+)
+def student_complaint():
+
+    if session.get("user_type") != "student":
+
+        return redirect(
+            url_for("login")
+        )
+
+
+    categories = [
+        "Academic",
+        "Administration",
+        "Facilities",
+        "Library",
+        "Safety",
+        "Other"
+    ]
+
+
+    if request.method == "POST":
+
+        subject = request.form.get(
+            "subject",
+            ""
+        ).strip()
+
+        category = request.form.get(
+            "category",
+            "Other"
+        ).strip()
+
+        complaint_text = request.form.get(
+            "complaint_text",
+            ""
+        ).strip()
+
+
+        if category not in categories:
+            category = "Other"
+
+
+        if not subject or not complaint_text:
+
+            flash(
+                "Subject and complaint details are required."
+            )
+
+        elif len(subject) > 120:
+
+            flash(
+                "The subject must be 120 characters or fewer."
+            )
+
+        elif len(complaint_text) < 10:
+
+            flash(
+                "Please provide at least 10 characters of detail."
+            )
+
+        elif len(complaint_text) > 3000:
+
+            flash(
+                "The complaint must be 3000 characters or fewer."
+            )
+
+        else:
+
+            create_anonymous_complaint(
+                subject=subject,
+                category=category,
+                complaint_text=complaint_text
+            )
+
+            flash(
+                "Your anonymous complaint was submitted to the Super Admin."
+            )
+
+            return redirect(
+                url_for("student_complaint")
+            )
+
+
+    return render_template(
+        "student_complaint.html",
+        categories=categories
+    )
+
+
+# ============================================================
+# SUPER ADMIN COMPLAINT MANAGEMENT
+# ============================================================
+
+@app.route("/admin/complaints")
+def manage_complaints():
+
+    if (
+        session.get("user_type") != "admin"
+        or session.get("role") != "super_admin"
+    ):
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+
+    allowed_statuses = [
+        "New",
+        "Reviewing",
+        "Resolved",
+        "Dismissed"
+    ]
+
+    status_filter = request.args.get(
+        "status",
+        ""
+    ).strip()
+
+    if status_filter not in allowed_statuses:
+        status_filter = ""
+
+
+    complaints = get_anonymous_complaints(
+        status_filter
+    )
+
+
+    return render_template(
+        "manage_complaints.html",
+        complaints=complaints,
+        statuses=allowed_statuses,
+        status_filter=status_filter
+    )
+
+
+@app.route(
+    "/admin/complaints/<int:complaint_id>/update",
+    methods=["POST"]
+)
+def update_complaint_route(complaint_id):
+
+    if (
+        session.get("user_type") != "admin"
+        or session.get("role") != "super_admin"
+    ):
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+
+    allowed_statuses = {
+        "New",
+        "Reviewing",
+        "Resolved",
+        "Dismissed"
+    }
+
+    status = request.form.get(
+        "status",
+        "New"
+    ).strip()
+
+    admin_note = request.form.get(
+        "admin_note",
+        ""
+    ).strip()
+
+
+    if status not in allowed_statuses:
+        status = "New"
+
+    admin_note = admin_note[:2000]
+
+
+    if update_anonymous_complaint(
+        complaint_id,
+        status,
+        admin_note
+    ):
+
+        flash("Complaint updated.")
+
+    else:
+
+        flash("Complaint not found.")
+
+
+    return redirect(
+        url_for("manage_complaints")
+    )
+
+
+@app.route(
+    "/admin/complaints/<int:complaint_id>/delete",
+    methods=["POST"]
+)
+def delete_complaint_route(complaint_id):
+
+    if (
+        session.get("user_type") != "admin"
+        or session.get("role") != "super_admin"
+    ):
+
+        return redirect(
+            url_for("admin_dashboard")
+        )
+
+
+    if delete_anonymous_complaint(complaint_id):
+        flash("Complaint deleted.")
+    else:
+        flash("Complaint not found.")
+
+
+    return redirect(
+        url_for("manage_complaints")
     )
 
 

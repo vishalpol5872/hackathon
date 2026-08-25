@@ -1,0 +1,422 @@
+/* ==========================================================
+   College Details Page Styles
+
+   This file controls only this page.
+   Read the comment above each setting to understand its job.
+   You can edit this file without changing another dashboard.
+   ========================================================== */
+
+/* Stores reusable colours, sizes, and design values for this page. */
+:root {
+    /* Stores the reusable primary value for this page. */
+    --primary: #0f766e;
+    /* Stores the reusable primary dark value for this page. */
+    --primary-dark: #115e59;
+    /* Stores the reusable primary soft value for this page. */
+    --primary-soft: #ccfbf1;
+    /* Stores the reusable accent value for this page. */
+    --accent: #f59e0b;
+    /* Stores the reusable ink value for this page. */
+    --ink: #172033;
+    /* Stores the reusable muted value for this page. */
+    --muted: #64748b;
+    /* Stores the reusable page value for this page. */
+    --page: #f5f7fa;
+    /* Stores the reusable surface value for this page. */
+    --surface: #ffffff;
+    /* Stores the reusable line value for this page. */
+    --line: #dfe6ee;
+    /* Stores the reusable radius value for this page. */
+    --radius: 12px;
+    /* Stores the reusable shadow value for this page. */
+    --shadow: 0 7px 20px rgba(15, 23, 42, .08);
+}
+
+/* Applies the same basic sizing reset to every page element. */
+*,
+*::before,
+*::after {
+    /* Makes width and height calculations include padding and borders. */
+    box-sizing: border-box;
+    /* Adds space outside the element. */
+    margin: 0;
+    /* Adds space inside the element. */
+    padding: 0;
+}
+
+/* Styles the page element selected by `html`. */
+html {
+    /* Controls whether page scrolling is smooth or immediate. */
+    scroll-behavior: smooth;
+}
+
+/* Styles the page element selected by `body`. */
+body {
+    /* Sets the minimum height of the element. */
+    min-height: 100vh;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: var(--page);
+    /* Chooses the text font. */
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.55;
+}
+
+/* Styles the page element selected by `.navbar`. */
+.navbar {
+    /* Chooses how the element is positioned on the page. */
+    position: sticky;
+    /* Sets the distance from the top for a positioned element. */
+    top: 0;
+    /* Controls which positioned element appears on top. */
+    z-index: 50;
+    /* Sets the minimum height of the element. */
+    min-height: 62px;
+    /* Adds space inside the element. */
+    padding: 11px clamp(18px, 5vw, 64px);
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 20px;
+    /* Sets the text colour. */
+    color: #ffffff;
+    /* Sets the background colour or background effect. */
+    background: #0f172a;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 4px 16px rgba(15, 23, 42, .18);
+}
+
+/* Styles the page element selected by `.navbar h2`. */
+.navbar h2 {
+    /* Sets the text colour. */
+    color: #ffffff;
+}
+
+/* Styles the page element selected by `.navbar nav`. */
+.navbar nav {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+}
+
+/* Styles the page element selected by `.navbar a`. */
+.navbar a {
+    /* Adds space inside the element. */
+    padding: 7px 11px;
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Sets the text colour. */
+    color: #cbd5e1;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 650;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+    /* Makes style changes happen smoothly. */
+    transition: 160ms ease;
+}
+
+/* Changes `.navbar a:hover` while the mouse pointer is over it. */
+.navbar a:hover {
+    /* Sets the text colour. */
+    color: #ffffff;
+    /* Sets the background colour or background effect. */
+    background: rgba(255, 255, 255, .1);
+}
+
+/* Styles the page element selected by `.college-details-page`. */
+.college-details-page {
+    /* Sets the background colour or background effect. */
+    background: #f5f7fa;
+}
+
+/* Styles the page element selected by `.college-details-hero`. */
+.college-details-hero {
+    /* Adds space inside the element. */
+    padding: clamp(42px, 8vw, 78px) 20px;
+    /* Sets the text colour. */
+    color: #ffffff;
+    /* Sets the background colour or background effect. */
+    background: linear-gradient(135deg, #0f766e, #0f172a);
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.college-details-hero h1`. */
+.college-details-hero h1 {
+    /* Adds space below the element. */
+    margin-bottom: 10px;
+    /* Changes the text size. */
+    font-size: clamp(30px, 6vw, 52px);
+}
+
+/* Styles the page element selected by `.college-details-hero p`. */
+.college-details-hero p {
+    /* Sets the text colour. */
+    color: #ccfbf1;
+    /* Changes the text size. */
+    font-size: 17px;
+}
+
+/* Styles the page element selected by `.college-details-content`. */
+.college-details-content {
+    /* Sets the element width. */
+    width: min(1050px, calc(100% - 32px));
+    /* Adds space outside the element. */
+    margin: 0 auto;
+    /* Adds space inside the element. */
+    padding: 28px 0 50px;
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Adds space between flex or grid items. */
+    gap: 16px;
+}
+
+/* Styles the page element selected by `.college-info-section`. */
+.college-info-section {
+    /* Adds space inside the element. */
+    padding: clamp(20px, 4vw, 30px);
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: var(--surface);
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Styles the page element selected by `.college-info-section h2`. */
+.college-info-section h2 {
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Changes the text size. */
+    font-size: 22px;
+}
+
+/* Styles the page element selected by `.college-info-section > p`. */
+.college-info-section > p {
+    /* Adds space above the element. */
+    margin-top: 9px;
+}
+
+/* Styles the page element selected by `.college-contact-grid`. */
+.college-contact-grid {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    /* Adds space between flex or grid items. */
+    gap: 12px;
+}
+
+/* Styles the page element selected by `.college-contact-grid > div`. */
+.college-contact-grid > div {
+    /* Adds space inside the element. */
+    padding: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #dbeafe;
+    /* Rounds the corners. */
+    border-radius: 10px;
+    /* Sets the background colour or background effect. */
+    background: #f8fafc;
+}
+
+/* Styles the page element selected by `.college-contact-grid strong`. */
+.college-contact-grid strong {
+    /* Chooses how the element and its children are arranged. */
+    display: block;
+    /* Adds space below the element. */
+    margin-bottom: 4px;
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Changes the text size. */
+    font-size: 13px;
+}
+
+/* Styles the page element selected by `.college-info-two-column`. */
+.college-info-two-column {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Adds space between flex or grid items. */
+    gap: 16px;
+}
+
+/* Styles the page element selected by `.college-course-list`. */
+.college-course-list {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    /* Adds space between flex or grid items. */
+    gap: 10px;
+}
+
+/* Styles the page element selected by `.college-course-list div`. */
+.college-course-list div {
+    /* Adds space inside the element. */
+    padding: 12px 14px;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Sets the background colour or background effect. */
+    background: var(--primary-soft);
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.college-facilities-grid`. */
+.college-facilities-grid {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Adds space between flex or grid items. */
+    gap: 12px;
+}
+
+/* Styles the page element selected by `.college-facility-card`. */
+.college-facility-card {
+    /* Adds space inside the element. */
+    padding: 17px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: 10px;
+    /* Sets the background colour or background effect. */
+    background: #f8fafc;
+}
+
+/* Styles the page element selected by `.college-facility-card h3`. */
+.college-facility-card h3 {
+    /* Adds space below the element. */
+    margin-bottom: 7px;
+    /* Changes the text size. */
+    font-size: 16px;
+}
+
+/* Styles the page element selected by `.college-details-button`. */
+.college-details-button {
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space above the element. */
+    margin-top: 18px;
+    /* Adds space inside the element. */
+    padding: 10px 17px;
+    /* Chooses how the element and its children are arranged. */
+    display: inline-flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: center;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #ffffff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary);
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+    /* Makes style changes happen smoothly. */
+    transition: 160ms ease;
+}
+
+/* Changes `.college-details-button:hover` while the mouse pointer is over it. */
+.college-details-button:hover {
+    /* Sets the background colour or background effect. */
+    background: var(--primary-dark);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-1px);
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 700px wide or smaller. */
+@media (max-width: 700px) {
+    /* Styles the page element selected by `.navbar`. */
+    .navbar {
+        /* Chooses how the element is positioned on the page. */
+        position: relative;
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+        /* Adds space between flex or grid items. */
+        gap: 8px;
+        /* Adds space inside the element. */
+        padding: 13px 18px;
+    }
+
+    /* Styles the page element selected by `.navbar nav`. */
+    .navbar nav {
+        /* Sets the element width. */
+        width: 100%;
+        /* Controls horizontal overflow and scrolling. */
+        overflow-x: auto;
+    }
+
+    /* Styles the page element selected by `.navbar a`. */
+    .navbar a {
+        /* Controls wrapping and spaces inside text. */
+        white-space: nowrap;
+    }
+
+    /* Applies the following styles to all these elements: `.college-info-two-column,
+    .college-facilities-grid`. */
+    .college-info-two-column,
+    .college-facilities-grid {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 500px wide or smaller. */
+@media (max-width: 500px) {
+    /* Styles the page element selected by `.college-details-content`. */
+    .college-details-content {
+        /* Sets the element width. */
+        width: min(100% - 20px, 1050px);
+        /* Adds space inside the top of the element. */
+        padding-top: 18px;
+    }
+
+    /* Applies the following styles to all these elements: `.college-contact-grid,
+    .college-course-list`. */
+    .college-contact-grid,
+    .college-course-list {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ACCESSIBILITY: Reduces animation for users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+    /* Styles the page element selected by `html`. */
+    html {
+        /* Controls whether page scrolling is smooth or immediate. */
+        scroll-behavior: auto;
+    }
+
+    /* Styles the page element selected by `*`. */
+    * {
+        /* Makes style changes happen smoothly. */
+        transition: none !important;
+    }
+}

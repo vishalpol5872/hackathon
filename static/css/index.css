@@ -1,0 +1,647 @@
+/* ==========================================================
+   Index Page Styles
+
+   This file controls only this page.
+   Read the comment above each setting to understand its job.
+   You can edit this file without changing another dashboard.
+   ========================================================== */
+
+/* Stores reusable colours, sizes, and design values for this page. */
+:root {
+    /* Stores the reusable primary value for this page. */
+    --primary: #0f766e;
+    /* Stores the reusable primary dark value for this page. */
+    --primary-dark: #115e59;
+    /* Stores the reusable primary soft value for this page. */
+    --primary-soft: #ccfbf1;
+    /* Stores the reusable accent value for this page. */
+    --accent: #f59e0b;
+    /* Stores the reusable ink value for this page. */
+    --ink: #172033;
+    /* Stores the reusable muted value for this page. */
+    --muted: #64748b;
+    /* Stores the reusable page value for this page. */
+    --page: #f5f7fa;
+    /* Stores the reusable surface value for this page. */
+    --surface: #fff;
+    /* Stores the reusable line value for this page. */
+    --line: #dfe6ee;
+    /* Stores the reusable danger value for this page. */
+    --danger: #dc2626;
+    /* Stores the reusable success value for this page. */
+    --success: #15803d;
+    /* Stores the reusable radius value for this page. */
+    --radius: 12px;
+    /* Stores the reusable shadow value for this page. */
+    --shadow: 0 7px 20px rgba(15, 23, 42, .08);
+}
+
+/* Applies the same basic sizing reset to every page element. */
+*, *::before, *::after {
+    /* Makes width and height calculations include padding and borders. */
+    box-sizing: border-box;
+    /* Adds space outside the element. */
+    margin: 0;
+    /* Adds space inside the element. */
+    padding: 0;
+}
+
+/* Styles the page element selected by `html`. */
+html {
+    /* Controls whether page scrolling is smooth or immediate. */
+    scroll-behavior: smooth;
+}
+
+/* Styles the page element selected by `body`. */
+body {
+    /* Sets the minimum height of the element. */
+    min-height: 100vh;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: var(--page);
+    /* Chooses the text font. */
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.55;
+}
+
+/* Applies the following styles to all these elements: `h1, h2, h3, h4`. */
+h1, h2, h3, h4 {
+    /* Changes the vertical space between lines of text. */
+    line-height: 1.2;
+}
+
+/* Styles the page element selected by `p`. */
+p {
+    /* Sets the text colour. */
+    color: var(--muted);
+}
+
+/* Styles the page element selected by `img`. */
+img {
+    /* Limits how wide the element can become. */
+    max-width: 100%;
+}
+
+/* Styles the page element selected by `.navbar`. */
+.navbar {
+    /* Chooses how the element is positioned on the page. */
+    position: sticky;
+    /* Sets the distance from the top for a positioned element. */
+    top: 0;
+    /* Controls which positioned element appears on top. */
+    z-index: 50;
+    /* Sets the minimum height of the element. */
+    min-height: 62px;
+    /* Adds space inside the element. */
+    padding: 11px clamp(18px, 5vw, 64px);
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: space-between;
+    /* Adds space between flex or grid items. */
+    gap: 20px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: #0f172a;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 4px 16px rgba(15,23,42,.18);
+}
+
+/* Applies the following styles to all these elements: `.navbar h1, .navbar h2`. */
+.navbar h1, .navbar h2 {
+    /* Sets the text colour. */
+    color: #fff;
+}
+
+/* Styles the page element selected by `.navbar nav`. */
+.navbar nav {
+    /* Chooses how the element and its children are arranged. */
+    display: flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Adds space between flex or grid items. */
+    gap: 4px;
+}
+
+/* Styles the page element selected by `.navbar a`. */
+.navbar a {
+    /* Adds space inside the element. */
+    padding: 7px 11px;
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Sets the text colour. */
+    color: #cbd5e1;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 650;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Changes `.navbar a:hover` while the mouse pointer is over it. */
+.navbar a:hover {
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: rgba(255,255,255,.1);
+}
+
+/* Applies the following styles to all these elements: `a, button`. */
+a, button {
+    /* Makes style changes happen smoothly. */
+    transition: 160ms ease;
+}
+
+/* Applies the following styles to all these elements: `button, .main-button, .primary-button, .back-button`. */
+button, .main-button, .primary-button, .back-button {
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 10px 17px;
+    /* Chooses how the element and its children are arranged. */
+    display: inline-flex;
+    /* Controls how items line up across the row or column. */
+    align-items: center;
+    /* Controls how items are spaced along the main direction. */
+    justify-content: center;
+    /* Adds or changes the border around the element. */
+    border: 0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--primary);
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+    /* Changes the mouse pointer shown over the element. */
+    cursor: pointer;
+}
+
+/* Changes `button:hover, .main-button:hover, .primary-button:hover` while the mouse pointer is over it. */
+button:hover, .main-button:hover, .primary-button:hover {
+    /* Sets the text colour. */
+    color: #f8f7f7;
+    /* Sets the background colour or background effect. */
+    background: var(--primary-dark);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-1px);
+}
+
+/* Applies the following styles to all these elements: `input, select, textarea`. */
+input, select, textarea {
+    /* Sets the element width. */
+    width: 100%;
+    /* Sets the minimum height of the element. */
+    min-height: 42px;
+    /* Adds space inside the element. */
+    padding: 9px 12px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #cbd5e1;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: var(--ink);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Sets several font options together. */
+    font: inherit;
+    /* Changes the text size. */
+    font-size: 14px;
+}
+
+/* Styles the page element selected by `textarea`. */
+textarea {
+    /* Sets the minimum height of the element. */
+    min-height: 100px;
+    /* Controls whether the user can resize the element. */
+    resize: vertical;
+}
+
+/* Changes `input:focus, select:focus, textarea:focus` while the user is typing or selecting it. */
+input:focus, select:focus, textarea:focus {
+    /* Changes the border colour. */
+    border-color: var(--primary);
+    /* Adds or removes the focus outline around an element. */
+    outline: 0;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 0 0 3px rgba(15,118,110,.13);
+}
+
+/* Applies the following styles to all these elements: `.card, .dashboard-section`. */
+.card, .dashboard-section {
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+}
+
+/* Styles the page element selected by `.empty-chat`. */
+.empty-chat {
+    /* Adds space inside the element. */
+    padding: 24px;
+    /* Sets the text colour. */
+    color: var(--muted);
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Applies the following styles to all these elements: `.unread-badge, .dashboard-unread-badge`. */
+.unread-badge, .dashboard-unread-badge {
+    /* Sets the minimum width of the element. */
+    min-width: 18px;
+    /* Adds space inside the element. */
+    padding: 2px 6px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Sets the background colour or background effect. */
+    background: var(--danger);
+    /* Changes the text size. */
+    font-size: 10px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Styles the page element selected by `.table-wrapper`. */
+.table-wrapper {
+    /* Controls horizontal overflow and scrolling. */
+    overflow-x: auto;
+}
+
+/* Styles the page element selected by `table`. */
+table {
+    /* Sets the element width. */
+    width: 100%;
+    /* Joins touching table borders together. */
+    border-collapse: collapse;
+}
+
+/* Applies the following styles to all these elements: `th, td`. */
+th, td {
+    /* Adds space inside the element. */
+    padding: 11px 13px;
+    /* Aligns the text horizontally. */
+    text-align: left;
+}
+
+/* Styles the page element selected by `th`. */
+th {
+    /* Sets the text colour. */
+    color: #dbeafe;
+    /* Sets the background colour or background effect. */
+    background: #1e293b;
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes the space between letters. */
+    letter-spacing: .04em;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `td`. */
+td {
+    /* Adds or changes only the bottom border. */
+    border-bottom: 1px solid var(--line);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+}
+
+/* Changes `tbody tr:hover td` while the mouse pointer is over it. */
+tbody tr:hover td {
+    /* Sets the background colour or background effect. */
+    background: #f0fdfa;
+}
+
+/* Styles the page element selected by `.student-error`. */
+.student-error {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #fecaca;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #991b1b;
+    /* Sets the background colour or background effect. */
+    background: #fef2f2;
+}
+
+/* Applies the following styles to all these elements: `.student-success, .notice-flash-message`. */
+.student-success, .notice-flash-message {
+    /* Adds space inside the element. */
+    padding: 11px 14px;
+    /* Adds space below the element. */
+    margin-bottom: 14px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid #bbf7d0;
+    /* Rounds the corners. */
+    border-radius: 9px;
+    /* Sets the text colour. */
+    color: #166534;
+    /* Sets the background colour or background effect. */
+    background: #f0fdf4;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 700px wide or smaller. */
+@media (max-width: 700px) {
+    /* Styles the page element selected by `.navbar`. */
+    .navbar {
+        /* Chooses how the element is positioned on the page. */
+        position: relative;
+        /* Controls how items line up across the row or column. */
+        align-items: flex-start;
+        /* Chooses whether flex items appear in a row or column. */
+        flex-direction: column;
+        /* Adds space between flex or grid items. */
+        gap: 8px;
+        /* Adds space inside the element. */
+        padding: 13px 18px;
+    }
+
+    /* Styles the page element selected by `.navbar nav`. */
+    .navbar nav {
+        /* Sets the element width. */
+        width: 100%;
+        /* Controls horizontal overflow and scrolling. */
+        overflow-x: auto;
+    }
+
+    /* Styles the page element selected by `.navbar a`. */
+    .navbar a {
+        /* Controls wrapping and spaces inside text. */
+        white-space: nowrap;
+    }
+}
+
+/* ACCESSIBILITY: Reduces animation for users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+    /* Styles the page element selected by `html`. */
+    html {
+        /* Controls whether page scrolling is smooth or immediate. */
+        scroll-behavior: auto;
+    }
+
+    /* Applies the same basic sizing reset to every page element. */
+    *, *::before, *::after {
+        /* Makes style changes happen smoothly. */
+        transition: none !important;
+    }
+}
+
+/* Styles the page element selected by `.hero`. */
+.hero {
+    /* Adds space inside the element. */
+    padding: clamp(62px, 9vw, 105px) 20px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Aligns the text horizontally. */
+    text-align: center;
+    /* Sets the background colour or background effect. */
+    background: radial-gradient(circle at 80% 15%, rgba(45,212,191,.3), transparent 24rem), linear-gradient(135deg, #0f172a, #134e4a);
+}
+
+/* Styles the page element selected by `.hero h1`. */
+.hero h1 {
+    /* Limits how wide the element can become. */
+    max-width: 820px;
+    /* Adds space outside the element. */
+    margin: 0 auto 14px;
+    /* Sets the text colour. */
+    color: #fff;
+    /* Changes the text size. */
+    font-size: clamp(34px, 6vw, 62px);
+}
+
+/* Styles the page element selected by `.hero p`. */
+.hero p {
+    /* Limits how wide the element can become. */
+    max-width: 650px;
+    /* Adds space outside the element. */
+    margin: 0 auto 24px;
+    /* Sets the text colour. */
+    color: #ccfbf1;
+    /* Changes the text size. */
+    font-size: clamp(15px, 2vw, 18px);
+}
+
+/* Applies the following styles to all these elements: `.college-details, .notice-section, .home-general-notices`. */
+.college-details, .notice-section, .home-general-notices {
+    /* Sets the element width. */
+    width: min(1120px, calc(100% - 36px));
+    /* Adds space outside the element. */
+    margin: auto;
+    /* Adds space inside the element. */
+    padding: 38px 0;
+}
+
+/* Applies the following styles to all these elements: `.college-details > h2, .notice-section > h2, .home-notice-heading`. */
+.college-details > h2, .notice-section > h2, .home-notice-heading {
+    /* Adds space below the element. */
+    margin-bottom: 20px;
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Applies the following styles to all these elements: `.cards, .home-notices-grid`. */
+.cards, .home-notices-grid {
+    /* Chooses how the element and its children are arranged. */
+    display: grid;
+    /* Defines the number and size of grid columns. */
+    grid-template-columns: repeat(3, 1fr);
+    /* Adds space between flex or grid items. */
+    gap: 15px;
+}
+
+/* Applies the following styles to all these elements: `.card, .notice, .home-notice-card`. */
+.card, .notice, .home-notice-card {
+    /* Adds space inside the element. */
+    padding: 18px;
+    /* Adds or changes the border around the element. */
+    border: 1px solid var(--line);
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Sets the background colour or background effect. */
+    background: #fff;
+    /* Adds a shadow around the element. */
+    box-shadow: 0 3px 12px rgba(15,23,42,.06);
+}
+
+/* Styles the page element selected by `.card`. */
+.card {
+    /* Adds or changes only the top border. */
+    border-top: 3px solid var(--primary);
+}
+
+/* Applies the following styles to all these elements: `.card h3, .home-notice-card h3`. */
+.card h3, .home-notice-card h3 {
+    /* Adds space below the element. */
+    margin-bottom: 7px;
+}
+
+/* Changes `.card:hover, .home-notice-card:hover` while the mouse pointer is over it. */
+.card:hover, .home-notice-card:hover {
+    /* Adds a shadow around the element. */
+    box-shadow: var(--shadow);
+    /* Moves, rotates, or scales the element visually. */
+    transform: translateY(-2px);
+}
+
+/* Styles the page element selected by `.home-card-link`. */
+.home-card-link {
+    /* Chooses how the element and its children are arranged. */
+    display: inline-block;
+    /* Adds space above the element. */
+    margin-top: 11px;
+    /* Sets the text colour. */
+    color: var(--primary);
+    /* Changes how bold the text is. */
+    font-weight: 700;
+    /* Adds or removes text decoration such as an underline. */
+    text-decoration: none;
+}
+
+/* Applies the following styles to all these elements: `.home-notice-category, .home-notice-pinned`. */
+.home-notice-category, .home-notice-pinned {
+    /* Chooses how the element and its children are arranged. */
+    display: inline-block;
+    /* Adds space inside the element. */
+    padding: 4px 8px;
+    /* Rounds the corners. */
+    border-radius: 999px;
+    /* Changes the text size. */
+    font-size: 10px;
+    /* Changes how bold the text is. */
+    font-weight: 800;
+    /* Changes text to uppercase, lowercase, or another case. */
+    text-transform: uppercase;
+}
+
+/* Styles the page element selected by `.home-notice-category`. */
+.home-notice-category {
+    /* Sets the text colour. */
+    color: var(--primary-dark);
+    /* Sets the background colour or background effect. */
+    background: var(--primary-soft);
+}
+
+/* Styles the page element selected by `.home-notice-pinned`. */
+.home-notice-pinned {
+    /* Sets the text colour. */
+    color: #92400e;
+    /* Sets the background colour or background effect. */
+    background: #fef3c7;
+}
+
+/* Styles the page element selected by `.home-notice-source`. */
+.home-notice-source {
+    /* Adds space above the element. */
+    margin-top: 9px;
+    /* Sets the text colour. */
+    color: #475569;
+    /* Changes the text size. */
+    font-size: 12px;
+    /* Changes how bold the text is. */
+    font-weight: 700;
+}
+
+/* Styles the page element selected by `.home-notice-date`. */
+.home-notice-date {
+    /* Sets the text colour. */
+    color: #94a3b8;
+    /* Changes the text size. */
+    font-size: 10px;
+}
+
+/* Styles the page element selected by `.home-notice-message`. */
+.home-notice-message {
+    /* Adds space above the element. */
+    margin-top: 9px;
+    /* Sets the text colour. */
+    color: #475569;
+    /* Controls wrapping and spaces inside text. */
+    white-space: pre-line;
+}
+
+/* Styles the page element selected by `.home-notice-image`. */
+.home-notice-image {
+    /* Sets the element width. */
+    width: 100%;
+    /* Limits how tall the element can become. */
+    max-height: 230px;
+    /* Adds space above the element. */
+    margin-top: 10px;
+    /* Rounds the corners. */
+    border-radius: 8px;
+    /* Controls how an image fits inside its available area. */
+    object-fit: cover;
+}
+
+/* Styles the page element selected by `.home-no-notices`. */
+.home-no-notices {
+    /* Adds space inside the element. */
+    padding: 24px;
+    /* Adds or changes the border around the element. */
+    border: 1px dashed #cbd5e1;
+    /* Rounds the corners. */
+    border-radius: var(--radius);
+    /* Aligns the text horizontally. */
+    text-align: center;
+}
+
+/* Applies the following styles to all these elements: `#college-details, #notices`. */
+#college-details, #notices {
+    /* Leaves space above the element when scrolling to it. */
+    scroll-margin-top: 72px;
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 800px wide or smaller. */
+@media (max-width: 800px) {
+    /* Applies the following styles to all these elements: `.cards, .home-notices-grid`. */
+    .cards, .home-notices-grid {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* RESPONSIVE STYLES: The rules below apply when the screen is 550px wide or smaller. */
+@media (max-width: 550px) {
+    /* Applies the following styles to all these elements: `.cards, .home-notices-grid`. */
+    .cards, .home-notices-grid {
+        /* Defines the number and size of grid columns. */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Centers the two College Service cards. */
+.cards {
+    /* Creates two equal columns. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    /* Prevents the cards from becoming too wide. */
+    max-width: 760px;
+
+    /* Centers the complete card group. */
+    margin: 0 auto;
+}

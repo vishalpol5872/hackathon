@@ -14,7 +14,7 @@
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}?v=1300"
+        href="{{ url_for('static', filename='css/index.css') }}?v=1"
     >
 
 </head>
@@ -51,7 +51,7 @@
             </a>
 
 
-            <a href="#library">
+            <a href="{{ url_for('student_library') }}">
                 Library
             </a>
 
@@ -89,13 +89,6 @@
                 College Information and Student Knowledge Assistant
             </p>
 
-
-            <a
-    href="{{ url_for('college_details') }}"
-    class="main-button"
->
-    View College Details
-</a>
 
         </section>
 
@@ -151,28 +144,19 @@
                     </h3>
 
                     <p>
-                        View library timings, facilities
-                        and other information.
+                        Search books by name or author and
+                        view department recommendations.
                     </p>
+
+                    <a
+                        href="{{ url_for('student_library') }}"
+                        class="home-card-link"
+                    >
+                        Browse Library
+                    </a>
 
                 </div>
 
-
-
-                <!-- LABORATORIES -->
-
-                <div class="card">
-
-                    <h3>
-                        Laboratories
-                    </h3>
-
-                    <p>
-                        Learn about college laboratories
-                        and available facilities.
-                    </p>
-
-                </div>
 
 
             </div>
